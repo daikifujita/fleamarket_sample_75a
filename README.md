@@ -12,6 +12,7 @@
 |birthday_date|string|null: false|
 |birthday_month|string|null: false|
 |birthday_year|string|null: false|
+|deleted|boolean|null: false, default:false|
 
 ### Association
 
@@ -20,9 +21,9 @@
 - has_one : credit, dependent: :destroy
 - has_many : products, dependent: :destroy_all
 <!-- userが削除されても、以下は消さない。 -->
-- has_many : purchases, dependent: :nullify
-- has_many : comments, dependent: :nullify
-- has_many : favorites, dependent: :nullify
+- has_many : purchases, dependent: :restrict_with_error
+- has_many : comments, dependent: :restrict_with_error
+- has_many : favorites, dependent: :restrict_with_error
 
 ## addresses_table
 |Column|Type|Options|
@@ -78,7 +79,7 @@ enum condition: { 新品、未使用: 0, 未使用に近い:1, 目立った傷�
 - has_many : comments, dependent: :destroy_all
 - has_many : favorites, dependent: :destroy_all
 <!-- productが削除されても、以下は消さない。 -->
-- has_many : purchases,  dependent: :nullify
+- has_many : purchases,  dependent: :restrict_with_error
 
 ## pictures_table
 |Column|Type|Options|
