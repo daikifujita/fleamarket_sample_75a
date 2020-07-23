@@ -12,7 +12,7 @@
 |birthday_date|string|null: false|
 |birthday_month|string|null: false|
 |birthday_year|string|null: false|
-|deleted|boolean|null: false, default:false|
+|is_deleted|boolean|null: false, default:false|
 
 ### Association
 
@@ -60,7 +60,7 @@
 |name|string|index: true,null: false|
 |explanation|text|null: false|
 |brand|string||
-|condition|string|null: false|
+|condition(enum)|string|null: false|
 |prefecture_id(acitve_hash)|integer|null: false|
 |preparationdays|integer|null: false|
 |is_shipping_buyer|boolean|null: false|
@@ -103,7 +103,6 @@ enum condition: { 新品、未使用: 0, 未使用に近い:1, 目立った傷�
 ## purchases_table
 |Column|Type|Options|
 |------|----|-------|
-|number|string|null: false|
 |product|references|null: false, foreign_key: true|
 <!-- 閲覧者(購入者)のuser_id)-->
 |user|references|null: false, foreign_key: true|
