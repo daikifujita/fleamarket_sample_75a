@@ -24,17 +24,17 @@
 ## addresses_table
 |Column|Type|Options|
 |------|----|-------|
-|address_first_name|string|null: false|
-|address_last_name|string|null: false|
-|address_first_name_kana|string|null: false|
-|address_last_name_kana|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
 |postcode|integer|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
 |street|text|null: false|
 |building|text||
 |phone_number|integer||
-|user_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -47,7 +47,7 @@
 |expire_month|integer|null: false|
 |expire_year|integer|null: false|
 |security_code|integer|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -63,9 +63,12 @@
 |condition|string|null: false|
 |area|string|null: false|
 |preparationdays|integer|null: false|
-|payer_flg|integer|null: false|
-|category_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|is_shipping_buyer|boolean|null: false|
+|category|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+
+### enum //brandは
+enum condition: { 新品、未使用: 0, 未使用に近い:1, 目立った傷や汚れなし: 2, やや傷や汚れあり: 3, 傷や汚れあり: 4}
 
 ### Association
 - belongs_to :category
@@ -79,7 +82,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string||
-|product_id|integer|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :product
@@ -98,8 +101,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |number|string|null: false|
-|product_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -109,8 +112,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |body|text|null: false|
-|product_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -119,8 +122,8 @@
 ## favorites_table
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|product|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
