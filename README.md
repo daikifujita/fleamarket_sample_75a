@@ -60,7 +60,7 @@
 |name|string|index: true,null: false|
 |explanation|text|null: false|
 |brand|string||
-|condition(enum)|string|null: false|
+|condition(enum)|integer|null: false|
 |prefecture_id(acitve_hash)|integer|null: false|
 |preparationdays|integer|null: false|
 |is_shipping_buyer|boolean|null: false|
