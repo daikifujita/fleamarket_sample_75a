@@ -1,0 +1,124 @@
+<header>
+ <div class="header__contents">
+  <div class="header__contents__left">
+    <%= image_tag '/assets/logo/logo.png', :size =>'185x49' %>
+  </div>
+
+  <div class="header__contents__right">
+    <div class="step1 selected">会員情報入力</div>
+    <div class="step2">住所情報登録</div>
+    <div class="step3">完了</div>
+
+    <ol class="header__contents__right__stepbar">
+        <li class="done">
+          <span></span>
+        </li>
+        <li>
+          <span></span>
+        </li>
+        <li>
+          <span></span>
+        </li>
+    </ol>
+</div>
+</header>
+
+<div class="userinfo__main">
+  <div class="userinfo__main__container">
+    <div class="userinfo__main__container__head">
+    <p>会員情報入力</p>
+    </div>  
+    <div class="userinfo__main__container__body"> 
+    <%= form_for(@user, url: user_registration_path) do |f| %>
+      <%= render "devise/shared/error_messages", resource: @user %>
+      <div class="userinfo__main__container__body__field">
+       <div class="userinfo__main__container__body__field__title">
+          <%= f.label :nickname %>
+          <div class="userinfo__main__container__body__field__title__required">必須</div>
+        </div>
+        <%= f.text_field :nickname, :placeholder => "例）フリマ太郎"  %>
+      </div>
+    　<div class="userinfo__main__container__body__field">
+       <div class="userinfo__main__container__body__field__title">
+          <%= f.label :email %>
+          <div class="userinfo__main__container__body__field__title__required">必須</div>
+        </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "PC・携帯どちらでも可" %>
+      </div>
+    　<div class="userinfo__main__container__body__field">
+       <div class="userinfo__main__container__body__field__title">
+          <%= f.label :password %>
+          <div class="userinfo__main__container__body__field__title__required">必須</div>
+        </div>
+        <%= f.password_field :password, autocomplete: "new-password", :placeholder => "7文字以上の半角英数字"  %>
+      </div>
+
+    　<div class="userinfo__main__container__body__field">
+       <div class="userinfo__main__container__body__field__title">
+          <%= f.label :password_confirmation %>
+          <div class="userinfo__main__container__body__field__title__required">必須</div>
+        </div>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <div class="userinfo__main__container__body__statement">
+        <h1>本人確認</h1>
+        <p>安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。</p>
+      </div>
+ 
+        <div class="userinfo__main__container__body__field__title">
+          <h1>お名前(全角) </h1>
+          <div class="userinfo__main__container__body__field__title__required adjust">必須</div>
+        </div>
+       <div class="userinfo__main__container__body__fields">
+        <div class="userinfo__main__container__body__fields__field">
+          <%= f.text_field :first_name, :placeholder => "例）山田"  %>
+        </div>
+        <div class="userinfo__main__container__body__fields__field">
+          <%= f.text_field :last_name, :placeholder => "例）彩"  %>
+        </div>
+      </div>
+        <div class="userinfo__main__container__body__field__title">
+          <p>お名前カナ(全角)  </p>
+          <div class="userinfo__main__container__body__field__title__required adjust">必須</div>
+        </div>
+      <div class="userinfo__main__container__body__fields">
+        <div class="userinfo__main__container__body__fields__field">
+          <%= f.text_field :first_name_kana, :placeholder => "例）ヤマダ"  %>
+        </div>
+        <div class="userinfo__main__container__body__fields__field">
+          <%= f.text_field :last_name_kana, :placeholder => "例）アヤ"  %>
+        </div>
+      </div>
+
+        <div class="userinfo__main__container__body__field__title">
+          <p>生年月日 </p>
+          <div class="userinfo__main__container__body__field__title__required adjust">必須</div>
+        </div>
+      <div class="userinfo__main__container__body__fields">
+        <div class="userinfo__main__container__body__fields__birthday">
+          <%= raw sprintf(f.date_select(:birthday, include_blank: true, use_month_numbers: true,start_year: 1920, end_year: (Time.now.year - 10), date_separator: '%s'),'年 ', '月')+'日' %>
+        </div>
+      </div>
+      <div class="userinfo__main__container__body__submit">
+        <%= f.submit "次へ進む" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<div class="footer">
+  <div class="footer__top">
+    <ul>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>プライバシーポリシー</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>furima利用規約</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>特定商取引に関する表記</li></a>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+

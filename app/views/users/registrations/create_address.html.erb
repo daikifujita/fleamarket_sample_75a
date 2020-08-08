@@ -1,0 +1,48 @@
+<header>
+ <div class="header__contents">
+  <div class="header__contents__left">
+    <%= image_tag '/assets/logo/logo.png', :size =>'185x49' %>
+  </div>
+
+  <div class="header__contents__right">
+    <div class="step1 ">会員情報入力</div>
+    <div class="step2 ">住所情報登録</div>
+    <div class="step3 selected">完了</div>
+
+    <ol class="header__contents__right__stepbar">
+        <li class="done">
+          <span></span>
+        </li>
+        <li class="done">
+          <span></span>
+        </li>
+        <li class="done">
+          <span></span>
+        </li>
+    </ol>
+</div>
+
+
+</header>
+<div class="last__main">
+  <div class="last__main__container">
+    <div class="last__main__container__head">
+      <p>登録が完了しました</p>
+    </div>  
+    <div class="last__main__container__body"> 
+      <%= link_to "トップへ戻る", root_path%>
+    </div>
+  </div>
+
+
+
+<div class="footer">
+  <div class="footer__top">
+    <ul>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>プライバシーポリシー</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>furima利用規約</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>特定商取引に関する表記</li></a>
+    </ul>
+  </div>
+</div>
+
