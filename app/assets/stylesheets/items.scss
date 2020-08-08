@@ -6,7 +6,7 @@ header{
 
 }
 .icon{
-  margin-top: 20px;
+  padding-top: 40px;
 }
 .header__contents{
   width: 700px;
@@ -226,8 +226,9 @@ header{
     width: 700px;
     height: 100%;
     margin: 0 auto;
+    padding-top: 40px;
+
     ul{
-      margin-top: 40px;
       display: flex;
       justify-content: center;
       a{

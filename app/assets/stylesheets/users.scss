@@ -155,7 +155,7 @@
     margin: 0 auto;
     background-color: #fff;
     width: 456px;
-    // height: 650px;
+    height: 650px;
     &__head{
       padding: 40px 64px;
       border-bottom: 1px rgb(245, 245, 245) solid;
@@ -245,7 +245,6 @@
       &__login{
         text-align: center;
         padding-top:20px ;
-
         input{
           border-radius: 4px;
           width: 328px;
