@@ -75,3 +75,4 @@ end
 gem 'devise'
 gem 'active_hash'
 gem 'haml-rails', "~> 2.0"
+gem 'font-awesome-sass'

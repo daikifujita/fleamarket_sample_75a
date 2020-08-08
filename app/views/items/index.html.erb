@@ -1,0 +1,33 @@
+<header>
+    <%= link_to "仮置き）ログイン", new_user_session_path %>
+    <%= link_to "仮置き）ログアウト", destroy_user_session_path, method: :delete %>
+
+  <div class="icon">
+  <%= image_tag '/assets/logo/logo.png', :size =>'185x49' %>
+
+  </div>
+</header>
+<div class="signup__main">
+  <div class="signup__main__container">
+    <div class="signup__main__container__head">
+    <p>会員登録</p>
+    </div>  
+    <div class="signup__main__container__body">
+      <%= link_to new_user_registration_path do %>
+        <div class="signup__main__container__body__option mail"><i class="fas fa-envelope"></i>メールアドレスで登録</div>
+      <% end %>
+      <a><div class="signup__main__container__body__option google"><i class="fab fa-google"></i>Googleで登録</div></a>
+      <a><div class="signup__main__container__body__option facebook"><i class="fab fa-facebook-f"></i>Facebookで登録</div></a>
+      <a><div class="signup__main__container__body__option apple"><i class="fab fa-apple"></i>Appleで登録</div></a>
+      <div class="signup__main__container__body__confirmation"><p>登録することで、<a href="https://www.mercari.com/jp/tos/" target="_blank">利用規約</a>と<a href="https://www.mercari.com/jp/privacy/ "target="_blank">プライバシーポリシー</a>に同意したものとみなされます。</p></div>
+    </div>
+  </div>
+<div class="footer">
+  <div class="footer__top">
+    <ul>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>プライバシーポリシー</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>furima利用規約</li></a>
+      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>特定商取引に関する表記</li></a>
+    </ul>
+  </div>
+</div>
