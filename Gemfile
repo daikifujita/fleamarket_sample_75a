@@ -79,3 +79,4 @@ gem 'haml-rails', "~> 2.0"
 gem 'font-awesome-sass'
 gem 'ancestry'
 gem 'carrierwave'
+gem 'enum_help'
