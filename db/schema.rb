@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_062009) do
+ActiveRecord::Schema.define(version: 2020_08_09_065858) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postcode", null: false
@@ -33,6 +33,28 @@ ActiveRecord::Schema.define(version: 2020_08_09_062009) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.text "explanation", null: false
+    t.integer "condition", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "preparationdays", null: false
+    t.boolean "is_shipping_buyer", null: false
+    t.string "brand"
+    t.bigint "saler_id_id"
+    t.bigint "buyer_id_id"
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id_id"], name: "index_products_on_buyer_id_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["name"], name: "index_products_on_name"
+    t.index ["saler_id_id"], name: "index_products_on_saler_id_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -53,4 +75,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_062009) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "users"
 end
