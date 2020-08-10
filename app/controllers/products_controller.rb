@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
     if user_signed_in?
       @product = Product.new
       @product.pictures.new
-      end
     else
       redirect_to root_path
     end
@@ -33,6 +32,8 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
+  private
 
   def product_params
     params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :is_shipping_buyer, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id)
