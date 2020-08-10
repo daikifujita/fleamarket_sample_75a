@@ -33,4 +33,9 @@ class ProductsController < ApplicationController
 
   def destroy
   end
+
+  def product_params
+    params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :is_shipping_buyer, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id)
+  end
+
 end

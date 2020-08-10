@@ -1,0 +1,19 @@
+= form_for @product do |f|
+  商品名#{f.text_field :name}
+  %br/
+  価格#{f.text_field :price}
+  %br/
+  商品説明#{f.text_area :explanation}
+  %br/
+  商品状態#{f.select :condition, Product.conditions.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }}
+  %br/
+  配送料の負担#{f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]]}
+  %br/
+  発送日数#{f.text_field :preparationdays}
+  %br/
+  ブランド#{f.text_field :brand}
+  %br/
+  = f.fields_for :pictures do |i|
+    = i.file_field :image
+    %br/
+  = f.submit
