@@ -13,6 +13,8 @@
   %br/
   ブランド#{f.text_field :brand}
   %br/
+  カテゴリー#{f.text_field :category_id}
+  %br/
   = f.fields_for :pictures do |i|
     = i.file_field :image
     %br/

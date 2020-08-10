@@ -18,5 +18,8 @@
   %p
     = product.brand
     ブランド
+  %p
+    = product.category_id
+    カテゴリー番号
   - product.pictures.each do |picture|
     = image_tag picture.image.url
