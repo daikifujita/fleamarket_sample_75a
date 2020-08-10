@@ -15,7 +15,10 @@
   %br/
   カテゴリー#{f.text_field :category_id}
   %br/
-  = f.fields_for :pictures do |i|
-    = i.file_field :image
-    %br/
+  #image-box
+    = f.fields_for :pictures do |i|
+      .js-file_group{"data-index" => "#{i.index}"}
+        = i.file_field :image, class: 'js-file'
+        %br/
+        %span.js-remove 削除
   = f.submit
