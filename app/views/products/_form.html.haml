@@ -13,7 +13,12 @@
   %br/
   ブランド#{f.text_field :brand}
   %br/
-  カテゴリー#{f.text_field :category_id}
+
+  .listing-product-detail__category
+    .listing-select-wrapper
+      .listing-select-wrapper__box
+      = f.select :category_id, @category_parent_array.map{|category| [category.name, category.id]},{include_blank:'---'}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+
   %br/
   #image-box
     = f.fields_for :pictures do |i|
@@ -21,4 +26,6 @@
         = i.file_field :image, class: 'js-file'
         %br/
         %span.js-remove 削除
+  %br/
+
   = f.submit
