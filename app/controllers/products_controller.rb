@@ -20,6 +20,9 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
+      @category_parent_array =  Category.where(ancestry: nil) do |parent|
+        @category_parent_array << parent
+      end
       render :new
     end
   end
