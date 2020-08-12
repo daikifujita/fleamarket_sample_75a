@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_071340) do
     t.text "explanation", null: false
     t.integer "condition", null: false
     t.integer "preparationdays", null: false
+    t.integer "prefecture_id", null: false
     t.boolean "is_shipping_buyer", null: false
     t.string "brand"
     t.bigint "saler_id"

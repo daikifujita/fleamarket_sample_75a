@@ -30,6 +30,7 @@
   = f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]]
   %br/
   発送元の地域 必須
+  = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "都道府県"}, {class: "prefecture"}
   %br/
   発送までの日数 必須
   = f.text_field :preparationdays

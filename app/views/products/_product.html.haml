@@ -1,25 +1,29 @@
 .content
-  %p= product.name
+  [名前]
   %p
+    = product.name
+  [価格]
+  %p 
     = product.price
-    円
-  %p
+  [商品説明]
+  %p 
     = product.explanation
-    説明
+  [商品状態]
   %p
     = product.condition
-    状態
+  [発送までの日数]
   %p
     = product.preparationdays
-    日数
+  [発送費負担]
   %p
     = product.is_shipping_buyer
-    発送
+  [ブランド]
   %p
     = product.brand
-    ブランド
+  [カテゴリー番号]
   %p
     = product.category_id
-    カテゴリー番号
+  [画像]
+  %p
   - product.pictures.each do |picture|
     = image_tag picture.image.url
