@@ -51,14 +51,15 @@
 |brand|string||
 |condition(enum)|integer|null: false|
 |prefecture_id(acitve_hash)|integer|null: false|
-|preparationdays|integer|null: false|
+|preparationdays(enum)|integer|null: false|
 |is_shipping_buyer|boolean|null: false|
 |saler_id|references||
 |buyer_id|references||
 |category|references|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 ### enum
-enum condition: { 新品、未使用(unused): 0, 未使用に近い(near_unused):1, 目立った傷や汚れなし(no_noticeable_scratches_dirt): 2, やや傷や汚れあり(some_scratches_dirt): 3, 傷や汚れあり(scratches_dirt): 4}
+enum condition: { 新品、未使用(unused): 0, 未使用に近い(near_unused): 1, 目立った傷や汚れなし(no_noticeable_scratches_dirt): 2, やや傷や汚れあり(some_scratches_dirt): 3, 傷や汚れあり(scratches_dirt): 4}
+enum preparationdays: {1~2日で発送(days1_2): 0, 2~3日で発送(days2_3): 1, 4~7日で発送(days4_7): 2}
 ### Association
 - belongs_to :user
 - belongs_to :saler, class_name: "User", optional: true, dependent: :destroy
