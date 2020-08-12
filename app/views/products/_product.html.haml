@@ -1,0 +1,29 @@
+.content
+  [名前]
+  %p
+    = product.name
+  [価格]
+  %p 
+    = product.price
+  [商品説明]
+  %p 
+    = product.explanation
+  [商品状態]
+  %p
+    = product.condition
+  [発送までの日数]
+  %p
+    = product.preparationdays
+  [発送費負担]
+  %p
+    = product.is_shipping_buyer
+  [ブランド]
+  %p
+    = product.brand
+  [カテゴリー番号]
+  %p
+    = product.category_id
+  [画像]
+  %p
+  - product.pictures.each do |picture|
+    = image_tag picture.image.url

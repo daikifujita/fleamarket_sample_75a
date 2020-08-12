@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'mini_magick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -76,3 +77,7 @@ gem 'devise'
 gem 'active_hash'
 gem 'haml-rails', "~> 2.0"
 gem 'font-awesome-sass'
+gem 'ancestry'
+gem 'carrierwave'
+gem 'enum_help'
+gem 'jquery-rails'
