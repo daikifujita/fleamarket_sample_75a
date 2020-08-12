@@ -16,8 +16,8 @@ class Product < ApplicationRecord
   has_many :pictures, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
-  enum condition: { unused: 0, near_unused: 1, no_noticeable_scratches_dirt: 2, some_scratches_dirt: 3, scratches_dirt: 4 }
-  enum preparationdays: { days1_2: 0, days2_3: 1, days4_7: 2}
+  enum condition: { "新品、未使用": 0, "未使用に近い": 1, "目立った傷や汚れなし": 2, "やや傷や汚れあり": 3, "傷や汚れあり": 4 }
+  enum preparationdays: { "1~2日で発送": 0, "2~3日で発送": 1, "4~7日で発送": 2}
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture

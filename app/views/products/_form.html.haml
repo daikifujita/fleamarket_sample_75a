@@ -33,7 +33,7 @@
   = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "都道府県"}, {class: "prefecture"}
   %br/
   発送までの日数 必須
-  = f.text_field :preparationdays
+  = f.select :preparationdays, Product.preparationdays.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }
   %br/
   価格 必須 300円以上1,000,000円未満
   = f.text_field :price
