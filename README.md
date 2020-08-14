@@ -15,9 +15,9 @@
 - has_one : address, dependent: :destroy
 - has_one : credit, dependent: :destroy
 <!-- 以下、null制限が必要 -->
-  has_many  :bought_products,                                         foreign_key: "buyer_id", class_name: "Product",  dependent: :restrict_with_error
-  has_many  :saling_products, -> { where("buyer_id is NULL") },       foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
-  has_many  :sold_products,   -> { where("buyer_id is not NULL") },   foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
+- has_many  :bought_products,                                         foreign_key: "buyer_id", class_name: "Product",  dependent: :restrict_with_error
+- has_many  :saling_products, -> { where("buyer_id is NULL") },       foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
+- has_many  :sold_products,   -> { where("buyer_id is not NULL") },   foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
 <!-- userが削除されても、以下は消さない。 -->
 - has_many : purchases, dependent: :restrict_with_error
 - has_many : comments, dependent: :restrict_with_error
@@ -58,8 +58,8 @@
 |category|references|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 ### enum
-enum condition: { 新品、未使用(unused): 0, 未使用に近い(near_unused): 1, 目立った傷や汚れなし(no_noticeable_scratches_dirt): 2, やや傷や汚れあり(some_scratches_dirt): 3, 傷や汚れあり(scratches_dirt): 4}
-enum preparationdays: {1~2日で発送(days1_2): 0, 2~3日で発送(days2_3): 1, 4~7日で発送(days4_7): 2}
+- enum condition: { 新品、未使用: 0, 未使用に近い: 1, 目立った傷や汚れなし: 2, やや傷や汚れあり: 3, 傷や汚れあり: 4}
+- enum preparationdays: {1-2日で発送: 0, 2-3日で発送: 1, 4-7日で発送: 2}
 ### Association
 - belongs_to :user
 - belongs_to :saler, class_name: "User", optional: true, dependent: :destroy
