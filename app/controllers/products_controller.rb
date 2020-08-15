@@ -1,17 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @products = Product.includes(:pictures).order('created_at DESC')
   end
 
   def new
-    if user_signed_in?
-      @product = Product.new
-      @product.pictures.new
-      @category_parent_array =  Category.where(ancestry: nil) do |parent|
-        @category_parent_array << parent
-      end
-    else
-      redirect_to root_path
+    @product = Product.new
+    @product.pictures.new
+    @category_parent_array =  Category.where(ancestry: nil) do |parent|
+      @category_parent_array << parent
     end
   end
 
