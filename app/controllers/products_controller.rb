@@ -38,15 +38,46 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+
   end
 
   def edit
+    @product = Product.find(params[:id])
+    grandchild_category = @product.category
+    child_category = grandchild_category.parent
+
+
+    @category_parent_array = []
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+      @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+      @category_grandchildren_array << grandchildren
+    end
   end
 
   def update
+    @product = Product.find(params[:id])
+
+    if @product.update(product_params)
+      redirect_to products_path , notice: 'グループを更新しました'
+    else
+      render :edit
+    end
   end
 
   def destroy
+    product = Product.find(params[:id])
+    product.destroy
+    redirect_to products_path
   end
 
   def get_category_children

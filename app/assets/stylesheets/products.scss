@@ -23,3 +23,390 @@
     background-color: green;
   }
 }
+
+.header{
+  height: 128px;
+  width: 100%;
+  text-align: center;
+  background: rgb(245, 245, 245);
+  &__icon{
+  padding-top: 40px;
+}
+}
+
+.pfooter{
+  height: 128px;
+  width: 100%;
+  background: rgb(245, 245, 245);
+  &__top{
+    width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    ul{
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      a{
+        font-size: 12px;
+        color: #333;
+        text-decoration: none;
+      }
+      li{
+        margin-right: 20px;
+
+      }
+    }
+  }
+}
+
+.productsale__main{
+  font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  width: 100%;
+  background: rgb(245, 245, 245);
+  &__containers{
+    margin: 0 auto;
+    background-color: #fff;
+    width: 700px;
+    padding-bottom: 50px;
+    &__image{
+      padding: 40px;
+      height: 220px;
+      border-bottom: 1px whitesmoke solid;
+        &__title{
+          display: flex;
+          position: relative;
+          p{
+            font-weight: bold;
+            font-size: 14px;
+          }
+          &__required{
+            width: 30px;
+            height: 20px;
+            font-size: 12px;
+            background-color:#2BCCD1;
+            color: white;
+            border-radius: 3px;
+            text-align: center;
+            margin-left: 10px;
+          }
+        }
+        h1{
+          font-size: 14px;
+          color: #333333;
+          margin:16px 0;
+        }
+      
+      &__upload{
+        align-content: center;
+        align-items: center;
+        background-color: rgb(245, 245, 245);
+        cursor: pointer;
+        display: flex;
+        height: 150px;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        border-width: 1px;
+        border-style: dashed;
+        border-color: rgb(204, 204, 204);
+        border-image: initial;
+        transition: all 0.5s ease-out 0s;
+        i{
+          font-size: 20px;
+          fill: rgb(34, 34, 34);
+          height: 24px;
+          margin-bottom: 8px;
+          width: 24px;
+        }
+        p{
+          font-size: 12px;
+          line-height: 1.4em;
+          text-align: center;
+          width: 100%;
+          color: #333333;
+        }
+      }
+    }
+  
+    &__info{
+      padding: 40px;
+      height: calc(416px - 80px);
+      border-bottom: 1px whitesmoke solid;
+      &__title{
+        display: flex;
+        position: relative;
+
+        p{
+          font-weight: bold;
+          font-size: 14px;
+        }
+        &__required{
+          width: 30px;
+          height: 20px;
+          font-size: 12px;
+          background-color:#2BCCD1;
+          color: white;
+          border-radius: 3px;
+          text-align: center;
+          margin-left: 10px;
+        }
+      }
+      input[type='text']{
+        width: 580px;
+        margin-top: 16px ;
+        margin-bottom: 32px;
+        height: 30px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+      textarea{
+        width: 580px;
+        margin: 16px 0;
+        height: 130px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+
+    }
+    &__details{
+      padding: 40px;
+      height: calc(444px - 80px);
+      border-bottom: 1px whitesmoke solid;
+      h1{
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin-bottom: 24px;
+      }
+      
+      &__title{
+        display: flex;
+        position: relative;
+
+        p{
+          font-weight: bold;
+          font-size: 14px;
+        }
+        &__required{
+          width: 30px;
+          height: 20px;
+          font-size: 12px;
+          background-color:#2BCCD1;
+          color: white;
+          border-radius: 3px;
+          text-align: center;
+          margin-left: 10px;
+        }
+        &__optional{
+          width: 30px;
+          height: 20px;
+          font-size: 12px;
+          background-color: #bfbfbf;
+          color: white;
+          border-radius: 3px;
+          text-align: center;
+          margin-left: 10px;
+        }
+      }
+      input[type='text']{
+        width: 580px;
+        margin-top: 16px ;
+        margin-bottom: 32px;
+        height: 30px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+    }
+    &__shipping{
+      padding: 40px;
+      height: calc(444px - 80px);
+      border-bottom: 1px whitesmoke solid;
+      h1{
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin-bottom: 24px;
+      }
+      
+      &__title{
+        display: flex;
+        position: relative;
+        p{
+          font-weight: bold;
+          font-size: 14px;
+        }
+        &__required{
+          width: 30px;
+          height: 20px;
+          font-size: 12px;
+          background-color:#2BCCD1;
+          color: white;
+          border-radius: 3px;
+          text-align: center;
+          margin-left: 10px;
+        }
+
+      }
+      input[type='text']{
+        width: 580px;
+        margin-top: 16px ;
+        margin-bottom: 32px;
+        height: 30px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+    }
+    &__price{
+      padding: 40px;
+      height: calc(270px - 40px);
+      h1{
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4em;
+        margin-bottom: 24px;
+      }
+      
+      &__title{
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+
+        p{
+          font-weight: bold;
+          font-size: 14px;
+        }
+        span{
+          position: absolute;
+          top: 15px;
+          right: 330px;          
+        }
+        &__required{
+          position: absolute;
+          top: 15px;
+          left: 60px;     
+          width: 30px;
+          height: 20px;
+          font-size: 12px;
+          background-color:#2BCCD1;
+          color: white;
+          border-radius: 3px;
+          text-align: center;
+          margin-left: 10px;
+        }
+
+      }
+      input[type='text']{
+        width: 285px;
+        height: 30px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+        text-align: right;
+        float: right;
+      }
+      &__calculate{
+        width: 100%;
+        &__margin{
+          border-bottom: 1px whitesmoke solid;
+          display: flex;
+          justify-content: space-between;
+          height: 70px;
+          align-items: center;
+          color: #333333;
+          font-size: 14px;
+        }
+        &__total{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          height: 70px;
+          align-items: center;
+          color: #333333;
+          font-size: 14px;
+ 
+        }
+      }
+    }
+    &__save{
+      height: calc(270px - 40px);
+      &__submit{
+        text-align: center;
+        input{
+          width:360px;
+          line-height: 48px;
+          font-size: 16px;
+          font-weight: bold;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: center;
+          background: #2BCCD1;
+          border: 1px solid #2BCCD1;
+          color: #fff;
+          margin-bottom: 24px;
+        }
+
+      }
+      &__draft{
+        text-align: center;
+        input{
+          width:360px;
+          line-height: 48px;
+          font-size: 16px;
+          font-weight: bold;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: center;
+          background-color: #ccc;
+          border: 1px solid #ccc;
+          color: #222;
+          margin-bottom: 24px;
+        }
+      }
+      &__back{
+        text-align: center;
+        a{
+          margin: 0 auto;
+          text-decoration: none;
+          color: #0095ee;
+        }
+      }
+      &__description{
+        width: 620px;
+        margin: 20px auto;
+
+        p{
+        line-height: 1.5;
+        margin: 0 auto;
+        color: #333333;
+        font-size: 12px;
+        }
+      }
+
+
+    }
+
+  }
+}
