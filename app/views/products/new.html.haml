@@ -1,4 +1,1 @@
-= form_with model: [@user, @product], html: { multipart: true, class:"new_product"},url: user_products_path do |f|
-  = render 'layouts/error_messages', model: f.object
-  = render partial:'form', locals: {:f =>f}
-  = f.submit
+= render partial: 'form'
