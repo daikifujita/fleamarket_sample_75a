@@ -1,4 +1,3 @@
-<%# 統合してからheaderを共通化する %>
 <div class="header">
   <div class="header__icon">
   <%= image_tag '/assets/logo/logo.png', :size =>'185x49' %>
@@ -6,7 +5,9 @@
 </div>
 <div class="productsale__main">
   <%# 統合してからurlを正しいものに修正する %>
-  <%#= form_for @product do |f| %>
+<%= form_with(model: [@user, @product], html: { multipart: true, class:"edit_product"},url: products_path) do |f| %>  <%# 統合してからheaderを共通化する %>
+   <%= render 'layouts/error_messages', model: f.object %>
+
   <div class="productsale__main__containers">
     <div class="productsale__main__containers__image">
     <div class="productsale__main__containers__image__title">
@@ -15,16 +16,13 @@
     </div>
     <h1>最大10枚までアップロードできます</h1>
     <div class="productsale__main__containers__image__upload">
-     <div class="upload-container">
       <%= f.fields_for :pictures do |i|%>
       <p><i class="fas fa-camera"></i></p>
       <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>  
       <div id="image-box">
        <div class="js-file_group" data-index="#{i.index}">
-        <div class="image-upload">
-         <%= i.file_field :image, class: 'js-file', multiple: "multiple", style: "visibility: hidden" %>
-        </div>
-       </div>
+        <%= i.file_field :image, class: 'js-file'%>
+        <span class="js-remove">削除</span>
        </div>
        <% end %>
       </div>
@@ -60,9 +58,18 @@
     <div class="listing-product-detail__category">
       <div class="listing-select-wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, @category_parent_array.map{|category| [category.name, category.id]},{include_blank:'---'}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>
+        <%= f.select :category_id, @category_parent_array, {selected:@product.category.parent.parent.name}, { class: 'category-wrapper__category form-control', id: 'parent_category'} %>
+      </div>
+      <div class="listing-select-wrapper" id="children_wrapper">
+        <div class="listing-select-wrapper__box"></div>
+        <%= f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.parent.id}),{}, {class: 'category-wrapper__category form-control', id: 'child_category'} %>
+      </div>
+      <div class="listing-select-wrapper" id="grandchildren_wrapper">
+        <div class="listing-select-wrapper__box"></div>
+        <%= f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.id}),{}, {class: 'category-wrapper__category form-control', id: 'grandchild_category'} %>
       </div>
     </div>
+
 
     <div class="productsale__main__containers__details__title">
       <p>ブランド</p> 
@@ -109,7 +116,6 @@
        <div><p>販売価格</p></div>
       <div class="productsale__main__containers__price__title__required">必須</div>
       <span>¥</span><%= f.text_field :price, :placeholder => "0"  %>
-
     </div>
     <div class="productsale__main__containers__price__calculate">
       <div class="productsale__main__containers__price__calculate__margin">
@@ -137,7 +143,7 @@
     </div>
   </div>
     </div>
-    <%# end %>
+    <% end %>
   </div>
 <%# 統合してからfooterを共通化する %>
 <div class="pfooter">

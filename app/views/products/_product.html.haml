@@ -27,3 +27,8 @@
   %p
   - product.pictures.each do |picture|
     = image_tag picture.image.url
+  = link_to '編集', "/products/#{product.id}/edit", method: :get
+  = link_to '削除', product_path(product.id), method: :delete
+
+
+ 

@@ -1,17 +1,28 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-
+  
   def index
     @products = Product.includes(:pictures).order('created_at DESC')
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @product = Product.new
-    @product.pictures.build
-    @category_parent_array =  Category.where(ancestry: nil) do |parent|
-      @category_parent_array << parent
+    # @user = User.find(params[:user_id])
+    # @product = Product.new
+    # @product.pictures.build
+    # @category_parent_array =  Category.where(ancestry: nil) do |parent|
+    #   @category_parent_array << parent
+    # end
+
+    if user_signed_in?
+      @product = Product.new
+      @product.pictures.new
+      @category_parent_array =  Category.where(ancestry: nil) do |parent|
+        @category_parent_array << parent
+      end
+    else
+      redirect_to root_path
     end
+
   end
 
   def create
@@ -104,6 +115,8 @@ class ProductsController < ApplicationController
     ).merge(user_id: params[:user_id], saler_id: params[:user_id])
     return product_params
   end
+
+
 
   def image_params
     params.require(:pictures).permit({images: []})
