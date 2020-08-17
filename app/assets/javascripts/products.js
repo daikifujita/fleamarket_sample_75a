@@ -77,7 +77,6 @@ $(function () {
     var targetIndex = files_array.length
     e.preventDefault();
     const files = e.originalEvent.dataTransfer.files;
-    console.log(targetIndex)
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       const blobUrl = window.URL.createObjectURL(file);
@@ -91,7 +90,6 @@ $(function () {
         targetIndex = new_upload(targetIndex, blobUrl)
       }
     }
-    console.log(files_array)
   });
 
   $('#image-box').on('change', '.js-file', function (e) {
@@ -112,7 +110,6 @@ $(function () {
         targetIndex = new_upload(targetIndex, blobUrl)
       }
     }
-    console.log(files_array)
   });
 
   //画像削除アクション
@@ -143,10 +140,7 @@ $(function () {
       formData.append("pictures[images][]", file)
     });
 
-    console.log(files_array)
-
     if ($(this).attr('class') == "new_product") {
-      console.log("new")
       $.ajax({
         url: url,
         type: "POST",
@@ -162,7 +156,6 @@ $(function () {
           alert('出品に失敗しました！');
         })
     } else if ($(this).attr('class') == "edit_item") {
-      console.log("edit")
       $.ajax({
         url: url,
         type: "PATCH",
