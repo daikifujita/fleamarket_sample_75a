@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
   $(document).on('turbolinks:load', ()=> {
     // カテゴリーセレクトボックスのオプションを作成
     function appendOption(category){
@@ -39,7 +39,7 @@ $(function(){
       var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
       if (parentCategory != "---"){ //親カテゴリーが初期値でないことを確認
         $.ajax({
-          url: '/products/get_category_children',
+          url: '/users/:user_id/products/get_category_children',
           type: 'GET',
           data: { parent_name: parentCategory },
           dataType: 'json'
@@ -69,13 +69,12 @@ $(function(){
       var childId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
       if (childId != "---"){ //子カテゴリーが初期値でないことを確認
         $.ajax({
-          url: '/products/get_category_grandchildren',
+          url: '/users/:user_id/products/get_category_grandchildren',
           type: 'GET',
           data: { child_id: childId },
           dataType: 'json'
         })
         .done(function(grandchildren){
-          console.log(grandchildren)
           if (grandchildren.length != 0) {
             $('#grandchildren_wrapper').remove(); 
             var insertHTML = '';
