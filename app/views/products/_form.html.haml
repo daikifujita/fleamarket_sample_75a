@@ -1,41 +1,37 @@
-= form_for @product do |f|
-  = render 'layouts/error_messages', model: f.object
-  画像 必須 10枚まで
+画像 必須 10枚まで
+.upload-container
   #image-box
-    = f.fields_for :pictures do |i|
-      .js-file_group{"data-index" => "#{i.index}"}
-        = i.file_field :image, class: 'js-file'
-        %br/
-        %span.js-remove 削除
-  %br/
-  商品名 必須 40文字まで
-  = f.text_field :name
-  %br/
-  商品説明 必須 1,000文字以内
-  = f.text_area :explanation
-  %br/
-  カテゴリー 必須
-  .listing-product-detail__category
-    .listing-select-wrapper
-      .listing-select-wrapper__box
-      = f.select :category_id, @category_parent_array.map{|category| [category.name, category.id]},{include_blank:'---'}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
-  %br/
-  ブランド 任意
-  = f.text_field :brand
-  %br/
-  商品状態 必須
-  = f.select :condition, Product.conditions.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }
-  %br/
-  配送料の負担 必須
-  = f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]]
-  %br/
-  発送元の地域 必須
-  = f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "都道府県"}, {class: "prefecture"}
-  %br/
-  発送までの日数 必須
-  = f.select :preparationdays, Product.preparationdays.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }
-  %br/
-  価格 必須 300円以上1,000,000円未満
-  = f.text_field :price
-  %br/
-  = f.submit
+    .js-file_group
+      %label{class:"image-upload", data: {index: "0"}}
+        %input{type: "file", multiple: "multiple", class: "js-file", style: "visibility: hidden"}
+%br/
+商品名 必須 40文字まで
+= f.text_field :name, value: "商品例"
+%br/
+商品説明 必須 1,000文字以内
+= f.text_area :explanation, value:"商品説明"
+%br/
+カテゴリー 必須
+.listing-product-detail__category
+  .listing-select-wrapper
+    .listing-select-wrapper__box
+    = f.select :category_id, @category_parent_array.map{|category| [category.name, category.id]},{include_blank:'---'}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+%br/
+ブランド 任意
+= f.text_field :brand
+%br/
+商品状態 必須
+= f.select :condition, Product.conditions.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {}}
+%br/
+配送料の負担 必須
+= f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]]
+%br/
+発送元の地域 必須
+= f.collection_select :prefecture_id, Prefecture.all, :id, :name,{prompt: "都道府県"}, {class: "prefecture"}
+%br/
+発送までの日数 必須
+= f.select :preparationdays, Product.preparationdays.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }
+%br/
+価格 必須 300円以上1,000,000円未満
+= f.text_field :price, value:300
+%br/
