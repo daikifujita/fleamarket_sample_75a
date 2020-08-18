@@ -36,7 +36,7 @@ $(function () {
     return targetIndex
   }
 
-  //newアクション時には実行させないようにする必要あり
+  // newアクション時には実行させないようにする必要あり
   // $(function () {
   //   $.getJSON('edit')
   //     .done(function (datas) {

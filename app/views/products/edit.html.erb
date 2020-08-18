@@ -10,22 +10,23 @@
 
   <div class="productsale__main__containers">
     <div class="productsale__main__containers__image">
-    <div class="productsale__main__containers__image__title">
-       <p>出品画像</p> 
+     <div class="productsale__main__containers__image__title">
+      <p>出品画像</p> 
       <div class="productsale__main__containers__image__title__required">必須</div>
-    </div>
-    <h1>最大10枚までアップロードできます</h1>
+     </div>
+     <h1>最大10枚までアップロードできます</h1>
     <div class="productsale__main__containers__image__upload">
-      <%= f.fields_for :pictures do |i|%>
-      <p><i class="fas fa-camera"></i></p>
-      <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>  
-      <div id="image-box">
-       <div class="js-file_group" data-index="#{i.index}">
-        <%= i.file_field :image, class: 'js-file'%>
-        <span class="js-remove">削除</span>
-       </div>
-       <% end %>
+    <%= f.fields_for :pictures do |i|%>
+     <div id="image-box">
+      <div class="js-file_group">
+        <label class="image-upload" data-index="0">
+         <%= i.file_field :image, class: 'js-file', multiple: "multiple", style: "visibility: hidden" %> 
+         <p><i class="fas fa-camera"></i></p>
+         <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
+        </label>
       </div>
+     </div>
+    <% end %>
     </div>
   </div>
   <div class="productsale__main__containers__info">
