@@ -6,7 +6,8 @@
   </div>
 </div>
 <div class="productsale__main">
-<%= form_with(model: [@user, @product], html: { multipart: true, class:"new_product"},:remote => true, url: products_path, local: true ) do |f| %>  <%# 統合してからheaderを共通化する %>
+<%= form_with(model: [@user, @product], multipart: true, class:"new_product",:remote => true, url: products_path, local: true ) do |f| %>  <%# 統合してからheaderを共通化する %>
+
 <%= render 'layouts/error_messages', model: f.object %>
 
   <div class="productsale__main__containers">

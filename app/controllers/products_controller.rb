@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(create_params)
+    @product = Product.new(product_params)
     if @product.save
       # 関連するpicturesを作成
       image_params[:images].each do |image|
@@ -101,20 +101,9 @@ class ProductsController < ApplicationController
   
   private
 
-  def create_params
-    product_params = params.require(:product).permit(
-      :price,
-      :name,
-      :explanation,
-      :brand,
-      :condition,
-      :preparationdays,
-      :prefecture_id,
-      :category_id,
-      :is_shipping_buyer
-    ).merge(user_id: params[:user_id], saler_id: params[:user_id])
-    return product_params
-  end
+    def product_params
+      params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :prefecture_id, :is_shipping_buyer, :category_id, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id, saler_id: current_user.id)
+    end
 
 
 
