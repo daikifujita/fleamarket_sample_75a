@@ -28,10 +28,10 @@ $(function () {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
     // 新規画像追加の処理
-    $('.productsale__main__containers__image__upload').append(buildImg(targetIndex, blobUrl));
+    $('.js-file_group').append(buildImg(targetIndex, blobUrl));
     //新しい画像アップロードフォルダーを作成し、次に備える。
     targetIndex++;
-    $('.productsale__main__containers__image__upload').append(buildFileField(targetIndex));
+    $('.js-file_group').append(buildFileField(targetIndex));
     // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
     return targetIndex
   }
@@ -73,7 +73,7 @@ $(function () {
     e.preventDefault();
   });
 
-  $(".productsale__main__containers__image__upload").on("drop", function (e) {
+  $("#image-box").on("drop", function (e) {
     var targetIndex = files_array.length
     e.preventDefault();
     const files = e.originalEvent.dataTransfer.files;
@@ -92,7 +92,7 @@ $(function () {
     }
   });
 
-  $('.productsale__main__containers__image__upload').on('change', '.js-file', function (e) {
+  $('#image-box').on('change', '.js-file', function (e) {
     // ファイルのブラウザ上でのURLを取得する
     var targetIndex = $(this).parent().data('index');
     const files = e.target.files;
