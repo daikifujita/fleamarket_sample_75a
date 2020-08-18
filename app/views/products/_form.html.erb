@@ -9,20 +9,22 @@
   <%#= form_for @product do |f| %>
   <div class="productsale__main__containers">
     <div class="productsale__main__containers__image">
-    <div class="productsale__main__containers__image__title">
-       <p>出品画像</p> 
+     <div class="productsale__main__containers__image__title">
+      <p>出品画像</p> 
       <div class="productsale__main__containers__image__title__required">必須</div>
-    </div>
-    <h1>最大10枚までアップロードできます</h1>
-    <div class="productsale__main__containers__image__upload" data-index="#{i.index}">
-      <%= f.fields_for :pictures do |i|%>
+     </div>
+     <h1>最大10枚までアップロードできます</h1>
+    <%# <div class="productsale__main__containers__image__upload" data-index="#{i.index}">
       <p><i class="fas fa-camera"></i></p>
       <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>  
-        <div class="image-upload">
-         <%= i.file_field :image, class: 'js-file', multiple: "multiple", style: "visibility: hidden" %>
-        </div>
-       <% end %>
-    </div>
+      <div class="productsale__main__containers__image__upload__file">
+     <div class="image-upload">
+      <%= f.fields_for :pictures do |i|%> 
+      <%# <%= i.file_field :image, class: 'js-file', multiple: "multiple", style: "visibility: hidden" %> 
+       <%# <% end %>
+     <%# </div>
+     </div>
+    </div> %>
   </div>
   <div class="productsale__main__containers__info">
     <div class="productsale__main__containers__info__title">
