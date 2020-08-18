@@ -1,23 +1,18 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :set_product, only: [:show, :edit, :destroy, :update]
+
   def index
     @products = Product.includes(:pictures).order('created_at DESC')
   end
 
   def new
-    # @user = User.find(params[:user_id])
-    # @product = Product.new
-    # @product.pictures.build
-    # @category_parent_array =  Category.where(ancestry: nil) do |parent|
-    #   @category_parent_array << parent
-    # end
 
     if user_signed_in?
       @product = Product.new
       @product.pictures.new
       @category_parent_array =  Category.where(ancestry: nil) do |parent|
-        @category_parent_array << parent
+        @category_parent_array << @category_parent_array =  Category.where(ancestry: nil)
       end
     else
       redirect_to root_path
@@ -41,20 +36,16 @@ class ProductsController < ApplicationController
         format.json
       end
     else
-      @category_parent_array =  Category.where(ancestry: nil) do |parent|
-        @category_parent_array << parent
-      end
+      @category_parent_array <<  @category_parent_array =  Category.where(ancestry: nil)
       render :index
     end
   end
 
   def show
-    @product = Product.find(params[:id])
 
   end
 
   def edit
-    @product = Product.find(params[:id])
     grandchild_category = @product.category
     child_category = grandchild_category.parent
 
@@ -76,7 +67,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
 
     if @product.update(product_params)
       redirect_to products_path , notice: 'グループを更新しました'
@@ -86,9 +76,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product = Product.find(params[:id])
-    product.destroy
-    redirect_to products_path
+    if @product.destroy
+      redirect_to products_path
+    else
+      render :index
+    end
   end
 
   def get_category_children
@@ -111,4 +103,7 @@ class ProductsController < ApplicationController
     params.require(:pictures).permit({images: []})
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end
