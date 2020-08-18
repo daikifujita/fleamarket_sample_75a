@@ -59,15 +59,15 @@
     <div class="listing-product-detail__category">
       <div class="listing-select-wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, @category_parent_array, {selected:@product.category.parent.parent.name}, { class: 'category-wrapper__category form-control', id: 'parent_category'} %>
+        <%= f.select :category_id, options_for_select(@category_parent_array.map{|c|[c, {}]}, @product.category.parent.parent.name), {}, {class: 'select', id: 'parent_category'} %>
       </div>
       <div class="listing-select-wrapper" id="children_wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.parent.id}),{}, {class: 'category-wrapper__category form-control', id: 'child_category'} %>
+        <%= f.select :category_id, options_for_select(@category_child_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @product.category.parent.id), {}, {class: 'select', id: 'child_category'} %>
       </div>
       <div class="listing-select-wrapper" id="grandchildren_wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.id}),{}, {class: 'category-wrapper__category form-control', id: 'grandchild_category'} %>
+        <%= f.select :category_id, options_for_select(@category_grandchild_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id], 'id'=>c[:id]}]}, @product.category.id), {}, {class: 'select', id: 'grandchild_category'} %>
       </div> 
     </div>
 
