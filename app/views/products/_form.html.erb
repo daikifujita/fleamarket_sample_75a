@@ -14,20 +14,14 @@
       <div class="productsale__main__containers__image__title__required">必須</div>
     </div>
     <h1>最大10枚までアップロードできます</h1>
-    <div class="productsale__main__containers__image__upload">
-     <div class="upload-container">
+    <div class="productsale__main__containers__image__upload" data-index="#{i.index}">
       <%= f.fields_for :pictures do |i|%>
       <p><i class="fas fa-camera"></i></p>
       <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>  
-      <div id="image-box">
-       <div class="js-file_group" data-index="#{i.index}">
         <div class="image-upload">
          <%= i.file_field :image, class: 'js-file', multiple: "multiple", style: "visibility: hidden" %>
         </div>
-       </div>
-       </div>
        <% end %>
-      </div>
     </div>
   </div>
   <div class="productsale__main__containers__info">

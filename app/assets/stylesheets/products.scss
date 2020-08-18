@@ -1,28 +1,28 @@
-.js-file_group {
-  width: 600px;
-  height: 150px;
-  display: flex;
-  justify-content: left;
-  .preview{
-    &__change {
-      display: flex;
-      justify-content: space-between;
-      &__upload{
-        width: 50px;
-        height: auto;
-        background-color: blue;
-      }
-      &__delete{
-        width: 50px;
-        height: auto;
-        background-color: red; 
-      }
-    }
-  }
-  .image-upload{
-    background-color: green;
-  }
-}
+// .js-file_group {
+//   width: 600px;
+//   height: 150px;
+//   display: flex;
+//   justify-content: left;
+//   .preview{
+//     &__change {
+//       display: flex;
+//       justify-content: space-between;
+//       &__upload{
+//         width: 50px;
+//         height: auto;
+//         background-color: blue;
+//       }
+//       &__delete{
+//         width: 50px;
+//         height: auto;
+//         background-color: red; 
+//       }
+//     }
+//   }
+//   .image-upload{
+//     background-color: green;
+//   }
+// }
 
 .header{
   height: 128px;
@@ -111,6 +111,11 @@
         border-color: rgb(204, 204, 204);
         border-image: initial;
         transition: all 0.5s ease-out 0s;
+
+        width: 600px;
+        height: 150px;
+        display: flex;
+        justify-content: left;
         i{
           font-size: 20px;
           fill: rgb(34, 34, 34);
@@ -125,7 +130,35 @@
           width: 100%;
           color: #333333;
         }
+
+          .preview{
+            width: 125px;
+            height: 159px;
+            &__change {
+              border-top: #cccccc 1px solid;
+              background-color: rgb(245, 245, 245);
+              display: flex;
+              font-size: 12px;
+              padding-top: 10px;
+ 
+              &__upload{
+                width: 50px;
+                text-align: center;
+                height: 32px;
+              }
+              &__delete{
+                width: 50px;
+                height: 32px;
+                text-align: center;
+              }
+            }
+          }
+          .image-upload{
+            background-color: green;
+          }
+        
       }
+
     }
   
     &__info{
@@ -163,6 +196,7 @@
         line-height: 1.5;
         font-size: 16px;
       }
+
       textarea{
         width: 580px;
         margin: 16px 0;
@@ -175,6 +209,18 @@
         font-size: 16px;
       }
 
+    }
+    select{
+      width: 614px;
+          margin-top: 16px;
+          margin-bottom: 32px;
+          height: 50px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
     }
     &__details{
       padding: 40px;

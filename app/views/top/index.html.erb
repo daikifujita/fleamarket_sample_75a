@@ -22,7 +22,8 @@
     <div class="top-header__containers__bottom__user">
     <% if user_signed_in? %>
      <div class="top-header__containers__bottom__user__signup">
-      <%= link_to 'マイページ', "#" %>
+      <%= link_to 'マイページ', user_path(current_user.id) %>
+
      </div>
       <%= link_to "仮置き）ログアウト", destroy_user_session_path, method: :delete %>
     </div>
