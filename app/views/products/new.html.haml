@@ -1,5 +1,0 @@
-= form_with model: [@user, @product], html: { multipart: true, class:"new_product"}, :remote => true ,url: products_path, local: true do |f|
-  = render 'layouts/error_messages', model: f.object
-  = render partial:'form', locals: {:f =>f}
-  = f.submit
-

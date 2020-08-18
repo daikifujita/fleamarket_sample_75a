@@ -37,23 +37,23 @@ $(function () {
   }
 
   //newアクション時には実行させないようにする必要あり
-  $(function () {
-    $.getJSON('edit')
-      .done(function (datas) {
-        var targetIndex = 0
-        datas.forEach(function (data) {
-          //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
-          let blobUrl = data.image
-          //配列の該当箇所を"exist"書き換える（追加）
-          files_array[targetIndex] = "exist"
-          //画像を新規アップロード&targetIndexを更新
-          targetIndex = new_upload(targetIndex, blobUrl)
-        })
-      })
-      .fail(function () {
-        console.log("NG")
-      })
-  })
+  // $(function () {
+  //   $.getJSON('edit')
+  //     .done(function (datas) {
+  //       var targetIndex = 0
+  //       datas.forEach(function (data) {
+  //         //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
+  //         let blobUrl = data.image
+  //         //配列の該当箇所を"exist"書き換える（追加）
+  //         files_array[targetIndex] = "exist"
+  //         //画像を新規アップロード&targetIndexを更新
+  //         targetIndex = new_upload(targetIndex, blobUrl)
+  //       })
+  //     })
+  //     .fail(function () {
+  //       console.log("NG")
+  //     })
+  // })
 
   //ドラックアンドドロップ
   $(document).on("dragenter dragover", function (e) {
@@ -168,7 +168,7 @@ $(function () {
           alert('出品に成功しました！');
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-          alert('出品に失敗しました！');
+          alert('出品に失敗しました！！');
         });
     }
   });

@@ -1,3 +1,4 @@
+
 <%# 統合してからheaderを共通化する %>
 <div class="header">
   <div class="header__icon">
@@ -5,8 +6,9 @@
   </div>
 </div>
 <div class="productsale__main">
-  <%# 統合してからurlを正しいものに修正する %>
-  <%#= form_for @product do |f| %>
+<%= form_with(model: [@user, @product], html: { multipart: true, class:"new_product"},:remote => true, url: products_path, local: true ) do |f| %>  <%# 統合してからheaderを共通化する %>
+<%= render 'layouts/error_messages', model: f.object %>
+
   <div class="productsale__main__containers">
     <div class="productsale__main__containers__image">
      <div class="productsale__main__containers__image__title">
@@ -147,7 +149,7 @@
     </div>
   </div>
     </div>
-    <%# end %>
+    <% end %>
   </div>
 <%# 統合してからfooterを共通化する %>
 <div class="pfooter">
