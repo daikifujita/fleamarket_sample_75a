@@ -47,14 +47,10 @@ class ProductsController < ApplicationController
 
   def edit
 
-    # categoriesテーブルから親カテゴリーのみを抽出、配列に格納
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
 
-
-    # itemに紐づいていいる孫カテゴリーの親である子カテゴリが属している子カテゴリーの一覧を配列で取得
     @category_child_array = @product.category.parent.parent.children
 
-    # itemに紐づいていいる孫カテゴリーが属している孫カテゴリーの一覧を配列で取得
     @category_grandchild_array = @product.category.parent.children
 
 
