@@ -36,7 +36,7 @@ $(function () {
     return targetIndex
   }
 
-  //newアクション時には実行させないようにする必要あり
+  // newアクション時には実行させないようにする必要あり
   $(function () {
     $.getJSON('edit')
       .done(function (datas) {
@@ -168,7 +168,7 @@ $(function () {
           alert('出品に成功しました！');
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-          alert('出品に失敗しました！');
+          alert('出品に失敗しました！！');
         });
     }
   });

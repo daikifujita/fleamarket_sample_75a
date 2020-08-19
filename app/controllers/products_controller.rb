@@ -1,21 +1,27 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_product, only: [:show, :edit, :destroy, :update]
 
   def index
     @products = Product.includes(:pictures).order('created_at DESC')
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @product = Product.new
-    @product.pictures.build
-    @category_parent_array =  Category.where(ancestry: nil) do |parent|
-      @category_parent_array << parent
+
+    if user_signed_in?
+      @product = Product.new
+      @product.pictures.new
+      @category_parent_array =  Category.where(ancestry: nil) do |parent|
+        @category_parent_array << @category_parent_array =  Category.where(ancestry: nil)
+      end
+    else
+      redirect_to root_path
     end
+
   end
 
   def create
-    @product = Product.new(create_params)
+    @product = Product.new(product_params)
     if @product.save
       # 関連するpicturesを作成
       image_params[:images].each do |image|
@@ -30,23 +36,41 @@ class ProductsController < ApplicationController
         format.json
       end
     else
-      @category_parent_array =  Category.where(ancestry: nil) do |parent|
-        @category_parent_array << parent
-      end
+      @category_parent_array <<  @category_parent_array =  Category.where(ancestry: nil)
       render :index
     end
   end
 
   def show
+
   end
 
   def edit
+
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+
+    @category_child_array = @product.category.parent.parent.children
+
+    @category_grandchild_array = @product.category.parent.children
+
+
   end
 
   def update
+
+    if @product.update(product_params)
+      redirect_to products_path , notice: 'グループを更新しました'
+    else
+      render :edit
+    end
   end
 
   def destroy
+    if @product.destroy
+      redirect_to products_path
+    else
+      render :index
+    end
   end
 
   def get_category_children
@@ -59,23 +83,17 @@ class ProductsController < ApplicationController
   
   private
 
-  def create_params
-    product_params = params.require(:product).permit(
-      :price,
-      :name,
-      :explanation,
-      :brand,
-      :condition,
-      :preparationdays,
-      :prefecture_id,
-      :category_id,
-      :is_shipping_buyer
-    ).merge(user_id: params[:user_id], saler_id: params[:user_id])
-    return product_params
-  end
+    def product_params
+      params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :prefecture_id, :is_shipping_buyer, :category_id, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id, saler_id: current_user.id)
+    end
+
+
 
   def image_params
     params.require(:pictures).permit({images: []})
   end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end

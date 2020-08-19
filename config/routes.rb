@@ -7,17 +7,21 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
 
-  root 'items#index'
+  root to: "top#index"
+  resources :items, only: :index
 
   resources :users, only: [:show, :edit, :update] do
     member do 
       get 'logout'
     end
-    resources :products, only: [:index, :new, :create, :edit, :update] do
+  end
+    
+    resources :products do
       collection do
         get 'get_category_children', defaults: { format: 'json' }
         get 'get_category_grandchildren', defaults: { format: 'json' }
       end
     end
-  end
+ 
 end
+

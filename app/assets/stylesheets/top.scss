@@ -1,0 +1,95 @@
+.top-header{
+  height: 100px;
+  background-color: red;
+  padding: 0 250px;
+  &__containers{
+    height: 100%;
+    background-color: blue;
+    margin: 0 auto;
+    &__top{
+      display: flex;
+      justify-content: space-between;
+      height: 50%;
+      &__icon{
+        width: 200px;
+        background-color: rebeccapurple;
+      }
+      &__search{
+        width: 700px;
+        background-color: firebrick;
+      }
+    }
+    &__bottom{
+      display: flex;
+      justify-content: space-between;
+      height: 50%;
+      &__search{
+        display: flex;
+
+        &__category{
+         background-color:floralwhite ;
+         width: 200px;
+        }
+        &__brand{
+          background-color:gold ;
+          width: 200px;
+        }
+      }
+      &__user{
+        display: flex;
+
+        &__signup{
+          background-color:olivedrab ;
+          width: 100px;
+        }
+        &__login{
+          background-color:lime ;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+
+.top-contents{
+  position: relative;
+  &__sell{
+    position: absolute;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: darkgoldenrod;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+  }
+  &__photo{
+    background-color: powderblue;
+    height: 400px;
+  }
+  &__category{
+    background-color: palegreen;
+    height: 800px;
+
+  }
+  &__brand{
+    background-color: orange;
+    height: 800px;
+
+  }
+}
+
+.top-footer{
+  height: 420px;
+  background-color: rgb(51, 51, 51);
+  color: white;
+  padding: 0 250px;
+  &__container{
+
+    &__title{
+      display: flex;
+    }
+  }
+}
