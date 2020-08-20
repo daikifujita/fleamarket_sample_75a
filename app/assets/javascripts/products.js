@@ -1,13 +1,16 @@
 $(function () {
   // 画像用のinputを生成する関数
   const buildFileField = (index) => {
-    const html = `<label data-index="${index}" class="image-upload">
-                    <input type="file" class="js-file" multiple="multiple" style="visibility: hidden">
-                  </label>`;
-    return html;
+      const html = `<label data-index="${index}" class="image-upload">
+                      <input type="file" class="js-file" multiple="multiple">
+                      <p><i id="added" class="fas fa-camera"></i></p>
+                    </label>`;
+      return html;
   }
 
+
   const buildImg = (index, url) => {
+
     const html = `<div class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
@@ -18,6 +21,7 @@ $(function () {
                     </div>
                   </div>`;
     return html;
+
   }
 
   // 画像を管理するための配列を定義する。
@@ -28,11 +32,28 @@ $(function () {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
     // 新規画像追加の処理
-    $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-    //新しい画像アップロードフォルダーを作成し、次に備える。
-    targetIndex++;
-    $('.js-file_group').append(buildFileField(targetIndex));
-    // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
+    // var num = files_array.length
+    var num = files_array.length
+    if (num <= 5){
+      $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+      //新しい画像アップロードフォルダーを作成し、次に備える。
+      targetIndex++;
+      // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
+      if (num == 5){
+        $('.js-file_group2').append(buildFileField(targetIndex));
+      }else{
+        $('.js-file_group').append(buildFileField(targetIndex));
+      }
+    }else if(num > 5 && num <= 10){
+      $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
+      //新しい画像アップロードフォルダーを作成し、次に備える。
+      targetIndex++;
+      if (num == 10){
+      }else{
+        $('.js-file_group2').append(buildFileField(targetIndex));
+
+      }
+    }
     return targetIndex
   }
 
@@ -112,6 +133,7 @@ $(function () {
     }
   });
 
+
   //画像削除アクション
   $(document).on('click', '.preview__change__delete', function () {
     //クリック対象のindexを取得
@@ -172,8 +194,9 @@ $(function () {
         });
     }
   });
-   // https://qiita.com/potterqaz/items/3572b219572ba2818725
-   $(window).on('load input', function() { //リアルタイムで表示したいのでinputを使う｡入力の度にイベントが発火するようになる｡
+   // 手数料計算機能
+  //  https://qiita.com/potterqaz/items/3572b219572ba2818725
+   $(window).on('load input', function() { //リアルタイムで表示したいのでinputを使う｡ただ、edit時はすでに入力されているものの計算をして欲しいためloadも記述し、複数条件とする。
         var data = $('#product_price').val(); // val()でフォームのvalueを取得(数値)
         var profit = Math.round(data * 0.9)  // 手数料計算を行う｡dataにかけているのが0.9なのは単に引きたい手数料が10%のため｡
         var fee = (data - profit) // 入力した数値から計算結果(profit)を引く｡それが手数料となる｡
@@ -187,4 +210,8 @@ $(function () {
         $('.right_bar').html('');
         }
   });
+
+  // 画像プレビュー
+  // https://qiita.com/manbolila/items/57ffeb8937804b9ce049
+  
 });

@@ -15,8 +15,8 @@
       <div class="productsale__main__containers__image__title__required">必須</div>
      </div>
      <h1>最大10枚までアップロードできます</h1>
-    <div class="productsale__main__containers__image__upload">
     <%= f.fields_for :pictures do |i|%>
+    <div class="productsale__main__containers__image__upload">
      <div id="image-box">
       <div class="js-file_group">
         <label class="image-upload" data-index="0">
@@ -25,9 +25,11 @@
          <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
         </label>
       </div>
+      <div class="js-file_group2">
+      </div>
      </div>
-    <% end %>
     </div>
+    <% end %>
   </div>
   <div class="productsale__main__containers__info">
     <div class="productsale__main__containers__info__title">
@@ -132,7 +134,7 @@
     </div>
   <div class="productsale__main__containers__save">
     <div class="productsale__main__containers__save__submit">
-      <%= f.submit "出品する" %>
+      <%= f.submit "編集する" %>
     </div>
     <div class="productsale__main__containers__save__draft">
       <%#= f.submit "下書きに保存" %>
