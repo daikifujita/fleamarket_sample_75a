@@ -88,7 +88,7 @@
       <div class="productsale__main__containers__shipping__title__required">必須</div>
      </div>
     <%# 統合してからプルダウンに修正する %>
-    <%= f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]] %>
+    <%= f.select :is_shipping_buyer, [["配送料なし（出品者負担）", false], ["配送料あり（購入者負担）", true]],{prompt: "選択してください"} %>
 
     <div class="productsale__main__containers__shipping__title">
        <p>発送元の地域</p> 
@@ -102,7 +102,7 @@
       <div class="productsale__main__containers__shipping__title__required">必須</div>
     </div>
     <%# 統合してからプルダウンに修正する %>
-    <%= f.select :preparationdays, Product.preparationdays.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } %>
+    <%= f.select :preparationdays,Product.preparationdays.keys.map {|k| [k, k]}, {}, { class: 'form-control', style: 'margin-bottom: 15px;', data: {} }   %>
 
   </div>
   <div class="productsale__main__containers__price">
