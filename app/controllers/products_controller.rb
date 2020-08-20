@@ -46,8 +46,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(current_user.id)
-    @pictures = Picture.where(product: params[:id])
+    @product = Product.find(params[:id])
+    @pictures = Picture.where(product_id: params[:id])
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
     @category_child_array = @product.category.parent.parent.children
     @category_grandchild_array = @product.category.parent.children
@@ -58,8 +58,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(current_user.id)
-    @pictures = Picture.where(product: params[:id])
+    @product = Product.find(params[:id])
+    @pictures = Picture.where(product_id: params[:id])
     array_length = @pictures.length
 
     if @product.update(product_params)
@@ -86,7 +86,6 @@ class ProductsController < ApplicationController
           end
         end
       end
-      # redirect_to products_path , notice: 'グループを更新しました'
       respond_to do |format|
         format.json
       end
