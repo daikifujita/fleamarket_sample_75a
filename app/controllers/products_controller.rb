@@ -46,22 +46,52 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
+    @product = Product.find(current_user.id)
+    @pictures = Picture.where(product: params[:id])
     @category_parent_array = Category.where(ancestry: nil).pluck(:name)
-
     @category_child_array = @product.category.parent.parent.children
-
     @category_grandchild_array = @product.category.parent.children
-
-
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def update
+    @product = Product.find(current_user.id)
+    @pictures = Picture.where(product: params[:id])
+    array_length = @pictures.length
 
     if @product.update(product_params)
-      redirect_to products_path , notice: 'グループを更新しました'
+      # 関連するpicturesを作成
+      image_params[:images].each_with_index do |image, i|
+        # DBに既に保存されている部分についての処理
+        if i < array_length
+          # 対象が削除された場合
+          if image == ""
+            @product.pictures[i].destroy
+          # 対象が存在する場合
+          elsif image == "exist"
+            next
+          # 対象が変更された場合
+          else
+            @product.pictures[i].update(image: image)
+          end
+        # DBには保存されていない部分についての処理
+        else
+          if image != ""
+            @product.pictures.create(image: image)
+          else
+            next
+          end
+        end
+      end
+      # redirect_to products_path , notice: 'グループを更新しました'
+      respond_to do |format|
+        format.json
+      end
     else
-      render :edit
+      render :edit,  id: current_user.id
     end
   end
 
@@ -83,11 +113,9 @@ class ProductsController < ApplicationController
   
   private
 
-    def product_params
-      params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :prefecture_id, :is_shipping_buyer, :category_id, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id, saler_id: current_user.id)
-    end
-
-
+  def product_params
+    params.require(:product).permit(:price, :name, :explanation, :brand, :condition, :preparationdays, :prefecture_id, :is_shipping_buyer, :category_id, pictures_attributes: [:image, :destroy, :id]).merge(user_id: current_user.id, saler_id: current_user.id)
+  end
 
   def image_params
     params.require(:pictures).permit({images: []})
