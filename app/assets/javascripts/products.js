@@ -36,15 +36,18 @@ $(function () {
     // var num = files_array.length
     var num = $('.preview').length
         if (num <= 4){
+
           $('.js-file_group').append(buildImg(targetIndex, blobUrl));
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
+
           // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
           if (num == 4){
             $('.js-file_group2').append(buildFileField(targetIndex));
           }else{
+
             $('.js-file_group').append(buildFileField(targetIndex));
-            
+
           }
         }else if(num > 4 && num <= 9){
           $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
@@ -155,13 +158,14 @@ $(function () {
       files_array[targetIndex] = "";
     }else if(num == 5){
       $('.js-file_group').append(buildFileField(targetIndex));
-      $('.js-file_group2').remove();
       // $(`label[data-index="${targetIndex}"]`).remove();
       // 該当のindexのdiv(画像)を削除
       $(`div[data-index="${targetIndex}"]`).remove();
       // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
       files_array[targetIndex] = "";
+
     }else{
+      
       $(`label[data-index="${targetIndex}"]`).remove();
       // 該当のindexのdiv(画像)を削除
       $(`div[data-index="${targetIndex}"]`).remove();
@@ -171,6 +175,7 @@ $(function () {
     }
 
   });
+
 
   //ページのform送信アクション
   $('.new_product, .edit_product').on('submit', function (e) {
