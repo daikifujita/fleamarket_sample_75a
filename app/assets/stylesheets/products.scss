@@ -17,9 +17,13 @@
       &__upload{
         width: 50%;
         text-align: center;
+        cursor: pointer;
+
       }
       &__delete{
         width: 50%;
+        cursor: pointer;
+
       }
  
     }
@@ -37,6 +41,7 @@
     margin-right: 7px;
     background-color: rgb(245, 245, 245);
     &__change {
+
       border-top: #cccccc 1px solid;
       display: flex;
       font-size: 12px;
@@ -44,9 +49,13 @@
       &__upload{
         width: 50%;
         text-align: center;
+        cursor: pointer;
+
       }
       &__delete{
         width: 50%;
+        cursor: pointer;
+
       }
  
     }

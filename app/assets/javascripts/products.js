@@ -27,34 +27,39 @@ $(function () {
   // 画像を管理するための配列を定義する。
   var files_array = []
 
+  
   //新規アップロード時の実行内容（files_arrayはajax取得とform選択で取り方が違う為、統一化しない）
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
     // 新規画像追加の処理
     // var num = files_array.length
-    var num = files_array.length
-    if (num <= 5){
-      $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-      //新しい画像アップロードフォルダーを作成し、次に備える。
-      targetIndex++;
-      // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
-      if (num == 5){
-        $('.js-file_group2').append(buildFileField(targetIndex));
-      }else{
-        $('.js-file_group').append(buildFileField(targetIndex));
-      }
-    }else if(num > 5 && num <= 10){
-      $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
-      //新しい画像アップロードフォルダーを作成し、次に備える。
-      targetIndex++;
-      if (num == 10){
-      }else{
-        $('.js-file_group2').append(buildFileField(targetIndex));
+    var num = $('.preview').length
+        if (num <= 4){
+          $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+          //新しい画像アップロードフォルダーを作成し、次に備える。
+          targetIndex++;
+          // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
+          if (num == 4){
+            $('.js-file_group2').append(buildFileField(targetIndex));
+          }else{
+            $('.js-file_group').append(buildFileField(targetIndex));
+            
+          }
+        }else if(num > 4 && num <= 9){
+          $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
+          //新しい画像アップロードフォルダーを作成し、次に備える。
+          targetIndex++;
+          if (num == 9){
 
-      }
-    }
-    return targetIndex
+          }else{
+            $('.js-file_group2').append(buildFileField(targetIndex));
+          }
+        }
+      
+      return targetIndex
+      
+
   }
 
   // newアクション時には実行させないようにする必要あり
@@ -139,11 +144,32 @@ $(function () {
     //クリック対象のindexを取得
     const targetIndex = $(this).parent().data('index');
     // 該当のindexのlabel(画像form)を削除
-    $(`label[data-index="${targetIndex}"]`).remove();
-    // 該当のindexのdiv(画像)を削除
-    $(`div[data-index="${targetIndex}"]`).remove();
-    // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-    files_array[targetIndex] = "";
+    var num = $('.preview').length
+    console.log(num)
+    if(num == 10){
+      $('.js-file_group2').append(buildFileField(targetIndex));
+      // $(`label[data-index="${targetIndex}"]`).remove();
+      // // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+    }else if(num == 5){
+      $('.js-file_group').append(buildFileField(targetIndex));
+      $('.js-file_group2').remove();
+      // $(`label[data-index="${targetIndex}"]`).remove();
+      // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+    }else{
+      $(`label[data-index="${targetIndex}"]`).remove();
+      // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+    
+    }
+
   });
 
   //ページのform送信アクション
@@ -211,7 +237,5 @@ $(function () {
         }
   });
 
-  // 画像プレビュー
-  // https://qiita.com/manbolila/items/57ffeb8937804b9ce049
-  
+ 
 });

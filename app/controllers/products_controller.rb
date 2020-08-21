@@ -92,6 +92,7 @@ class ProductsController < ApplicationController
     else
       render :edit,  id: current_user.id
     end
+    
   end
 
   def destroy
