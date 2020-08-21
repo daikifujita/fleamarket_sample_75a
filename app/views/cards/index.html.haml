@@ -5,7 +5,6 @@
   - if @card.present?
 
     %ul.content__credit-cards__list
-      
       %li
         = form_with url: card_path(@card), method: :delete, local: true, id: 'charge-form' do |f|
           -# カードブランドのアイコンを表示する場合-----

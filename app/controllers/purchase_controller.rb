@@ -1,10 +1,10 @@
 class PurchaseController < ApplicationController
+  
+  require "payjp"
+  before_action :set_card 
+  before_action :set_product   #クレジットカードと製品の変数を設定
   def index
-     #商品/ユーザー/クレジットカードの変数設定
-    @user = current_user
-    @card = Card.where(user_id: current_user.id).first
     @address = Address.where(user_id: current_user.id).first
-    @product = Product.find(params[:id])
     #Payjpの 秘密鍵を取得
     Payjp.api_key =  ENV["PAYJP_PRIVATE_KEY"]
     #Payjpから顧客情報を取得し、表示
@@ -27,9 +27,6 @@ class PurchaseController < ApplicationController
     end
   end
   def buy
-    #クレジットカードと製品の変数を設定
-    @card = Card.where(user_id: current_user.id).first
-    @product = Product.find(params[:id])
     #Payjpの秘密鍵を取得
     Payjp.api_key= ENV["PAYJP_PRIVATE_KEY"]
     #payjp経由で支払いを実行
@@ -42,5 +39,14 @@ class PurchaseController < ApplicationController
     @product_buyer= Product.find(params[:id])
     @product_buyer.update( buyer_id: current_user.id)
     redirect_to purchased_product_path
+  end
+
+  private 
+  def set_card
+    @card = Card.where(user_id: current_user.id).first
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

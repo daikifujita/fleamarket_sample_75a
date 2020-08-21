@@ -46,8 +46,8 @@
             =@address.street
             =@address.building
             %br
-            =@user.last_name
-            =@user.first_name
+            =@address.user.last_name
+            =@address.user.first_name
           %section.buy-content.buy-user-info
             = f.submit "購入する", class:"purchase"
 .exhibit-page__footer
