@@ -61,7 +61,7 @@
     <div class="listing-product-detail__category">
       <div class="listing-select-wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, options_for_select(@category_parent_array.map{|c|[c, {}]}, @product.category.parent.parent.name), {}, {class: 'select', id: 'parent_category'} %>
+        <%= f.select :category_id, options_for_select(@category_parent_array.map{|category| [category.name, category.id]}, @product.category.parent.parent.id), {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>
 
       </div>
       <div class="listing-select-wrapper" id="children_wrapper">
