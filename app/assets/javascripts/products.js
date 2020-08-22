@@ -162,7 +162,6 @@ $(function () {
       files_array[targetIndex] = "";
     }else if(num == 5){
       $('.js-file_group').append(buildFileField(targetIndex));
-      // $(`label[data-index="${targetIndex}"]`).remove();
       // 該当のindexのdiv(画像)を削除
       $(`div[data-index="${targetIndex}"]`).remove();
       // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
