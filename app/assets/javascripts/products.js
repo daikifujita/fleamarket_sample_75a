@@ -37,9 +37,7 @@ $(function () {
     // var num = files_array.length
     var num = $('.preview').length
         if (num <= 4){
-
           $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
 
