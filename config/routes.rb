@@ -16,12 +16,18 @@ Rails.application.routes.draw do
     end
   end
     
-    resources :products do
-      collection do
-        get 'get_category_children', defaults: { format: 'json' }
-        get 'get_category_grandchildren', defaults: { format: 'json' }
-      end
+  resources :products do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
- 
+    member do
+      get  'index',     to: 'purchase#index', :as => :index
+      post 'buy',       to: 'purchase#buy'
+      get  'purchased', to: 'purchase#purchased'
+      
+    end
+  end
+    resources :cards, only: [:index, :new, :create, :destroy] 
 end
 
