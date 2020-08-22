@@ -3,10 +3,10 @@ class PurchaseController < ApplicationController
   require "payjp"
   before_action :set_card 
   before_action :set_product   #クレジットカードと製品の変数を設定
+  before_action :set_payjp_secretkey
+
   def index
     @address = Address.where(user_id: current_user.id).first
-    #Payjpの 秘密鍵を取得
-    Payjp.api_key =  ENV["PAYJP_PRIVATE_KEY"]
     #Payjpから顧客情報を取得し、表示
     customer = Payjp::Customer.retrieve(@card.customer_id)
     @card_information = customer.cards.retrieve(@card.card_id)
@@ -26,9 +26,8 @@ class PurchaseController < ApplicationController
       @card_src = "discover.png"
     end
   end
+
   def buy
-    #Payjpの秘密鍵を取得
-    Payjp.api_key= ENV["PAYJP_PRIVATE_KEY"]
     #payjp経由で支払いを実行
     charge = Payjp::Charge.create(
       amount: @product.price,
@@ -48,5 +47,10 @@ class PurchaseController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  #Payjpの 秘密鍵を取得
+  def set_payjp_secretkey
+    Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
   end
 end
