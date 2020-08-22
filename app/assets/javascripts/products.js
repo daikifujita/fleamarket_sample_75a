@@ -32,20 +32,24 @@ $(function () {
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
+
     // 新規画像追加の処理
     // var num = files_array.length
     var num = $('.preview').length
         if (num <= 4){
 
           $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
 
           // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
           if (num == 4){
-            $('.js-file_group2').append(buildFileField(targetIndex));
-          }else{
+            $('.js-file_group2').show();
 
+            $('.js-file_group2').append(buildFileField(targetIndex));
+
+          }else{
             $('.js-file_group').append(buildFileField(targetIndex));
 
           }
@@ -163,6 +167,8 @@ $(function () {
       $(`div[data-index="${targetIndex}"]`).remove();
       // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
       files_array[targetIndex] = "";
+      $('.js-file_group2').hide();
+
 
     }else{
       
@@ -171,7 +177,7 @@ $(function () {
       $(`div[data-index="${targetIndex}"]`).remove();
       // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
       files_array[targetIndex] = "";
-    
+
     }
 
   });
