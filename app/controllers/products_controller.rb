@@ -48,7 +48,11 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @pictures = Picture.where(product_id: params[:id])
-    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+    @category_parent_array =  Category.where(ancestry: nil) do |parent|
+      @category_parent_array << @category_parent_array =  Category.where(ancestry: nil)
+    end
+
+    # @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
     @category_child_array = @product.category.parent.parent.children
     @category_grandchild_array = @product.category.parent.children
     respond_to do |format|
@@ -92,6 +96,7 @@ class ProductsController < ApplicationController
     else
       render :edit,  id: current_user.id
     end
+    
   end
 
   def destroy

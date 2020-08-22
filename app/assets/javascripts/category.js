@@ -56,13 +56,15 @@ $(function () {
         .fail(function(){
           $('#children_wrapper').remove(); 
           $('#grandchildren_wrapper').remove();
-          alert('カテゴリー取得に失敗しました');
+          alert('カテゴリー取得に失敗しました！');
         })
       }else{
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
       }
     });
+
+
 
     // 子カテゴリー選択後のイベント
     $(document).on('change', '#child_category', function(){

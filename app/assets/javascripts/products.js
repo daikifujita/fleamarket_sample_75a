@@ -1,13 +1,16 @@
 $(function () {
   // 画像用のinputを生成する関数
   const buildFileField = (index) => {
-    const html = `<label data-index="${index}" class="image-upload">
-                    <input type="file" class="js-file" multiple="multiple" style="visibility: hidden">
-                  </label>`;
-    return html;
+      const html = `<label data-index="${index}" class="image-upload">
+                      <input type="file" class="js-file" multiple="multiple">
+                      <p><i id="added" class="fas fa-camera"></i></p>
+                    </label>`;
+      return html;
   }
 
+
   const buildImg = (index, url) => {
+
     const html = `<div class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
@@ -18,22 +21,50 @@ $(function () {
                     </div>
                   </div>`;
     return html;
+
   }
 
   // 画像を管理するための配列を定義する。
   var files_array = []
 
+  
   //新規アップロード時の実行内容（files_arrayはajax取得とform選択で取り方が違う為、統一化しない）
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
+
     // 新規画像追加の処理
-    $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-    //新しい画像アップロードフォルダーを作成し、次に備える。
-    targetIndex++;
-    $('.js-file_group').append(buildFileField(targetIndex));
-    // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
-    return targetIndex
+    // var num = files_array.length
+    var num = $('.preview').length
+        if (num <= 4){
+          $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+          //新しい画像アップロードフォルダーを作成し、次に備える。
+          targetIndex++;
+
+          // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
+          if (num == 4){
+            $('.js-file_group2').show();
+
+            $('.js-file_group2').append(buildFileField(targetIndex));
+
+          }else{
+            $('.js-file_group').append(buildFileField(targetIndex));
+
+          }
+        }else if(num > 4 && num <= 9){
+          $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
+          //新しい画像アップロードフォルダーを作成し、次に備える。
+          targetIndex++;
+          if (num == 9){
+
+          }else{
+            $('.js-file_group2').append(buildFileField(targetIndex));
+          }
+        }
+      
+      return targetIndex
+      
+
   }
 
   // newアクション時には実行させないようにする必要あり
@@ -112,17 +143,42 @@ $(function () {
     }
   });
 
+
   //画像削除アクション
   $(document).on('click', '.preview__change__delete', function () {
     //クリック対象のindexを取得
     const targetIndex = $(this).parent().data('index');
     // 該当のindexのlabel(画像form)を削除
-    $(`label[data-index="${targetIndex}"]`).remove();
-    // 該当のindexのdiv(画像)を削除
-    $(`div[data-index="${targetIndex}"]`).remove();
-    // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-    files_array[targetIndex] = "";
+    var num = $('.preview').length
+    console.log(num)
+    if(num == 10){
+      $('.js-file_group2').append(buildFileField(targetIndex));
+      // $(`label[data-index="${targetIndex}"]`).remove();
+      // // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+    }else if(num == 5){
+      $('.js-file_group').append(buildFileField(targetIndex));
+      // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+      $('.js-file_group2').hide();
+
+
+    }else{
+      
+      $(`label[data-index="${targetIndex}"]`).remove();
+      // 該当のindexのdiv(画像)を削除
+      $(`div[data-index="${targetIndex}"]`).remove();
+      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+      files_array[targetIndex] = "";
+
+    }
+
   });
+
 
   //ページのform送信アクション
   $('.new_product, .edit_product').on('submit', function (e) {
@@ -172,4 +228,22 @@ $(function () {
         });
     }
   });
+   // 手数料計算機能
+  //  https://qiita.com/potterqaz/items/3572b219572ba2818725
+   $(window).on('load input', function() { //リアルタイムで表示したいのでinputを使う｡ただ、edit時はすでに入力されているものの計算をして欲しいためloadも記述し、複数条件とする。
+        var data = $('#product_price').val(); // val()でフォームのvalueを取得(数値)
+        var profit = Math.round(data * 0.9)  // 手数料計算を行う｡dataにかけているのが0.9なのは単に引きたい手数料が10%のため｡
+        var fee = (data - profit) // 入力した数値から計算結果(profit)を引く｡それが手数料となる｡
+        $('.right_bar').html(fee) //  手数料の表示｡html()は追加ではなく､上書き｡入力値が変わる度に表示も変わるようにする｡
+        $('.right_bar').prepend('¥') // 手数料の前に¥マークを付けたいので
+        $('.right_bar_2').html(profit)
+        $('.right_bar_2').prepend('¥')
+        // $('#price').val(profit) // 計算結果を格納用フォームに追加｡もし､入力値を追加したいのなら､今回はdataを引数に持たせる｡
+        if(profit == '') {   // もし､計算結果が''なら表示も消す｡
+        $('.right_bar_2').html('');
+        $('.right_bar').html('');
+        }
+  });
+
+ 
 });

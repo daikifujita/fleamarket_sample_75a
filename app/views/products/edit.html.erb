@@ -15,8 +15,8 @@
       <div class="productsale__main__containers__image__title__required">必須</div>
      </div>
      <h1>最大10枚までアップロードできます</h1>
-    <div class="productsale__main__containers__image__upload">
     <%= f.fields_for :pictures do |i|%>
+    <div class="productsale__main__containers__image__upload">
      <div id="image-box">
       <div class="js-file_group">
         <label class="image-upload" data-index="0">
@@ -25,9 +25,11 @@
          <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
         </label>
       </div>
+      <div class="js-file_group2">
+      </div>
      </div>
-    <% end %>
     </div>
+    <% end %>
   </div>
   <div class="productsale__main__containers__info">
     <div class="productsale__main__containers__info__title">
@@ -59,7 +61,7 @@
     <div class="listing-product-detail__category">
       <div class="listing-select-wrapper">
         <div class="listing-select-wrapper__box"></div>
-        <%= f.select :category_id, options_for_select(@category_parent_array.map{|c|[c, {}]}, @product.category.parent.parent.name), {}, {class: 'select', id: 'parent_category'} %>
+        <%= f.select :category_id, options_for_select(@category_parent_array.map{|category| [category.name, category.id]}, @product.category.parent.parent.id), {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>
 
       </div>
       <div class="listing-select-wrapper" id="children_wrapper">
@@ -113,26 +115,26 @@
 
   </div>
   <div class="productsale__main__containers__price">
-   <h1>価格（¥300〜9,999,999）</h1>
-    <div class="productsale__main__containers__price__title">
-       <div><p>販売価格</p></div>
-      <div class="productsale__main__containers__price__title__required">必須</div>
-      <span>¥</span><%= f.text_field :price, :placeholder => "0"  %>
-    </div>
-    <div class="productsale__main__containers__price__calculate">
-      <div class="productsale__main__containers__price__calculate__margin">
-        <div class="productsale__main__containers__price__calculate__margin__left">販売手数料（10%）</div>
-        <div class="productsale__main__containers__price__calculate__margin__right">ー</div>
+    <h1>価格（¥300〜9,999,999）</h1>
+      <div class="productsale__main__containers__price__title">
+        <div><p>販売価格</p></div>
+        <div class="productsale__main__containers__price__title__required">必須</div>
+        <span>¥</span><%= f.text_field :price, :placeholder => "0" %> 
       </div>
-      <div class="productsale__main__containers__price__calculate__total">
-        <div class="productsale__main__containers__price__calculate__total__left">販売利益</div>
-        <div class="productsale__main__containers__price__calculate__total__right">ー</div>
+      <div class="productsale__main__containers__price__calculate">
+        <div class="productsale__main__containers__price__calculate__margin">
+          <div class="product_price-fee">販売手数料（10%）</div>
+          <div class="right_bar">ー</div>
+        </div>
+        <div class="productsale__main__containers__price__calculate__total">
+          <div class="product_profit">販売利益</div>
+          <div class="right_bar_2">ー</div>
+        </div>
       </div>
     </div>
-  </div>
   <div class="productsale__main__containers__save">
     <div class="productsale__main__containers__save__submit">
-      <%= f.submit "出品する" %>
+      <%= f.submit "編集する" %>
     </div>
     <div class="productsale__main__containers__save__draft">
       <%#= f.submit "下書きに保存" %>
