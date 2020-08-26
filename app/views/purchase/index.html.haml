@@ -12,7 +12,7 @@
 
       .buyconfirm__wrapper__container
         .buyconfirm__product
-          syasinn
+          =image_tag @product.pictures.first.image_url
           .buyconfirm__product__detail
             .buyconfirm__product__detail__name
               =@product.name
