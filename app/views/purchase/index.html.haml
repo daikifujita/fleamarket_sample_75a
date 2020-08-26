@@ -1,64 +1,77 @@
-%main.buy-main 
+.header
+  .header__icon
+    = image_tag '/assets/logo/logo.png', :size =>'185x49'
+
+.buyconfirm
   = form_with url: buy_product_path, method: :post, local: true do |f| 
-    = f.submit "購入する", class:"purchase" 
-    .buy-item-container
-      %h2.buy-item-head 購入内容の確認
-      %section.buy-content.buy-item
-        .buy-content-inner
-          .buy-item-box
-            .buy-item-image
-              -# =image_tag @pictures.image, class:"buy-image"
-            .buy-item-detail
-              %p.buy-item-name
-                =@product.name
-                %p.buy-item-price.bold
-                  = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0)   #通過フォーマットの扱い方参照
-                  %span.item-shipping-fee.f14.bold
-                    (税込)送料込み
-      %section.buy-content.buy-user-info
-        .buy-content-inner
-          %ul.buy-price-table
-            %li.buy-price-row.buy-you-pay.bold
-            %li.buy-price-cell 支払い金額
-            %li.buy-price-cell
-              = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0) 
-          %section.buy-content.buy-user-info
-        .buy-content-inner
-          %h3 支払方法
-          .payment-content__creditcards__list
-            %figure
-              = image_tag "credit_brand/#{@card_src}",width: '34', height: '20', alt: @card_brand, id: "card_image"
-            .payment-content__creditcards__list__number
-              = "**** **** **** " + @card_information.last4
-            .payment-content__creditcards__list__number
-              - exp_month = @card_information.exp_month.to_s
-              - exp_year = @card_information.exp_year.to_s.slice(2,3)
-              = exp_month + " / " + exp_year
-          %section.buy-content.buy-user-info
-        .buy-content-inner
-          %h3 配送先
-          %address.buy-user-info-text
-            =@address.postcode
+
+    .buyconfirm__wrapper
+      .buyconfirm__wrapper__container
+        .buyconfirm__title
+          購入内容の確認
+
+      .buyconfirm__wrapper__container
+        .buyconfirm__product
+          syasinn
+          .buyconfirm__product__detail
+            .buyconfirm__product__detail__name
+              =@product.name
+            .buyconfirm__product__detail__condition
+              =@product.condition
+            .buyconfirm__product__detail__shipping
+              =@product.is_shipping_buyer ? '着払い': '送料込み'
+            .buyconfirm__product__detail__price
+              (税込み)
+              = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0) #通過フォーマットの扱い方参照
+
+      .buyconfirm__wrapper__container
+        .buyconfirm__price
+          .buyconfirm__price__title
+            支払い金額
+          .buyconfirm__price__value
+            = number_to_currency(@product.price,format: "%u%n",unit:"¥",precision: 0) 
+
+      .buyconfirm__wrapper__container
+        .buyconfirm__method
+          支払方法
+        .buyconfirm__cards__list
+          %figure
+            = image_tag "credit_brand/#{@card_src}",width: '34', height: '20', alt: @card_brand, id: "card_image"
+          .buyconfirm__cards__list__number
+            = "**** **** **** " + @card_information.last4
+          .buyconfirm__cards__list__number
+            有効期限
+            - exp_month = @card_information.exp_month.to_s
+            - exp_year = @card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
+
+      .buyconfirm__wrapper__container
+        .buyconfirm__prefecture
+          .buyconfirm__prefecture__title
+            配送先
+          .buyconfirm__prefecture__value
+            〒
+            =@address.postcode.to_s.insert(3, "-")
             %br
-            =@address.prefecture_id
-            %br
+            =@address.prefecture.name
             =@address.city
             =@address.street
             =@address.building
             %br
-            =@address.user.last_name
             =@address.user.first_name
-          %section.buy-content.buy-user-info
-            = f.submit "購入する", class:"purchase"
-.exhibit-page__footer
-  .exhibit-page__footer__content
-    .exhibit-page__footer__content__main
-      %ul.exhibit-page__footer__lists
-        %li.exhibit-page__footer__list
-          プライバシーポリシー
-        %li.exhibit-page__footer__list
-          フリマサンプル利用規約
-        %li.exhibit-page__footer__list
-          特定商取引に関する表記
-        %p.exhibit-page__footer__copyright
-          © 2020 フリマサンプル
+            =@address.user.last_name
+
+      .buyconfirm__wrapper__btn
+        = f.submit "購入する", class:"purchase"
+
+.pfooter
+  .pfooter__top
+    %ul
+      %li
+        プライバシーポリシー
+      %li
+        furima利用規約
+      %li
+        特定商取引に関する表記
+      %p
+        © 2020 フリマサンプル

@@ -1,3 +1,125 @@
-// Place all the styles related to the purchase controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.header{
+  height: 128px;
+  width: 100%;
+  text-align: center;
+  background: rgb(245, 245, 245);
+
+  &__icon{
+  padding-top: 40px;
+  }
+}
+
+.buyconfirm {
+  font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  height: 880px;
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+
+  &__wrapper {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+
+    &__container {
+      width: 300px;
+      margin: 0 170px;
+      padding: 35px 30px;
+      border-bottom: 1px whitesmoke solid;
+      background-color: #fff;   
+
+      .buyconfirm {
+
+        &__title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        &__product {
+          display: flex;
+          justify-content: space-between;
+
+          &__detail {
+            font-size: 16px;
+          }
+        }
+
+        &__price {
+          display: flex;
+          justify-content: space-between;
+
+          &__title {
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+          &__value {
+            font-size: 24px;
+            font-weight: bold;
+          }
+        }
+
+        &__method {
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        &__cards__list {
+          text-align: center;
+        }
+
+        &__prefecture {
+          &__title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    &__btn {
+      text-align: center;
+      margin: 35px 0;
+      input{
+        width:360px;
+        line-height: 48px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        background: #2BCCD1;
+        border: 1px solid #2BCCD1;
+        color: #fff;
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+.pfooter{
+  height: 128px;
+  width: 100%;
+  background: rgb(245, 245, 245);
+
+  &__top{
+    width: 700px;
+    height: 100%;
+    margin: 0 auto;
+    ul{
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      a{
+        font-size: 12px;
+        color: #333;
+        text-decoration: none;
+      }
+      li{
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+
