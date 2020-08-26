@@ -1,0 +1,290 @@
+.top-header
+  .top-header__containers
+    .top-header__containers__top
+      .top-header__containers__top__icon
+        メルカリロゴ
+     
+      .top-header__containers__top__search
+        何かお探しですか?
+    
+    .top-header__containers__bottom
+      .top-header__containers__bottom__search
+        .top-header__containers__bottom__search__category
+          カテゴリーから探す
+        
+        .top-header__containers__bottom__search__brand
+          ブランドから探す
+      .top-header__containers__bottom__user         
+      - if user_signed_in? 
+        .top-header__containers__bottom__user__signup
+          =link_to 'マイページ', user_path(current_user.id) 
+          =link_to "仮置き）ログアウト", destroy_user_session_path, method: :delete 
+      - else 
+        .top-header__containers__bottom__user__signup
+          =link_to '新規会員登録', items_path      
+        .top-header__containers__bottom__user__login
+          =link_to 'ログイン', new_user_session_path
+
+.main-contents
+  %h1.product-name 
+    = @product.name
+  .product-main-content
+    .product-image 
+      .product-image__display
+        .product-image__display__up
+          = image_tag @product.pictures.first.image_url, size: "300x300", class: "mainImage"
+      - @product.pictures.each do |picture|
+        %ul.product-image__display__down    
+          %li.product-image__display__down-thumb
+            = image_tag picture.image_url, size: "60x60", class:"thumb"
+    %table.item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td
+            %a{:href => "#"} 
+              = @product.saler.nickname
+            %div
+        %tr
+          %th カテゴリー
+          %td
+            %a{:href => ""}
+              %div 
+                = @product.category.parent.parent.name
+            %a{:href => ""}
+              .item-detail-table-sub-category
+                %i.icon-arrow-right
+                = @product.category.parent.name
+            %a{:href => "h"}
+              .item-detail-table-sub-sub-category
+                %i.icon-arrow-right
+                = @product.category.name
+        %tr 
+          %th ブランド
+          %td
+            =@product.brand
+        %tr
+          %th 商品のサイズ
+          %td 未記入
+        %tr
+          %th 商品の状態
+          %td
+            =@product.condition
+            
+        %tr
+          %th 配送料の負担
+          %td 
+            -x = @product.is_shipping_buyer
+            -if x == false  then
+              配送料なし（出品者負担）
+            -else x == true 
+              配送料あり (出品者負担)
+            
+        %tr
+          %th 配送の方法
+          %td 未定
+        %tr
+          %th 配送元地域
+          %td 
+            = @product.prefecture.name
+        %tr
+          %th 発送日の目安
+          %td 
+            = @product.preparationdays
+  .item-price-box.text-center
+    %span.item-price.bold 
+      = converting_to_jpy(@product.price)
+    %span.item-tax (税込)
+    %span.item-shipping-fee 送料込み
+  - if @product.user_id == current_user.id   
+    .item-buy-btn
+      = link_to "編集画面に進む", edit_product_path
+  - else 
+    .item-buy-btn
+      = link_to "購入画面に進む", index_product_path
+  .item-description.f14
+    %p.item-description-inner
+      = @product.explanation
+  .items-box-container
+    .item-button-left
+      %button.item-button.item-button-like
+        %i.icon-like-border
+        %span いいね!
+        %span.fade-in-down{"data-num" => "like"} 0
+      %a.item-button.item-button-report
+        %i.icon-flag
+        %span 不適切な商品の報告
+      %input{:name => "like_add_url", :type => "hidden", :value => ""}/
+      %input{:name => "like_del_url", :type => "hidden", :value => ""}/
+    .item-button-right
+      %a{:href => "", :target => "_blank"}
+        %i.icon-lock
+        %span あんしん・あんぜんへの取り組み
+.message
+  .message-container
+    .message-content
+      %form.message-form{:action => "#", :method => "POST"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %input{:name => "item_id", :type => "hidden", :value => ""}/
+        %input{:name => "redirect_url_key", :type => "hidden", :value => "item_detail"}/
+        %textarea.textarea-default{:name => "body", :type => "text", :value => ""}
+        %button.message-submit.btn-default.btn-gray{:type => "submit"}
+          %span コメントする
+    %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
+      .modal-inner.modal-banner
+        .modal-body
+          .modal-head.bold 確認
+          %div{"data-comment" => "body"}
+          %br/
+          本当にこのコメントを削除してよろしいですか？
+        %form{:action => "", :method => ""}
+          .clearfix
+            .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
+            %button.modal-btn.modal-btn-submit{:type => "submit"}
+              削除する
+          %input{:name => "item_id", :type => "hidden", :value => ""}/
+          %input{:name => "comment_id", :type => "hidden", :value => ""}/
+          %input{:name => "redirect_url_key", :type => "hidden", :value => ""}/
+          %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+.media
+  %ul.social-media-box
+    %li
+      %a.share-btn{"data-window-name" => "facebook_window", :href => "http://www.facebook.com", :target => "_blank"}
+        %i.fab.fa-facebook-square>
+        \&gt;
+    %li
+      %a.share-btn{"data-window-name" => "twitter_window", :href => "http://twitter.com", :target => "_blank"}
+        %i.icon-twitter
+    %li.social-hidden-item
+      %a{:href => "http://line.me", :target => "_blank"}
+        %i.icon-line
+    %li
+      %a.share-btn{"data-window-name" => "pinterest_window", :href => "http://pinterest.com", :target => "_blank"}
+        %i.icon-pinterest
+%section.other
+  %h4.items-box-head
+    %a{:href => ""} 
+      = @product.saler.nickname + "さんのその他の出品"
+  .items-box-content
+    .items-box
+      %a{:href => "#"}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥4,800
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥5,500
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥10,000
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥10,000
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥6,300
+    .items-box
+      %a{:href => "/jp/items/m55570013757/"}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥12,000
+%section.related
+  %h42.items-box-head
+    %a{:href => ""}
+      パンツスーツ上下 （レディース） その他の商品
+  .items-box-content
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥10,600
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥14,540
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥3,870
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥3,600
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥18,600
+    .items-box
+      %a{:href => ""}
+        %figure.items-box-photo
+          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+        .items-box-body
+          %h3.items-box-name テスト
+          .items-box-num
+            .items-box-price ¥4,440
+%nav.bread-crumbs
+  //%ol{:itemscope => "", :itemtype => "https://schema.org/BreadcrumbList"}
+  //  %li{:itemprop => "itemListElement", :itemscope => "", :itemtype => "https://schema.org/ListItem"}
+  //    %a{:href => "https://www.mercari.com/jp/", :itemprop => "item"}
+  //      %span{:itemprop => "name"} メルカリ
+  //    %meta{:content => "1", :itemprop => "position"}/
+  //    %i.icon-arrow-right
+  //  %li{:itemprop => "itemListElement", :itemscope => "", :itemtype => "https://schema.org/ListItem"}
+  //    %span{:itemprop => "name"} セットアップ レディース 春 春夏 レディース 春セットアップ 春服
+  //    %meta{:content => "2", :itemprop => "position"}/
+
+
+.top-footer
+  .top-footer__container
+    %ul.top-footer__container__title
+      メルカリについて 
+      %li ヘルプ＆ガイド
+      %li プライバシーと利用規約
+      %li 国
+  

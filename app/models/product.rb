@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   validates :name,                presence: true, length: { maximum: 40 }
   validates :explanation,         presence: true, length: { maximum: 1000 }
   validates :price,               numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 }
-  validates :is_shipping_buyer,   inclusion: { in: [true, false] }
+  validates :is_shipping_buyer,   inclusion: { in: [ true, false] }
   
   # validates_associated :pictures
   # validates :pictures, presence: true
