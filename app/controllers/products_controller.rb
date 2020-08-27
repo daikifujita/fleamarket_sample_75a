@@ -36,13 +36,18 @@ class ProductsController < ApplicationController
         format.json
       end
     else
-      @category_parent_array <<  @category_parent_array =  Category.where(ancestry: nil)
+      @category_parent_array << @category_parent_array = Category.where(ancestry: nil)
       render :index
     end
   end
 
   def show
+    @category_parent_array = Category.where(ancestry: nil) do |parent|
+      @category_parent_array << @category_parent_array = Category.where(ancestry: nil)
+    end
 
+    @category_child_array = @product.category.parent.parent.children
+    @category_grandchild_array = @product.category.parent.children
   end
 
   def edit
