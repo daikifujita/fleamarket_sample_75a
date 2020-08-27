@@ -1,6 +1,6 @@
 .header
   .header__icon
-    = image_tag '/assets/logo/logo.png', :size =>'185x49'
+    = image_tag asset_path('logo/logo.png'), :size =>'185x49'
 
 .buyconfirm
   = form_with url: buy_product_path, method: :post, local: true do |f| 
