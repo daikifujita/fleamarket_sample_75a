@@ -1,6 +1,6 @@
 document.addEventListener(
   "DOMContentLoaded", (e) => {
-    Payjp.setPublicKey("pk_test_fa0b1fcd67e41e981483c9a3");
+    Payjp.setPublicKey("pk_test_2375d6e511af06ad79538279");
     const btn = document.getElementById('token_submit'); //IDがtoken_submitの場合に取得
     btn.addEventListener("click", (e) => { //ボタンが押されたときに作動
       e.preventDefault(); //
