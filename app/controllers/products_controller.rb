@@ -46,7 +46,6 @@ class ProductsController < ApplicationController
       @category_parent_array << @category_parent_array = Category.where(ancestry: nil)
     end
 
-    # @category_parent_array = Category.where(ancestry: nil).pluck(:name, :id)
     @category_child_array = @product.category.parent.parent.children
     @category_grandchild_array = @product.category.parent.children
   end

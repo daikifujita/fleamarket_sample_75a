@@ -42,23 +42,18 @@
         %tr
           %th 出品者
           %td
-            %a{:href => "#"} 
-              = @product.saler.nickname
-            %div
+            = link_to @product.saler.nickname, '#'
         %tr
           %th カテゴリー
           %td
-            %a{:href => ""}
-              %div 
-                = @product.category.parent.parent.name
-            %a{:href => ""}
-              .item-detail-table-sub-category
-                %i.icon-arrow-right
-                = @product.category.parent.name
-            %a{:href => "h"}
-              .item-detail-table-sub-sub-category
-                %i.icon-arrow-right
-                = @product.category.name
+            .item-detail-table-category
+              = @product.category.parent.parent.name
+            .item-detail-table-sub-category
+              %i.icon-arrow-right
+              = @product.category.parent.name
+            .item-detail-table-sub-sub-category
+              %i.icon-arrow-right
+              = @product.category.name
         %tr 
           %th ブランド
           %td
@@ -70,7 +65,6 @@
           %th 商品の状態
           %td
             =@product.condition
-            
         %tr
           %th 配送料の負担
           %td 
@@ -79,7 +73,7 @@
               配送料なし（出品者負担）
             -else x == true 
               配送料あり (出品者負担)
-            
+
         %tr
           %th 配送の方法
           %td 未定
@@ -112,14 +106,13 @@
         %span いいね!
         %span.fade-in-down{"data-num" => "like"} 0
       %a.item-button.item-button-report
-        %i.icon-flag
+        %i.fab.fa-flag
         %span 不適切な商品の報告
       %input{:name => "like_add_url", :type => "hidden", :value => ""}/
       %input{:name => "like_del_url", :type => "hidden", :value => ""}/
     .item-button-right
-      %a{:href => "", :target => "_blank"}
-        %i.icon-lock
-        %span あんしん・あんぜんへの取り組み
+      = link_to " あんしん・あんぜんへの取り組み", "#"
+      %i.fab.fa-lock
 .message
   .message-container
     .message-content
@@ -150,135 +143,108 @@
 .media
   %ul.social-media-box
     %li
-      %a.share-btn{"data-window-name" => "facebook_window", :href => "http://www.facebook.com", :target => "_blank"}
+      %a.share-btn
         %i.fab.fa-facebook-square>
-        \&gt;
     %li
-      %a.share-btn{"data-window-name" => "twitter_window", :href => "http://twitter.com", :target => "_blank"}
-        %i.icon-twitter
-    %li.social-hidden-item
-      %a{:href => "http://line.me", :target => "_blank"}
-        %i.icon-line
+      %a.share-btn
+        %i.fab.fa-twitter
     %li
-      %a.share-btn{"data-window-name" => "pinterest_window", :href => "http://pinterest.com", :target => "_blank"}
-        %i.icon-pinterest
+      %a.share-btn
+        %i.fab.fa-line
 %section.other
-  %h4.items-box-head
-    %a{:href => ""} 
-      = @product.saler.nickname + "さんのその他の出品"
+  %h4.items-box-head 
+    = @product.saler.nickname + "さんのその他の出品"
   .items-box-content
     .items-box
-      %a{:href => "#"}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥4,800
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥4,800
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥5,500
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥5,500
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥10,000
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥10,000
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥10,000
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥10,000
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥6,300
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥6,300
     .items-box
-      %a{:href => "/jp/items/m55570013757/"}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥12,000
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥12,000
 %section.related
   %h42.items-box-head
-    %a{:href => ""}
-      パンツスーツ上下 （レディース） その他の商品
+    パンツスーツ上下 （レディース） その他の商品
   .items-box-content
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥10,600
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥10,600
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥14,540
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥14,540
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥3,870
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥3,870
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥3,600
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥3,600
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥18,600
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥18,600
     .items-box
-      %a{:href => ""}
-        %figure.items-box-photo
-          %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
-        .items-box-body
-          %h3.items-box-name テスト
-          .items-box-num
-            .items-box-price ¥4,440
-%nav.bread-crumbs
-  //%ol{:itemscope => "", :itemtype => "https://schema.org/BreadcrumbList"}
-  //  %li{:itemprop => "itemListElement", :itemscope => "", :itemtype => "https://schema.org/ListItem"}
-  //    %a{:href => "https://www.mercari.com/jp/", :itemprop => "item"}
-  //      %span{:itemprop => "name"} メルカリ
-  //    %meta{:content => "1", :itemprop => "position"}/
-  //    %i.icon-arrow-right
-  //  %li{:itemprop => "itemListElement", :itemscope => "", :itemtype => "https://schema.org/ListItem"}
-  //    %span{:itemprop => "name"} セットアップ レディース 春 春夏 レディース 春セットアップ 春服
-  //    %meta{:content => "2", :itemprop => "position"}/
+      %figure.items-box-photo
+        %img{alt: "", src: "/uploads/picture/image/2/deadlift-2.jpg" }
+      .items-box-body
+        %h3.items-box-name テスト
+        .items-box-num
+          .items-box-price ¥4,440
 
+%nav.bread-crumbs
 
 .top-footer
   .top-footer__container
