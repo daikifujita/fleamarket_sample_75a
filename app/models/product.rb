@@ -10,8 +10,8 @@ class Product < ApplicationRecord
   # validates :pictures, presence: true
 
   belongs_to :user
-  belongs_to :saler, class_name: "User", optional: true, dependent: :destroy
-  belongs_to :buyer, class_name: "User", optional: true, dependent: :destroy
+  belongs_to :saler, class_name: "User", optional: true
+  belongs_to :buyer, class_name: "User", optional: true
   belongs_to :category
   has_many :pictures, dependent: :destroy
 
