@@ -105,10 +105,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    @products = Product.includes(:pictures).order('created_at DESC')
     if @product.destroy
       redirect_to products_path
     else
-      render :index
+      # render :index
     end
   end
 

@@ -211,6 +211,9 @@ $(function () {
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
           alert('出品に失敗しました！');
         })
+        .always(function () {
+          $(".submit").removeAttr("disabled")
+        }) 
     } else if ($(this).attr('class') == "edit_item") {
       $.ajax({
         url: url,
@@ -225,7 +228,10 @@ $(function () {
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
           alert('出品に失敗しました！！');
-        });
+        })
+        .always(function () {
+          $(".submit").removeAttr("disabled")
+        }) 
     }
   });
    // 手数料計算機能
