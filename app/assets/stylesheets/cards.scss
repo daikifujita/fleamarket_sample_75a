@@ -1,3 +1,99 @@
-// Place all the styles related to the cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.card {
+  font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  height: 700px;
+  width: 700px;
+  background-color: white;
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 35px 0;
+    border-bottom: 1px whitesmoke solid;
+    text-align: center;
+  }
+
+  &__registration__label {
+    display: flex;
+    padding: 35px 180px 15px 180px;
+
+    &__required {
+      width: 30px;
+      height: 20px;
+      margin-left: 10px;
+      font-size: 12px;
+      color: white;
+      background-color:#2BCCD1;
+      border-radius: 3px;
+      text-align: center;
+    }
+  }
+
+  input[type='text']{
+    width: 310px;
+    height: 30px;
+    margin: 0 178px;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+  }
+
+  &__registration__expiration {
+    display: flex;
+    padding: 0 178px;
+
+    &__month {
+      padding: 12px 10px 0 10px;
+    }
+
+    &__year {
+      padding: 12px 0 0 10px;
+    }
+
+    select{
+      width: 140px;
+      height: 50px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+    }
+  }
+
+  &__btn {
+    text-align: center;
+    margin: 50px 0;
+    input{
+      width: 345px;
+      margin-bottom: 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      border: 1px solid #2BCCD1;
+      color: #fff;
+      background: #2BCCD1;
+      line-height: 48px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  &__display {
+    text-align: center;
+    &__list {
+      font-size: 20px;
+      &--pay-num {
+        padding: 10px; 
+      }
+    }
+    &__add {
+      font-size: 20px;
+      padding: 30px;
+    }
+  }
+}
+
