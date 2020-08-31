@@ -14,6 +14,15 @@ class User < ApplicationRecord
   has_many  :saling_products, -> { where("buyer_id is NULL") },       foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
   has_many  :sold_products,   -> { where("buyer_id is not NULL") },   foreign_key: "saler_id", class_name: "Product",  dependent: :restrict_with_error
   
+  include JpPrefecture
+  jp_prefecture :prefecture_id
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_id).try(:name)
+  end
+    
+  def prefecture_name=(prefecture_name)
+    self.prefecture_id = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
 
 end
 
