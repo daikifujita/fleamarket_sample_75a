@@ -19,9 +19,13 @@
 
     <div class="login__main__container__body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
+        <div class="login__main__container__body__option google"><i class="fab fa-google"></i>Googleでログイン</div>
+      <% end %>
+      <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
+        <div class="login__main__container__body__option facebook"><i class="fab fa-facebook-f"></i>Facebookでログイン</div>
+      <% end %>
 
-      <a><div class="login__main__container__body__option google"><i class="fab fa-google"></i>Googleでログイン</div></a>
-      <a><div class="login__main__container__body__option facebook"><i class="fab fa-facebook-f"></i>Facebookでログイン</div></a>
       <a><div class="login__main__container__body__option apple"><i class="fab fa-apple"></i>Appleでログイン</div></a>
       <div class="login__main__container__body__form">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス" %>
