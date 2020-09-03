@@ -45,6 +45,9 @@
         </div>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "PC・携帯どちらでも可" %>
       </div>
+      <%if @sns_id.present?%>
+      <%= hidden_field_tag :sns_auth, true %>
+      <% else %>
     　<div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
           <%= f.label :password %>
@@ -60,6 +63,7 @@
         </div>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
+      <% end %>
       <div class="userinfo__main__container__body__statement">
         <h1>本人確認</h1>
         <p>安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。</p>

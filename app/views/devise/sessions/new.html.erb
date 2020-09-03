@@ -19,10 +19,15 @@
 
     <div class="login__main__container__body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-      <a><div class="login__main__container__body__option google"><i class="fab fa-google"></i>Googleでログイン</div></a>
-      <a><div class="login__main__container__body__option facebook"><i class="fab fa-facebook-f"></i>Facebookでログイン</div></a>
-      <a><div class="login__main__container__body__option apple"><i class="fab fa-apple"></i>Appleでログイン</div></a>
+      <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
+        <div class="login__main__container__body__option google"><i class="fab fa-google"></i>Googleでログイン</div>
+      <% end %>
+      <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
+        <div class="login__main__container__body__option facebook"><i class="fab fa-facebook-f"></i>Facebookでログイン</div>
+      <% end %>
+      <%= link_to "#" do %>
+        <div class="login__main__container__body__option apple"><i class="fab fa-apple"></i>Appleでログイン</div>
+      <% end %>
       <div class="login__main__container__body__form">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス" %>
       </div>
@@ -46,9 +51,15 @@
 <div class="footer">
   <div class="footer__top">
     <ul>
-      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>プライバシーポリシー</li></a>
-      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>furima利用規約</li></a>
-      <a href="https://www.mercari.com/jp/tos/" target="_blank"><li>特定商取引に関する表記</li></a>
+      <%= link_to 'https://www.mercari.com/jp/tos/' do %>
+      <li>プライバシーポリシー</li>
+      <% end %>
+      <%= link_to 'https://www.mercari.com/jp/tos/' do %>
+      <li>furima利用規約</li>
+      <% end %>
+      <%= link_to 'https://www.mercari.com/jp/tos/' do %>
+      <li>特定商取引に関する表記</li>
+      <% end %>
     </ul>
   </div>
 </div>
