@@ -37,7 +37,7 @@
           <%= f.label :postcode %>
           <div class="userinfo__main__container__body__field__title__required">必須</div>
         </div>
-        <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :placeholder => "郵便番号" %>
+        <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :placeholder => "郵便番号", id: "address_zipcode" %>
       </div>
 
     　<div class="userinfo__main__container__body__field">
@@ -54,14 +54,14 @@
           <%= f.label :city %>
           <div class="userinfo__main__container__body__field__title__required">必須</div>
         </div>
-        <%= f.text_field :city, autofocus: true, autocomplete: "city", :placeholder => "市区町村" %>
+        <%= f.text_field :city, autofocus: true, autocomplete: "city", :placeholder => "市区町村", id:"address_city"  %>
       </div>
     　<div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
           <%= f.label :street %>
           <div class="userinfo__main__container__body__field__title__required">必須</div>
         </div>
-        <%= f.text_field :street, autofocus: true, autocomplete: "street", :placeholder => "番地" %>
+        <%= f.text_field :street, autofocus: true, autocomplete: "street", :placeholder => "番地",id: "address_district"  %>
       </div>
     　<div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
