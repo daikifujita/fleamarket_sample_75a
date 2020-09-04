@@ -23,12 +23,7 @@
                 %input{type: "hidden", name: "card_id", value: ""}
                 .card__btn
                   = f.submit "削除する", {class: "card__display__list__remove"}
-                  - if flash[:notice]
-                    .alert.alert-success
-                    = flash[:notice]
-                  - if flash[:alert]
-                    .alert.alert-dange
-                    = flash[:alert]
+                  = flash[:alert] 
         - else
           .card__display__add
             = link_to new_user_card_path, class: "card__btn", data: {"turbolinks" => false} do
@@ -36,5 +31,6 @@
               = icon('fas', 'credit-card', class: "card__icon")
               クレジットカードを追加する
               -# カードが登録されていない場合は登録ボタンを表示するようにしています。
+          = flash[:notice] 
   .right-content
     = render "users/right-content"

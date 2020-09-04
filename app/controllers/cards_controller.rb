@@ -49,13 +49,19 @@ class CardsController < ApplicationController
     end
   end
   def destroy #PayjpとCardデータベースを削除します
-    
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
+      if @card.destroy 
+        redirect_to user_cards_path 
+        flash[:notice] = "クレジットカードを削除しました。"
+      else
+        redirect_to user_cards_path 
+        flash[:alert] = "クレジットカードを削除できませんでした。"
+      end
     end
-      redirect_to action: "index"
+      
   end
 
   private
