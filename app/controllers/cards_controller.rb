@@ -52,7 +52,6 @@ class CardsController < ApplicationController
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
-      @card.delete
       if @card.destroy 
         redirect_to user_cards_path 
         flash[:notice] = "クレジットカードを削除しました。"
