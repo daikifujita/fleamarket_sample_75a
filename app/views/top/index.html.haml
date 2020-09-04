@@ -60,8 +60,8 @@
           %br/
           フリマアプリです
         .content__btn
-          = link_to image_tag asset_path("icon/app-store.svg"), id: "aBtn"
-          = link_to image_tag asset_path("icon/google-play.svg"), id: "gBtn"
+          = link_to image_tag asset_path("icon/app-store.svg"), class: "aBtn"
+          = link_to image_tag asset_path("icon/google-play.svg"), class: "gBtn"
       .picture
     %section.topIntroduction
       %h2.subtitle
@@ -104,10 +104,8 @@
           %br/
           ほしかったあの商品に出会えるかもしれません。
         .btn
-          = link_to "", "#"
-          %img.aBtn{ src: "/assets/icon/app-store.svg"}
-          = link_to "", "#"
-          %img.gBtn{ src: "/assets/icon/google-play.svg"}
+          = link_to image_tag asset_path("icon/app-store.svg"), class: "aBtn"
+          = link_to image_tag asset_path("/assets/icon/google-play.svg"), class: "gBtn"
     %section.topKeyFeatures
       %h2.head FURIMAの特徴
       .items
@@ -138,22 +136,22 @@
             = link_to '新規投稿商品', products_path
         .productLists
           .productList
-            = link_to "", "/products/8"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"}/
-            .productList--body
-              %h3.name ee
-              .details
-                %ul
-                  %li 1000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+            = link_to "/products/8" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"}/
+              .productList--body
+                %h3.name ee
+                .details
+                  %ul
+                    %li 1000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
           .productList
-            = link_to "", "/products/3"
-            %figure.productList--img
-              %img{src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"}/
+            = link_to "/products/3" do
+              %figure.productList--img
+                %img{src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"}/
             .productList--body
               %h3.name product3
               .details
@@ -164,31 +162,31 @@
                     0
                 %p (税込)
           .productList
-            = link_to "", "/products/2"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"}/
-            .productList--body
-              %h3.name product2
-              .details
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+            = link_to "/products/2" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"}/
+              .productList--body
+                %h3.name product2
+                .details
+                  %ul
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
           .productList
-            = link_to "", "/products/1"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"}/
-            .productList--body
-              %h3.name product1
-              .details
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    1
-                %p (税込)
+            = link_to "/products/1" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"}/
+              .productList--body
+                %h3.name product1
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p (税込)
     %section.pickupContainer
       %h2.head ピックアップブランド
       .productBox
@@ -197,66 +195,64 @@
           %h3.title アーカイバ
         .productLists
           .productList
-            = link_to "", "/products/8"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"}/
-            .productList--body
-              %h3.name ee
-              .details
-                %ul
-                  %li 1000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+            = link_to "/products/8" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"}/
+              .productList--body
+                %h3.name ee
+                .details
+                  %ul
+                    %li 1000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
           .productList
-            = link_to "", "/products/3"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"}/
-            .productList--body
-              %h3.name product3
-              .details
-                %ul
-                  %li 30000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+            = link_to "/products/3" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"}/
+              .productList--body
+                %h3.name product3
+                .details
+                  %ul
+                    %li 30000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
           .productList
-            = link_to "", "/products/2"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"}/
-            .productList--body
-              %h3.name product2
-              .details
-                %ul
-                  %li 20000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    0
-                %p (税込)
+            = link_to "/products/2" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"}/
+              .productList--body
+                %h3.name product2
+                .details
+                  %ul
+                    %li 20000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      0
+                  %p (税込)
           .productList
-            = link_to "", "/products/1"
-            %figure.productList--img
-              %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"}/
-            .productList--body
-              %h3.name product1
-              .details
-                %ul
-                  %li 10000円
-                  %li
-                    %i.fa.fa-star.likeIcon
-                    1
-                %p (税込)
+            = link_to "/products/3" do
+              %figure.productList--img
+                %img{src: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"}/
+              .productList--body
+                %h3.name product1
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p (税込)
   %aside.appBanner
     .inner
       %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
       %p.inner__text 今すぐ無料ダウンロード！
       .inner__icon
-        = link_to "#"
-        %img.linkIcon.aBtn{ src: "/assets/icon/app-store.svg"}/
-        = link_to "#"
-        %img.linkIcon.gBtn{ src: "/assets/icon/google-play.svg"}/
+        = link_to image_tag '/assets/icon/app-store.svg', class: 'linkIcon, aBtn'
+        = link_to image_tag '/assets/icon/google-play.svg', class:'linkIcon, gBtn'
   .footer
     %ul.contents
       %li.content
@@ -289,7 +285,6 @@
     .footer__logo
       = image_tag asset_path("logo/logo-white.png")
     %p © FURIMA
-  = link_to new_product_path
   .purchaseBtn
     %span.purchaseBtn__text 出品する
-    %img.purchaseBtn__icon{ src: "assets/icon/icon_camera.png"}/
+    = link_to image_tag(asset_path("icon/icon_camera.png"), class:"purchaseBtn__icon"), new_product_path
