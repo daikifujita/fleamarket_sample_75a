@@ -1,0 +1,110 @@
+.container
+  .left-content
+    %section.mypage-user-icon
+      .mypage-user-icon__box
+        =link_to "", "#"
+        %figure
+          = image_tag 'icon/member_photo_noimage_thumb.png', :size => "60x60"
+        %h2.bold
+          = @user.nickname
+        .mypage-number
+          %div
+            評価
+            %span.bold 0
+          %div
+            出品数
+            %span.bold 0
+    %section.mypage-tab-container-notification-todo
+      %ul.mypage-tabs
+        %li.active
+          %h3
+            = link_to "お知らせ", "#", class: ""
+            %span.mypage-nav-number.hidden-large
+              15
+        %li
+          %h3
+            = link_to "やることリスト", "#", class: ""
+      .tab-content
+        %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 22 時間前
+              %i.icon-arrow-right
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 1 日前
+              %i.icon-arrow-right
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 1 日前
+              %i.icon-arrow-right
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 2 日前
+              %i.icon-arrow-right
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 4 日前
+              %i.icon-arrow-right
+          %li.mypage-go-list
+            = link_to '一覧を見る', '#'
+        %ul#mypage-tab-todo.mypage-item-list.tab-pane
+          %li
+            .mypage-item-link
+              %figure
+                = image_tag 'icon/icon_brand.png', :size => "60x60"
+              .mypage-item-body
+                = link_to "かんたん操作で必ずP300もらえる！", class:"mypage-item-text"
+                %time
+                  %i.icon-time
+                  %span 11 日前
+              %i.icon-arrow-right
+          %li.mypage-go-list
+            %a{:href => "/"} 一覧を見る
+    %section.mypage-tab-container
+      %h2.mypage-tab-head 購入した商品
+      %ul.mypage-tabs
+        %li.active
+          %h3
+            = link_to '取引中', class:"data-toggle"
+        %li
+          %h3
+            = link_to '過去の取引', class:"data-toggle"
+      .tab-content
+        %ul.mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          %li.mypage-item-not-found.bold 取引中の商品がありません
+        %ul.mypage-tab-transaction-old.mypage-item-list.tab-pane
+          %li.mypage-item-not-found.bold 過去に取引した商品がありません
+  .right-content
+    = render "right-content"
+    

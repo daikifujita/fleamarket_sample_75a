@@ -3,7 +3,8 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:new, :destroy]
   before_action :set_payjp_secretkey, except: :new
 
-  def index #Cardのデータpayjpに送り情報を取り出します
+  def index #Cardのデータpayjpに送り情報を取り出します]
+    
     @card = Card.where(user_id: current_user.id).first
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -48,6 +49,7 @@ class CardsController < ApplicationController
     end
   end
   def destroy #PayjpとCardデータベースを削除します
+    
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete

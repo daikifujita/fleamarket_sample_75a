@@ -1,0 +1,42 @@
+%nav.mypage-nav
+  %ul.mypage-nav-list
+    %li
+      = link_to "マイページ", user_path(current_user), class: "mypage-nav-list-item" 
+    %li
+      = link_to "いいね！一覧", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "出品する", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "下書き一覧", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "出品した商品 - 出品中", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "出品した商品 - 取引中", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "出品した商品 - 売却済み", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "購入した商品 - 取引中", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "購入した商品 - 過去の取引", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "評価一覧", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "ガイド", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "お問い合わせ", "#", class: "mypage-nav-list-item" 
+  %h3.mypage-nav-head 設定
+  %ul.mypage-nav-list
+    %li
+      = link_to "プロフィール", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "発送元・お届け先住所変更", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "支払い方法", user_cards_path(current_user), class: "mypage-nav-list-item" 
+    %li
+      = link_to "メール/パスワード", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "本人情報", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "電話番号の確認", "#", class: "mypage-nav-list-item" 
+    %li
+      = link_to "ログアウト", "#", class: "mypage-nav-list-item" 

@@ -1,0 +1,321 @@
+body {
+  margin: 0 auto;
+  height: 100vh;
+  
+}
+.container {
+  width: 1020px;
+  padding:0 0 40px;
+  margin: 40px auto 0;
+  
+  .left-content{
+    float: right;
+    width: 700px;
+    background-color: #ffffff;
+    .mypage-user-icon{
+      height: 200px;
+      position: relative;
+      padding :20px; 
+      &__box {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        color: #333;
+        text-decoration: none;
+        figure{
+          overflow: hidden;
+          width: 60px;
+          height: 60px;
+          margin: 0 auto;
+          border-radius: 50%;
+        }
+      
+        h2{
+          margin: 8px 0 0;
+          font-size: 14px;  
+          text-align: center;
+          color: #333;
+        }
+        .mypage-number {
+          margin: 8px 0 0;
+          font-size: 14px;
+          text-align: center;
+          
+          div {
+            display: inline-block;
+            
+          }
+          div+div{
+            margin: 0 0 0 16px
+          }
+        }
+      }
+    }
+    .mypage-tab-container-notification-todo{
+
+      ul.mypage-tabs{
+        height: 72px;
+        display: flex;
+        line-height: 72px;
+        text-align: center;
+        li{
+          background-color: gray;
+          width: 50%;
+         
+          h3 {
+          
+            a{
+              font-size: 16px;
+              text-decoration: none;
+              color: #333;
+            }
+          }
+        }
+        .active {
+          background-color: #fff;
+          
+        }
+      }
+      .tab-content{
+        .tab-pane.active{
+          display: block;
+        }
+        .mypage-item-list{
+
+        
+          li:first-child {
+            border-bottom: 1px solid #eee;
+          } 
+          .li:last-child {
+            border: 0;
+          }
+          .mypage-item-link{
+            display: block;
+            min-height: 80px;
+            padding: 16px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            text-decoration: none;
+            figure{
+              position: absolute;
+              position: relative;
+              overflow: hidden;
+              float: left;
+              width: 48px;
+              height: 48px;
+              margin : 0;
+              img{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+              }
+            }
+            .mypage-item-body{
+              margin: 0px 40px 0px 68px;
+              
+              .mypage-item-text{
+                overflow: hidden;
+                display: block;
+                display: -webkit-box;
+                max-height: 4.4em;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                line-height: 1.5;
+                text-decoration: none;
+
+              }
+            }
+          }
+          .mypage-go-list{
+            padding: 16px;
+            a {
+              display: block;
+              height: 56px;
+              margin: 0 auto;
+              background: #eee;
+              color: #333;
+              line-height: 56px;
+              text-align: center;
+            }
+          }
+        }
+        .tab-pane {
+          display: none;
+       }
+      }
+    }
+    .mypage-tab-container{
+      
+      h2 {
+      
+      }
+      .mypage-tab-head {
+        padding: 0 16px;
+        background: #fafafa;
+        font-size: 16px;
+        line-height: 72px;
+        color:#333;
+      }
+      ul.mypage-tabs{
+        height: 72px;
+        display: flex;
+        line-height: 72px;
+        text-align: center;
+        li{
+          background-color: gray;
+          width: 50%;
+         
+          h3 {
+          
+            a{
+              font-size: 16px;
+              text-decoration: none;
+              color: #333;
+            }
+          }
+        }
+        .active {
+          background-color: #fff;
+          
+        }
+      }
+      .tab-content{
+        .tab-pane.active{
+            display: block;
+        
+          .mypage-item-not-found{
+            padding: 160px 0 60px;
+              background: url(/jp/assets/img/common/common/logo-gray-icon.svg?7920313);
+              background-repeat: no-repeat;
+              background-position: center 40px;
+              background-size: 78px 85px;
+              text-align: center;
+              font-size: 16px;
+              color: #ccc;
+          }
+        } 
+        /*.tab-pane.active{
+          display: block;
+        }
+        .mypage-item-list{
+          li:first-child {
+            border-bottom: 1px solid #eee;
+          } 
+          .li:last-child {
+            border: 0;
+          }
+          .mypage-item-link{
+            display: block;
+            min-height: 80px;
+            padding: 16px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            figure{
+              position: absolute;
+              position: relative;
+              overflow: hidden;
+              float: left;
+              width: 48px;
+              height: 48px;
+              margin : 0;
+              img{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+              }
+            }
+            .mypage-item-body{
+              margin: 0 40px 0 68px;
+              .mypage-item-text{
+                overflow: hidden;
+                display: block;
+                display: -webkit-box;
+                max-height: 4.4em;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                line-height: 1.5;
+
+              }
+            }
+          }
+          .mypage-go-list{
+            padding: 16px;
+            a {
+              display: block;
+              height: 56px;
+              margin: 0 auto;
+              background: #eee;
+              color: #333;
+              line-height: 56px;
+              text-align: center;
+            }
+          }
+        }*/
+
+        .tab-pane {
+          display: none;
+       }
+      }
+    
+    }
+
+  }
+  
+  .right-content{
+    float: left;
+    width: 280px;
+    margin: 0 40px 0 0;
+    .mypage-nav {
+      .mypage-nav-list{
+        list-style: none;
+        margin: 0;
+        .li:first-child {
+          border: 0;
+        }
+        li {
+          height: 80px;
+          border-top: 1px solid #eee;
+        }
+        .mypage-nav-list-item{
+          text-decoration: none;
+          position: relative;
+          min-height: 48px;
+          display: block;
+          padding: 16px;
+          background: #fff;
+          font-size: 14px;
+          color: #333;
+          .active{
+            background: #eee;
+            font-weight: 600;
+          }
+        }
+      }
+      .mypage-nav-head {
+        margin: 40px 0 0;
+      
+      }
+      .mypage-nav-head+.mypage-nav-list{
+        margin: 8px 0 0;
+      }
+    }
+  }
+  
+}
+
+
