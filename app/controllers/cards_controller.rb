@@ -5,7 +5,7 @@ class CardsController < ApplicationController
 
   def index #Cardのデータpayjpに送り情報を取り出します]
     
-    @card = Card.where(user_id: current_user.id).first
+    @card = Card.find_by(user_id: current_user.id)
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @card_information = customer.cards.retrieve(@card.card_id)
