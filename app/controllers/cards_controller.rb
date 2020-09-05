@@ -3,8 +3,9 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:new, :destroy]
   before_action :set_payjp_secretkey, except: :new
 
-  def index #Cardのデータpayjpに送り情報を取り出します
-    @card = Card.where(user_id: current_user.id).first
+  def index #Cardのデータpayjpに送り情報を取り出します]
+    
+    @card = Card.find_by(user_id: current_user.id)
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @card_information = customer.cards.retrieve(@card.card_id)
@@ -51,9 +52,15 @@ class CardsController < ApplicationController
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
-      @card.delete
+      if @card.destroy 
+        redirect_to user_cards_path 
+        flash[:notice] = "クレジットカードを削除しました。"
+      else
+        redirect_to user_cards_path 
+        flash[:alert] = "クレジットカードを削除できませんでした。"
+      end
     end
-      redirect_to action: "index"
+      
   end
 
   private

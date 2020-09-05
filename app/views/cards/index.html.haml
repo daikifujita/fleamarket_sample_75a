@@ -1,37 +1,36 @@
-.card
-  .card__title
-    クレジットカード情報
-
-  .card__display
-    - if @card.present?
-
-      %ul.card__display__list
-        %li
-          = form_with url: card_path(@card), method: :delete, local: true, id: 'charge-form' do |f|
-            -# カードブランドのアイコンを表示する場合-----
-            %figure
-              = image_tag "credit_brand/#{@card_src}", width: '68', height: '40', alt: @card_brand, id: "card_image"
-            -#----------------------------------
-            .card__display__list--pay-num
-              = "**** **** **** " + @card_information.last4
-            .card__display__list--pay-num
-              - exp_month = @card_information.exp_month.to_s
-              - exp_year = @card_information.exp_year.to_s.slice(2,3)
-              = exp_month + " / " + exp_year
-            %input{type: "hidden", name: "card_id", value: ""}
-            .card__btn
-              = f.submit "削除する", {class: "card__display__list__remove"}
-              - if flash[:notice]
-                .alert.alert-success
-                = flash[:notice]
-              - if flash[:alert]
-                .alert.alert-dange
-                = flash[:alert]
-    - else
-      .card__display__add
-        = link_to new_card_path, class: "card__btn", data: {"turbolinks" => false} do
-          %i
-          = icon('fas', 'credit-card', class: "card__icon")
-          クレジットカードを追加する
-          -# カードが登録されていない場合は登録ボタンを表示するようにしています。
-  
+.container 
+  .left-content  
+    .card
+      .card__title
+        クレジットカード情報
+    
+      .card__display
+        - if @card.present?
+    
+          %ul.card__display__list
+            %li
+              = form_with url: user_card_path(current_user, @card), method: :delete, local: true, id: 'charge-form' do |f|
+                -# カードブランドのアイコンを表示する場合-----
+                %figure
+                  = image_tag "credit_brand/#{@card_src}", width: '68', height: '40', alt: @card_brand, id: "card_image"
+                -#----------------------------------
+                .card__display__list--pay-num
+                  = "**** **** **** " + @card_information.last4
+                .card__display__list--pay-num
+                  - exp_month = @card_information.exp_month.to_s
+                  - exp_year = @card_information.exp_year.to_s.slice(2,3)
+                  = exp_month + " / " + exp_year
+                %input{type: "hidden", name: "card_id", value: ""}
+                .card__btn
+                  = f.submit "削除する", {class: "card__display__list__remove"}
+                  = flash[:alert] 
+        - else
+          .card__display__add
+            = link_to new_user_card_path, class: "card__btn", data: {"turbolinks" => false} do
+              %i
+              = icon('fas', 'credit-card', class: "card__icon")
+              クレジットカードを追加する
+              -# カードが登録されていない場合は登録ボタンを表示するようにしています。
+          = flash[:notice] 
+  .right-content
+    = render "users/right-content"

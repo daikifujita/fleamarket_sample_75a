@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :logout]
-  before_action :set_address, only: [:edit, :update]
-
-  def
+  
 
   def show
+    @user = User.find(params[:id])
+    @address = Address.find_by(user_id: current_user.id)
   end
 
   def edit
@@ -22,11 +21,5 @@ class UsersController < ApplicationController
   
 
   private
-  def set_user
-    @user = User.find(params[:id])
-  end
     
-  def set_user
-    @address = Address.find(params[:id])
-  end
 end
