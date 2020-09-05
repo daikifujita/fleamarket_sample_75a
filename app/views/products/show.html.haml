@@ -30,9 +30,15 @@
     = @product.name
   .product-main-content
     .product-image 
-      .product-image__display
+      .product-image__display 
         .product-image__display__up
           = image_tag @product.pictures.first.image_url, size: "300x300", class: "mainImage"
+          -#製品に関して、"buyer_id"の有無を確認
+          -if @product.buyer_id.present? 
+            -#"buyer_id"がある場合には、追加の記述を行う。
+            .product-image__display__up__sold
+              .product-image__display__up__sold__inner 
+                SOLD
       - @product.pictures.each do |picture|
         %ul.product-image__display__down    
           %li.product-image__display__down-thumb
@@ -93,6 +99,9 @@
   - if @product.user_id == current_user.id   
     .item-buy-btn
       = link_to "編集画面に進む", edit_product_path
+  - elsif @product.buyer_id.present? 
+    .disabled-btn 
+      = link_to "売り切れました",'#'
   - else 
     .item-buy-btn
       = link_to "購入画面に進む", index_product_path
