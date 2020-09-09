@@ -99,12 +99,16 @@
   - if @product.user_id == current_user.id   
     .item-buy-btn
       = link_to "編集画面に進む", edit_product_path
+    .item-buy-btn
+      = link_to '削除', product_path(@product.id), method: :delete
+
   - elsif @product.buyer_id.present? 
     .disabled-btn 
       = link_to "売り切れました",'#'
   - else 
     .item-buy-btn
       = link_to "購入画面に進む", index_product_path
+
   .item-description.f14
     %p.item-description-inner
       = @product.explanation
