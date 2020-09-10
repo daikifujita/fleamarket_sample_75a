@@ -135,7 +135,6 @@
           %h3.title
             = link_to '新規投稿商品', products_path
             .productLists
-              -# .arrow-btn#prev
               .productLists__container
                 - @products.each do |product|
                   .productList
@@ -153,7 +152,6 @@
                               %i.fa.fa-star.likeIcon
                           %p (税込)
                 %end
-              -# .arrow-btn#next
     %section.pickupContainer
       %h2.head ピックアップブランド
       .productBox
