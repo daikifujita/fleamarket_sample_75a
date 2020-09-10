@@ -1,7 +1,6 @@
 class TopController < ApplicationController
   def index
-    @product = Product.all
-    @pictures = Picture.all
+    @products = Product.all.includes(:pictures)
     @category_parent_array =  Category.where(ancestry: nil)
   end
 end
