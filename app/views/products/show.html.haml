@@ -96,19 +96,18 @@
       = converting_to_jpy(@product.price)
     %span.item-tax (税込)
     %span.item-shipping-fee 送料込み
-  - if @product.user_id == current_user.id   
+  - if @product.buyer_id.present?
+    .disabled-btn
+      = link_to '売り切れました','#'
+  - elsif not user_signed_in?
     .item-buy-btn
-      = link_to "編集画面に進む", edit_product_path
+      = link_to '購入画面に進む', index_product_path
+  - elsif @product.user_id == current_user.id
     .item-buy-btn
-      = link_to '削除', product_path(@product.id), method: :delete
-
-  - elsif @product.buyer_id.present? 
-    .disabled-btn 
-      = link_to "売り切れました",'#'
-  - else 
+      = link_to '編集画面に進む', edit_product_path
+  - else
     .item-buy-btn
-      = link_to "購入画面に進む", index_product_path
-
+      = link_to '購入画面に進む', index_product_path
   .item-description.f14
     %p.item-description-inner
       = @product.explanation
