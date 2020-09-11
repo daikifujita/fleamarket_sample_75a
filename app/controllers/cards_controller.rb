@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   require "payjp"
+  before_action :authenticate_user!
   before_action :set_card, only: [:new, :destroy]
   before_action :set_payjp_secretkey, except: :new
 
@@ -28,6 +29,7 @@ class CardsController < ApplicationController
   end
   
   def new
+    @card = Card.where(user_id: current_user.id).first
     redirect_to action: "index" if @card.present?
   end
 
@@ -49,6 +51,7 @@ class CardsController < ApplicationController
     end
   end
   def destroy #PayjpとCardデータベースを削除します
+    
     if @card.present?
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete

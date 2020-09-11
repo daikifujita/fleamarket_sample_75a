@@ -1,6 +1,7 @@
 class PurchaseController < ApplicationController
   
   require "payjp"
+  before_action :authenticate_user!
   before_action :set_card 
   before_action :set_product   #クレジットカードと製品の変数を設定
   before_action :set_payjp_secretkey
