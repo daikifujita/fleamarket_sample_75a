@@ -50,7 +50,7 @@
             %li.listsRight__item.listsRight__item--new
               = link_to "新規会員登録", new_user_registration_path
   .main
-    %section.mainVisual
+    %section.mainVisual{style: "background-image: url(#{image_path asset_path("pict/bg-mainVisual-pict_pc.jpg")})"}
       .content
         %h2.content__subtitle
           %br/
@@ -94,7 +94,7 @@
             %span 業界最安
           %p.list__description
             最大3%でお得に出品&amp;購入！
-    %section.topMiddleDl
+    %section.topMiddleDl{style: "background-image: url(#{image_path asset_path("pict/bg-topMiddleDl-pict.jpg")})"}
       .topMiddleDl__inner
         %h2.subtitle 会員数日本一位
         %p.text
@@ -212,13 +212,13 @@
                         %i.fa.fa-star.likeIcon
                         1
                     %p (税込)
-  %aside.appBanner
+  %aside.appBanner{style: "background-image: url(#{image_path asset_path("pict/bg-appBanner-pict.jpg")})"}
     .inner
       %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
       %p.inner__text 今すぐ無料ダウンロード！
       .inner__icon
-        = link_to image_tag '/assets/icon/app-store.svg', class: 'linkIcon, aBtn'
-        = link_to image_tag '/assets/icon/google-play.svg', class:'linkIcon, gBtn'
+        = link_to image_tag asset_path("icon/app-store.svg"), class: "aBtn"
+        = link_to image_tag asset_path("icon/google-play.svg"), class: "gBtn"
   .footer
     %ul.contents
       %li.content

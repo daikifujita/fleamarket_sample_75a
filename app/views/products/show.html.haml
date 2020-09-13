@@ -98,7 +98,7 @@
     %span.item-shipping-fee 送料込み
   - if @product.user_id == current_user.id   
     .item-buy-btn
-      = link_to "編集画面に進む", edit_product_path
+      = link_to "編集画面に進む", edit_product_path, method: :get
     .item-buy-btn
       = link_to '削除', product_path(@product.id), method: :delete
 
