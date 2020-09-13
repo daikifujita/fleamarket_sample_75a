@@ -47,7 +47,7 @@
               = exp_month + " / " + exp_year
         - else 
           .buyconfirm__cards__list
-            = link_to "クレジットカードを登録してください", new_card_path(current_user)
+            = link_to "クレジットカードを登録してください", new_user_card_path(current_user),data: {"turbolinks" => false}
       .buyconfirm__wrapper__container
         .buyconfirm__prefecture
           .buyconfirm__prefecture__title

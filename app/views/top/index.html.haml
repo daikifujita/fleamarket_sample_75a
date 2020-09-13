@@ -48,7 +48,7 @@
             %li.listsRight__item.listsRight__item--login
               = link_to "ログイン", new_user_session_path
             %li.listsRight__item.listsRight__item--new
-              = link_to "新規会員登録", new_user_registration_path
+              = link_to "新規会員登録", items_path
   .main
     %section.mainVisual{style: "background-image: url(#{image_path asset_path("pict/bg-mainVisual-pict_pc.jpg")})"}
       .content
@@ -140,7 +140,7 @@
                   .productList
                     = link_to product_path(product.id) do
                       %figure.productList--img
-                        = image_tag product.pictures.first.image_url
+                        -# = image_tag product.pictures.first.image_url
                       .productList--body
                         %h3
                           = product.name
