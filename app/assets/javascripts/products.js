@@ -11,7 +11,7 @@ $(function () {
 
   const buildImg = (index, url) => {
 
-    const html = `<div class="preview" data-index="${index}">
+    const html = `<li class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
                       <label data-index="${index}" class="preview__change__upload">変更
@@ -19,7 +19,7 @@ $(function () {
                       </label>
                       <div class="preview__change__delete">削除</div>
                     </div>
-                  </div>`;
+                  </li>`;
     return html;
 
   }
@@ -32,7 +32,6 @@ $(function () {
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
-
     // 新規画像追加の処理
     // var num = files_array.length
     var num = $('.preview').length
@@ -40,23 +39,18 @@ $(function () {
           $('.js-file_group').append(buildImg(targetIndex, blobUrl));
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
-
           // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
           if (num == 4){
             $('.js-file_group2').show();
-
             $('.js-file_group2').append(buildFileField(targetIndex));
-
           }else{
             $('.js-file_group').append(buildFileField(targetIndex));
-
           }
         }else if(num > 4 && num <= 9){
           $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
           if (num == 9){
-
           }else{
             $('.js-file_group2').append(buildFileField(targetIndex));
           }
@@ -148,35 +142,43 @@ $(function () {
   $(document).on('click', '.preview__change__delete', function () {
     //クリック対象のindexを取得
     const targetIndex = $(this).parent().data('index');
+    const index = $(this).parent().parent().index()
     // 該当のindexのlabel(画像form)を削除
     var num = $('.preview').length
-    console.log(num)
+    console.log(index)
+
     if(num == 10){
       $('.js-file_group2').append(buildFileField(targetIndex));
       // $(`label[data-index="${targetIndex}"]`).remove();
       // // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
+      $(`li[data-index="${targetIndex}"]`).remove();
       // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
       files_array[targetIndex] = "";
-    }else if(num == 5){
-      $('.js-file_group').append(buildFileField(targetIndex));
-      // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
-      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-      files_array[targetIndex] = "";
-      $('.js-file_group2').hide();
-
-
-    }else{
-      
-      $(`label[data-index="${targetIndex}"]`).remove();
-      // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
-      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-      files_array[targetIndex] = "";
-
+    // }else if(num == 5){
+    }else if(num >= 1 && num <= 9){
+      if(num <= 6){
+        if(num == 5){
+          $('.js-file_group').append(buildFileField(targetIndex));
+          // 該当のindexのdiv(画像)を削除
+          $(`li[data-index="${targetIndex}"]`).remove();
+          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+          files_array[targetIndex] = "";
+          $('.js-file_group2').hide();
+        }else{
+          // $(`label[data-index="${targetIndex}"]`).remove();
+          // 該当のindexのdiv(画像)を削除
+          $(`li[data-index="${targetIndex}"]`).remove();
+          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+          files_array[targetIndex] = "";
+        }
+      }else{
+        // $(`label[data-index="${targetIndex}"]`).remove();
+        // 該当のindexのdiv(画像)を削除
+        $(`li[data-index="${targetIndex}"]`).remove();
+        // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+        files_array[targetIndex] = "";
+      }
     }
-
   });
 
 
