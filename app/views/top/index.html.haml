@@ -140,7 +140,7 @@
                   .productList
                     = link_to product_path(product.id) do
                       %figure.productList--img
-                        = image_tag product.pictures.first.image_url
+                        -# = image_tag product.pictures.first.image_url
                       .productList--body
                         %h3
                           = product.name
