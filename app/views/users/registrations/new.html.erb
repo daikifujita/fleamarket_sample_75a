@@ -28,17 +28,18 @@
     <div class="userinfo__main__container__head">
     <p>会員情報入力</p>
     </div>  
-    <div class="userinfo__main__container__body"> 
     <%= form_for(@user, url: user_registration_path) do |f| %>
       <%= render "devise/shared/error_messages", resource: @user %>
+     <div class="userinfo__main__container__body"> 
       <div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
           <%= f.label :nickname %>
           <div class="userinfo__main__container__body__field__title__required">必須</div>
         </div>
-        <%= f.text_field :nickname, :placeholder => "例）フリマ太郎"  %>
+        <%= f.text_field :nickname, :placeholder => "例）フリマ太郎" %>
       </div>
-    　<div class="userinfo__main__container__body__field">
+      
+      <div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
           <%= f.label :email %>
           <div class="userinfo__main__container__body__field__title__required">必須</div>
@@ -118,8 +119,6 @@
     </ul>
   </div>
 </div>
-
-
 
 
 

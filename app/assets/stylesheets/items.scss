@@ -213,7 +213,23 @@ header{
       }
     }
     &__body{
-      padding: 40px 190px;
+      padding: 120px 190px;
+      text-align: center;
+      &__top{
+        width: 100%;
+        line-height: 48px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        background: #2BCCD1;
+        border: 1px solid #2BCCD1;
+        margin-top: 40px;
+      }
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
 
   }
 }

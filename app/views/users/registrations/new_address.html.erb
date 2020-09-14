@@ -29,9 +29,9 @@
     <div class="userinfo__main__container__head">
     <p>住所情報登録</p>
     </div>  
-    <div class="userinfo__main__container__body"> 
     <%= form_for @address do |f| %>
       <%= render "devise/shared/error_messages", resource: @address %>
+    <div class="userinfo__main__container__body"> 
    　<div class="userinfo__main__container__body__field">
        <div class="userinfo__main__container__body__field__title">
           <%= f.label :postcode %>
@@ -82,7 +82,7 @@
       <div class="userinfo__main__container__body__submit">
         <%= f.submit "登録する" %>
       </div>
-      <div class="userinfo__main__container__body__submit">
+      <div class="userinfo__main__container__body__back">
         <%= link_to '戻る', :back %>
       </div>
     <% end %>
