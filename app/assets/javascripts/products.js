@@ -32,25 +32,27 @@ $(function () {
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
-    // 新規画像追加の処理
-    // var num = files_array.length
-    var num = $('.preview').length
-        if (num <= 4){
+    // 新規画像追加の処理  
+    var exsistImage = files_array.filter( function( value ) {
+      return value != "";
+    })
+    var exsistImageNum = exsistImage.length
+        if (exsistImageNum <= 5){
           $('.js-file_group').append(buildImg(targetIndex, blobUrl));
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
           // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
-          if (num == 4){
+          if (exsistImageNum == 5){
             $('.js-file_group2').show();
             $('.js-file_group2').append(buildFileField(targetIndex));
           }else{
             $('.js-file_group').append(buildFileField(targetIndex));
           }
-        }else if(num > 4 && num <= 9){
+        }else{
           $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
           //新しい画像アップロードフォルダーを作成し、次に備える。
           targetIndex++;
-          if (num == 9){
+          if (exsistImageNum == 10){
           }else{
             $('.js-file_group2').append(buildFileField(targetIndex));
           }
@@ -68,7 +70,7 @@ $(function () {
         var targetIndex = 0
         datas.forEach(function (data) {
           //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
-          let blobUrl = data.image
+          var blobUrl = data.image
           //配列の該当箇所を"exist"書き換える（追加）
           files_array[targetIndex] = "exist"
           //画像を新規アップロード&targetIndexを更新
@@ -137,46 +139,56 @@ $(function () {
     }
   });
 
+  
 
   //画像削除アクション
   $(document).on('click', '.preview__change__delete', function () {
+      // 画像用のinputを生成する関数
     //クリック対象のindexを取得
     const targetIndex = $(this).parent().data('index');
-    const index = $(this).parent().parent().index()
-    // 該当のindexのlabel(画像form)を削除
-    var num = $('.preview').length
-    console.log(index)
-
-    if(num == 10){
+    // const index = $(this).parent().parent().index()
+    console.log(targetIndex)
+    // var num = $('.preview').length
+    var exsistImage = files_array.filter( function( value ) {
+      return value != "";
+    })
+    var exsistImageNum = exsistImage.length
+    // console.log(exsistImageNum)
+    if(exsistImageNum == 10){ //①10だったら
       $('.js-file_group2').append(buildFileField(targetIndex));
-      // $(`label[data-index="${targetIndex}"]`).remove();
-      // // 該当のindexのdiv(画像)を削除
       $(`li[data-index="${targetIndex}"]`).remove();
-      // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
       files_array[targetIndex] = "";
-    // }else if(num == 5){
-    }else if(num >= 1 && num <= 9){
-      if(num <= 6){
-        if(num == 5){
+
+    }else{ //①1-9だったら
+      if(exsistImageNum >= 5){ //②5-9だったら
+        if(exsistImageNum == 5){ //③5だったら
           $('.js-file_group').append(buildFileField(targetIndex));
-          // 該当のindexのdiv(画像)を削除
           $(`li[data-index="${targetIndex}"]`).remove();
-          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
           files_array[targetIndex] = "";
           $('.js-file_group2').hide();
-        }else{
-          // $(`label[data-index="${targetIndex}"]`).remove();
-          // 該当のindexのdiv(画像)を削除
+        }else{ //③6-9だったら
           $(`li[data-index="${targetIndex}"]`).remove();
-          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
           files_array[targetIndex] = "";
+          if(targetIndex <= 4){
+          var pickup_images1 = exsistImage.slice(0, 5); //0,1,2,3,4
+          $('.js-file_group').empty();
+          $.each(pickup_images1, function(image) {
+            $('.js-file_group').append(buildImg(image));
+          })
+
+          var pickup_images2 = exsistImage.slice(5); //5,6,7....
+          $('.js-file_group2').empty();
+          $.each(pickup_images2, function(image) {
+            $('.js-file_group2').append(buildImg(image));
+          })
         }
-      }else{
-        // $(`label[data-index="${targetIndex}"]`).remove();
-        // 該当のindexのdiv(画像)を削除
+        }
+      }else{//②1-4だったら
         $(`li[data-index="${targetIndex}"]`).remove();
-        // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
         files_array[targetIndex] = "";
+        var exsistImage = files_array.filter( function( value ) {
+          return value != "";
+        })
       }
     }
   });
