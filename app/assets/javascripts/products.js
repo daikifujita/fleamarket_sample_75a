@@ -142,12 +142,12 @@ $(function () {
   
 
   //画像削除アクション
-  $(document).on('click', '.preview__change__delete', function () {
+  $(document).on('click', '.preview__change__delete', function (e) {
       // 画像用のinputを生成する関数
     //クリック対象のindexを取得
     const targetIndex = $(this).parent().data('index');
     // const index = $(this).parent().parent().index()
-    console.log(targetIndex)
+    // console.log(targetIndex)
     // var num = $('.preview').length
     var exsistImage = files_array.filter( function( value ) {
       return value != "";
@@ -170,17 +170,27 @@ $(function () {
           $(`li[data-index="${targetIndex}"]`).remove();
           files_array[targetIndex] = "";
           if(targetIndex <= 4){
-          var pickup_images1 = exsistImage.slice(0, 5); //0,1,2,3,4
-          $('.js-file_group').empty();
-          $.each(pickup_images1, function(image) {
-            $('.js-file_group').append(buildImg(image));
-          })
+          // 削除された画像が上段だった場合
+          // １.下段の左の画像のurlを取得
+          // ２.下段の一番左の画像を削除する（empty）
+          // ３.取得した画像をa上段の一番右に差し込み（appendもしくはafter）
 
-          var pickup_images2 = exsistImage.slice(5); //5,6,7....
-          $('.js-file_group2').empty();
-          $.each(pickup_images2, function(image) {
-            $('.js-file_group2').append(buildImg(image));
-          })
+
+          // var pickup_images1 = exsistImage.slice(0, 5); //0,1,2,3,4
+          // console.log(pickup_images1)
+          // $('.js-file_group').empty();
+          // $.each(pickup_images1, function(image) {
+          //   // console.log(image.name)
+          //   image.attr("image");
+          //   console.log(image)
+          //   $('.js-file_group').append(buildImg(image));
+          // })
+          // var pickup_images2 = exsistImage.slice(5); //5,6,7....
+          // $('.js-file_group2').empty();
+          // $.each(pickup_images2, function(image) {
+          //   console.log(image)
+          //   $('.js-file_group2').append(buildImg(image));
+          // })
         }
         }
       }else{//②1-4だったら
