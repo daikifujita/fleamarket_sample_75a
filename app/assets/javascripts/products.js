@@ -1,7 +1,7 @@
 $(function () {
   // 画像用のinputを生成する関数
   const buildFileField = (index) => {
-      const html = `<label data-index="${index}" class="image-upload">
+      const html = `<label data-index="${index}" class="image-upload" id="image-upload-add">
                       <input type="file" class="js-file" multiple="multiple">
                       <p><i id="added" class="fas fa-camera"></i></p>
                     </label>`;
@@ -11,7 +11,7 @@ $(function () {
 
   const buildImg = (index, url) => {
 
-    const html = `<li class="preview" data-index="${index}">
+    const html = `<div class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
                       <label data-index="${index}" class="preview__change__upload">変更
@@ -19,7 +19,7 @@ $(function () {
                       </label>
                       <div class="preview__change__delete">削除</div>
                     </div>
-                  </li>`;
+                  </div>`;
     return html;
 
   }
@@ -31,32 +31,42 @@ $(function () {
   //新規アップロード時の実行内容（files_arrayはajax取得とform選択で取り方が違う為、統一化しない）
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
+ 
     $('.image-upload').remove();
     // 新規画像追加の処理  
     var exsistImage = files_array.filter( function( value ) {
       return value != "";
     })
     var exsistImageNum = exsistImage.length
-        if (exsistImageNum <= 5){
-          $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-          //新しい画像アップロードフォルダーを作成し、次に備える。
-          targetIndex++;
-          // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
-          if (exsistImageNum == 5){
-            $('.js-file_group2').show();
-            $('.js-file_group2').append(buildFileField(targetIndex));
-          }else{
-            $('.js-file_group').append(buildFileField(targetIndex));
-          }
-        }else{
-          $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
-          //新しい画像アップロードフォルダーを作成し、次に備える。
-          targetIndex++;
-          if (exsistImageNum == 10){
-          }else{
-            $('.js-file_group2').append(buildFileField(targetIndex));
-          }
-        }
+
+    $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+    targetIndex++;
+    $('.js-file_group').append(buildFileField(targetIndex));
+    if (exsistImageNum >= 10){
+       $("#image-upload-add").css("display", "none");
+
+    }
+
+        // if (exsistImageNum <= 5){
+        //   $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+        //   //新しい画像アップロードフォルダーを作成し、次に備える。
+        //   targetIndex++;
+        //   // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
+        //   if (exsistImageNum == 5){
+        //     $('.js-file_group2').show();
+        //     $('.js-file_group2').append(buildFileField(targetIndex));
+        //   }else{
+        //     $('.js-file_group').append(buildFileField(targetIndex));
+        //   }
+        // }else{
+        //   $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
+        //   //新しい画像アップロードフォルダーを作成し、次に備える。
+        //   targetIndex++;
+        //   if (exsistImageNum == 10){
+        //   }else{
+        //     $('.js-file_group2').append(buildFileField(targetIndex));
+        //   }
+        // }
       
       return targetIndex
       
@@ -142,65 +152,75 @@ $(function () {
   
 
   //画像削除アクション
-  $(document).on('click', '.preview__change__delete', function (e) {
-      // 画像用のinputを生成する関数
-    //クリック対象のindexを取得
-    const targetIndex = $(this).parent().data('index');
-    // const index = $(this).parent().parent().index()
-    // console.log(targetIndex)
-    // var num = $('.preview').length
-    var exsistImage = files_array.filter( function( value ) {
-      return value != "";
-    })
-    var exsistImageNum = exsistImage.length
-    // console.log(exsistImageNum)
-    if(exsistImageNum == 10){ //①10だったら
-      $('.js-file_group2').append(buildFileField(targetIndex));
-      $(`li[data-index="${targetIndex}"]`).remove();
-      files_array[targetIndex] = "";
-
-    }else{ //①1-9だったら
-      if(exsistImageNum >= 5){ //②5-9だったら
-        if(exsistImageNum == 5){ //③5だったら
-          $('.js-file_group').append(buildFileField(targetIndex));
-          $(`li[data-index="${targetIndex}"]`).remove();
-          files_array[targetIndex] = "";
-          $('.js-file_group2').hide();
-        }else{ //③6-9だったら
-          $(`li[data-index="${targetIndex}"]`).remove();
-          files_array[targetIndex] = "";
-          if(targetIndex <= 4){
-          // 削除された画像が上段だった場合
-          // １.下段の左の画像のurlを取得
-          // ２.下段の一番左の画像を削除する（empty）
-          // ３.取得した画像をa上段の一番右に差し込み（appendもしくはafter）
-
-
-          // var pickup_images1 = exsistImage.slice(0, 5); //0,1,2,3,4
-          // console.log(pickup_images1)
-          // $('.js-file_group').empty();
-          // $.each(pickup_images1, function(image) {
-          //   // console.log(image.name)
-          //   image.attr("image");
-          //   console.log(image)
-          //   $('.js-file_group').append(buildImg(image));
-          // })
-          // var pickup_images2 = exsistImage.slice(5); //5,6,7....
-          // $('.js-file_group2').empty();
-          // $.each(pickup_images2, function(image) {
-          //   console.log(image)
-          //   $('.js-file_group2').append(buildImg(image));
-          // })
-        }
-        }
-      }else{//②1-4だったら
-        $(`li[data-index="${targetIndex}"]`).remove();
-        files_array[targetIndex] = "";
+  $(document).on('click', '.preview__change__delete', function () {
+        //クリック対象のindexを取得
         var exsistImage = files_array.filter( function( value ) {
           return value != "";
         })
-      }
-    }
+        var exsistImageNum = exsistImage.length
+        console.log(exsistImageNum)
+        if (exsistImageNum == 10){
+          $("#image-upload-add").css("display", "block");
+        }
+
+        const targetIndex = $(this).parent().data('index');
+        // 該当のindexのlabel(画像form)を削除
+        $(`label[data-index="${targetIndex}"]`).remove();
+        // 該当のindexのdiv(画像)を削除
+        $(`div[data-index="${targetIndex}"]`).remove();
+        // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+        files_array[targetIndex] = "";
+      // 画像用のinputを生成する関数
+    //クリック対象のindexを取得
+    // console.log("aa")
+    // const targetIndex = $(this).parent().data('index');
+    // // const index = $(this).parent().parent().index()
+    // // console.log(targetIndex)
+    // // var num = $('.preview').length
+    // // var exsistImage = files_array.filter( function( value ) {
+    // //   return value != "";
+    // // })
+    // // var exsistImageNum = exsistImage.length
+    // // console.log(exsistImageNum)
+    // $(`li[data-index="${targetIndex}"]`).remove();
+    // files_array[targetIndex] = "";
+
+
+    // if(exsistImageNum == 10){ //①10だったら
+    //   $('.js-file_group2').append(buildFileField(targetIndex));
+    //   $(`li[data-index="${targetIndex}"]`).remove();
+    //   files_array[targetIndex] = "";
+
+    // }else{ //①1-9だったら
+    //   if(exsistImageNum >= 5){ //②5-9だったら
+    //     if(exsistImageNum == 5){ //③5だったら
+    //       $('.js-file_group').append(buildFileField(targetIndex));
+    //       $(`li[data-index="${targetIndex}"]`).remove();
+    //       files_array[targetIndex] = "";
+    //       $('.js-file_group2').hide();
+    //     }else{ //③6-9だったら
+    //       $(`li[data-index="${targetIndex}"]`).remove();
+    //       files_array[targetIndex] = "";
+    //       if(targetIndex <= 4){
+    //       // 削除された画像が上段だった場合
+    //       // １.下段の一番左の画像のurlを取得
+    //       var deletedPic = $('ul.js-file_group2 li:first-child img').attr('src')
+    //       // ２.下段の一番左の画像を削除する（empty）
+    //       var deleted = $('ul.js-file_group2 li:first-child').remove();
+    //       files_array[targetIndex] = "";
+    //       // ３.取得した画像を上段の一番右に差し込み（appendもしくはafter）
+    //       $('ul.js-file_group').append(buildImg(4, deletedPic));
+    //       console.log(files_array)
+    //     }
+    //     }
+    //   }else{//②1-4だったら
+    //     $(`li[data-index="${targetIndex}"]`).remove();
+    //     files_array[targetIndex] = "";
+    //     var exsistImage = files_array.filter( function( value ) {
+    //       return value != "";
+    //     })
+    //   }
+    // }
   });
 
 
