@@ -43,6 +43,7 @@ $(function () {
     //古い画像アップロードフォルダーを削除
  
     $('.image-upload').remove();
+
     // 新規画像追加の処理  
     var exsistImage = files_array.filter( function( value ) {
       return value != "";
@@ -52,11 +53,10 @@ $(function () {
     $('.js-file_group').append(buildImg(targetIndex, blobUrl));
     targetIndex++;
     $('.js-file_group').append(buildFileField(targetIndex));
-    if (exsistImageNum >= 10){
+    var preview = $('.preview').length;
+    if (preview >= 10){
        $("#image-upload-add").css("display", "none");
-
     }
-
        
       return targetIndex
       
@@ -140,8 +140,9 @@ $(function () {
           return value != "";
         })
         var exsistImageNum = exsistImage.length
+        var preview = $('.preview').length;
 
-        if(exsistImageNum < 11){
+        if(preview <= 10){
           targetIndex = new_upload(targetIndex, blobUrl)
 
         }
@@ -161,24 +162,21 @@ $(function () {
         var exsistImageNum = exsistImage.length
         const targetIndex = $(this).parent().data('index');
         const index = $(this).parent().parent().index()
+        var preview = $('.preview').length;
+        console.log(preview)
 
         // console.log(index)
-        if (exsistImageNum == 11){``
-          // 該当のindexのlabel(画像form)を削除
+        if (preview == 10){
           $(`label[data-index="${targetIndex}"]`).remove();
-          // 該当のindexのdiv(画像)を削除
           $(`div[data-index="${targetIndex}"]`).remove();
-          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
           files_array[targetIndex] = "";
           $("#image-upload-add").css("display", "block");
-    
-        }else if(exsistImageNum == 1 && index == 0){
+        }else if(preview == 1){
           $(`label[data-index="${targetIndex}"]`).remove();
           $(`div[data-index="${targetIndex}"]`).remove();
           files_array[targetIndex] = "";
           $('.js-file_group').append(buildFileFieldDefault(targetIndex));
           $('#image-upload-add').remove();
-        
         }else{
           $(`label[data-index="${targetIndex}"]`).remove();
           $(`div[data-index="${targetIndex}"]`).remove();
