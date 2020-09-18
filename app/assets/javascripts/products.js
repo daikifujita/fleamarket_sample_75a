@@ -134,17 +134,10 @@ $(function () {
       if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
         img.setAttribute('src', blobUrl);
       } else {
-        // var num = $('.preview').length
-        // console.log(num)
-        var exsistImage = files_array.filter( function( value ) {
-          return value != "";
-        })
-        var exsistImageNum = exsistImage.length
         var preview = $('.preview').length;
-
         if(preview < 10){
           targetIndex = new_upload(targetIndex, blobUrl)
-
+          console.log(files_array)
         }
       
       }
@@ -156,12 +149,7 @@ $(function () {
   //画像削除アクション
   $(document).on('click', '.preview__change__delete', function () {
         //クリック対象のindexを取得
-        var exsistImage = files_array.filter( function( value ) {
-          return value != "";
-        })
-        var exsistImageNum = exsistImage.length
         const targetIndex = $(this).parent().data('index');
-        const index = $(this).parent().parent().index()
         var preview = $('.preview').length;
         console.log(preview)
 
