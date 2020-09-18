@@ -45,10 +45,7 @@ $(function () {
     $('.image-upload').remove();
 
     // 新規画像追加の処理  
-    var exsistImage = files_array.filter( function( value ) {
-      return value != "";
-    })
-    var exsistImageNum = exsistImage.length
+
 
     $('.js-file_group').append(buildImg(targetIndex, blobUrl));
     targetIndex++;
@@ -73,9 +70,7 @@ $(function () {
           var blobUrl = data.image
           //配列の該当箇所を"exist"書き換える（追加）
           files_array[targetIndex] = "exist"
-
           targetIndex = new_upload(targetIndex, blobUrl)
-
         })
       })
       .fail(function () {
@@ -124,7 +119,6 @@ $(function () {
     // ファイルのブラウザ上でのURLを取得する
     var targetIndex = $(this).parent().data('index');
     const files = e.target.files;
-
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       const blobUrl = window.URL.createObjectURL(file);
@@ -152,8 +146,6 @@ $(function () {
         const targetIndex = $(this).parent().data('index');
         var preview = $('.preview').length;
         console.log(preview)
-
-        // console.log(index)
         if (preview == 10){
           $(`label[data-index="${targetIndex}"]`).remove();
           $(`div[data-index="${targetIndex}"]`).remove();
