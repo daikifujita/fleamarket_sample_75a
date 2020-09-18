@@ -142,7 +142,7 @@ $(function () {
         var exsistImageNum = exsistImage.length
         var preview = $('.preview').length;
 
-        if(preview <= 10){
+        if(preview < 10){
           targetIndex = new_upload(targetIndex, blobUrl)
 
         }
