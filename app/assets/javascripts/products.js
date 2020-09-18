@@ -7,6 +7,16 @@ $(function () {
                     </label>`;
       return html;
   }
+  const buildFileFieldDefault = (index) => {
+    const html = `<label data-index="${index}" class="image-upload" id="image-upload-default">
+                    <input type="file" class="js-file" multiple="multiple">
+                    <p><i class="fas fa-camera"></i></p>
+                    <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
+                  </label>`;
+
+    return html;
+}
+
 
 
   const buildImg = (index, url) => {
@@ -83,8 +93,15 @@ $(function () {
           var blobUrl = data.image
           //配列の該当箇所を"exist"書き換える（追加）
           files_array[targetIndex] = "exist"
+
           //画像を新規アップロード&targetIndexを更新
+          // var num = $('.preview').length
+          // console.log(num)
+          // if(num < 10){
+          //   targetIndex = new_upload(targetIndex, blobUrl)
+          // }
           targetIndex = new_upload(targetIndex, blobUrl)
+
         })
       })
       .fail(function () {
@@ -143,8 +160,19 @@ $(function () {
       if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
         img.setAttribute('src', blobUrl);
       } else {
+        // var num = $('.preview').length
+        // console.log(num)
+        var exsistImage = files_array.filter( function( value ) {
+          return value != "";
+        })
+        var exsistImageNum = exsistImage.length
+
+        if(exsistImageNum < 11){
+          targetIndex = new_upload(targetIndex, blobUrl)
+
+        }
         //画像を新規アップロード&targetIndexを更新
-        targetIndex = new_upload(targetIndex, blobUrl)
+        // targetIndex = new_upload(targetIndex, blobUrl)
       }
     }
   });
@@ -158,18 +186,52 @@ $(function () {
           return value != "";
         })
         var exsistImageNum = exsistImage.length
-        console.log(exsistImageNum)
-        if (exsistImageNum == 10){
-          $("#image-upload-add").css("display", "block");
-        }
-
         const targetIndex = $(this).parent().data('index');
-        // 該当のindexのlabel(画像form)を削除
-        $(`label[data-index="${targetIndex}"]`).remove();
-        // 該当のindexのdiv(画像)を削除
-        $(`div[data-index="${targetIndex}"]`).remove();
-        // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-        files_array[targetIndex] = "";
+        const index = $(this).parent().parent().index()
+
+        // console.log(index)
+        if (exsistImageNum == 11){``
+          // 該当のindexのlabel(画像form)を削除
+          $(`label[data-index="${targetIndex}"]`).remove();
+          // 該当のindexのdiv(画像)を削除
+          $(`div[data-index="${targetIndex}"]`).remove();
+          // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+          files_array[targetIndex] = "";
+          $("#image-upload-add").css("display", "block");
+    
+        }else if(exsistImageNum == 1 && index == 0){
+          $(`label[data-index="${targetIndex}"]`).remove();
+          $(`div[data-index="${targetIndex}"]`).remove();
+          files_array[targetIndex] = "";
+          $('.js-file_group').append(buildFileFieldDefault(targetIndex));
+          $('#image-upload-add').remove();
+        
+        }else{
+          $(`label[data-index="${targetIndex}"]`).remove();
+          $(`div[data-index="${targetIndex}"]`).remove();
+          files_array[targetIndex] = "";
+        }
+        
+
+
+        
+        // if (exsistImageNum == 1){
+        //   $('.js-file_group').append(buildFileFieldDefault());
+        //   $('#image-upload-add').remove();
+        //   console.log("aa")
+
+        // }
+
+  
+        // const targetIndex = $(this).parent().data('index');
+        // // 該当のindexのlabel(画像form)を削除
+        // $(`label[data-index="${targetIndex}"]`).remove();
+        // // 該当のindexのdiv(画像)を削除
+        // $(`div[data-index="${targetIndex}"]`).remove();
+        // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
+        // files_array[targetIndex] = "";
+
+
       // 画像用のinputを生成する関数
     //クリック対象のindexを取得
     // console.log("aa")
