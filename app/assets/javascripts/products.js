@@ -13,14 +13,10 @@ $(function () {
                     <p><i class="fas fa-camera"></i></p>
                     <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
                   </label>`;
-
     return html;
 }
 
-
-
   const buildImg = (index, url) => {
-
     const html = `<div class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
@@ -31,7 +27,6 @@ $(function () {
                     </div>
                   </div>`;
     return html;
-
   }
 
   // 画像を管理するための配列を定義する。
@@ -41,12 +36,8 @@ $(function () {
   //新規アップロード時の実行内容（files_arrayはajax取得とform選択で取り方が違う為、統一化しない）
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
- 
     $('.image-upload').remove();
-
     // 新規画像追加の処理  
-
-
     $('.js-file_group').append(buildImg(targetIndex, blobUrl));
     targetIndex++;
     $('.js-file_group').append(buildFileField(targetIndex));
@@ -54,10 +45,7 @@ $(function () {
     if (preview >= 10){
        $("#image-upload-add").css("display", "none");
     }
-       
-      return targetIndex
-      
-
+   return targetIndex
   }
 
   // newアクション時には実行させないようにする必要あり
@@ -84,18 +72,15 @@ $(function () {
     e.preventDefault();
     this.style.background = "#ff3399";
   }, false);
-
   $(document).on("dragleave", function (e) {
     e.stopPropagation();
     e.preventDefault();
     this.style.background = "#ffffff";
   }, false);
-
   $(document).on("drop", function (e) {
     e.stopPropagation();
     e.preventDefault();
   });
-
   $("#image-box").on("drop", function (e) {
     var targetIndex = files_array.length
     e.preventDefault();
@@ -115,6 +100,8 @@ $(function () {
     }
   });
 
+
+
   $('#image-box').on('change', '.js-file', function (e) {
     // ファイルのブラウザ上でのURLを取得する
     var targetIndex = $(this).parent().data('index');
@@ -129,7 +116,7 @@ $(function () {
         img.setAttribute('src', blobUrl);
       } else {
         var preview = $('.preview').length;
-        if(preview < 10){
+        if(preview <= 9){
           targetIndex = new_upload(targetIndex, blobUrl)
           console.log(files_array)
         }
