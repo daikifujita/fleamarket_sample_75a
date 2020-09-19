@@ -138,7 +138,7 @@
               .productLists__container
                 - @products.each do |product|
                   .productList
-                    = link_to product_path(product.id) do
+                    = link_to product_path(product.id), method: :get do
                       %figure.productList--img
                         -# = image_tag product.pictures.first.image_url
                       .productList--body
@@ -253,4 +253,4 @@
     %p © FURIMA
   .purchaseBtn
     %span.purchaseBtn__text 出品する
-    = link_to image_tag(asset_path("icon/icon_camera.png"), class:"purchaseBtn__icon"), new_product_path
+    = link_to image_tag(asset_path("icon/icon_camera.png"), class:"purchaseBtn__icon"), new_product_path, method: :get

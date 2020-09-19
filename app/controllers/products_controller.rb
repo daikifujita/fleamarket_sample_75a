@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
       end
       # redirect_to request.referrer, notice: 'succeded sending'
       respond_to do |format|
-        format.json
+        format.json 
       end
     else
       @category_parent_array << @category_parent_array = Category.where(ancestry: nil)

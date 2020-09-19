@@ -2,23 +2,24 @@
   .top-header__containers
     .top-header__containers__top
       .top-header__containers__top__icon
-        メルカリロゴ
-     
-      .top-header__containers__top__search
-        何かお探しですか?
-    
+        = link_to image_tag(asset_path("logo/logo.png")), root_path
+      %form.top-header__containers__top__search
+        %input.top-header__containers__top__search__box{ name: "key", placeholder: "キーワードから探す"}
+        
+        %button.top-header__containers__top__search__icon{ type: "submit"}
+          = image_tag asset_path("icon/icon-search 1.png")            
     .top-header__containers__bottom
       .top-header__containers__bottom__search
         .top-header__containers__bottom__search__category
-          カテゴリーから探す
+          カテゴリー
         
         .top-header__containers__bottom__search__brand
-          ブランドから探す
+          ブランド
       .top-header__containers__bottom__user         
       - if user_signed_in? 
         .top-header__containers__bottom__user__signup
           =link_to 'マイページ', user_path(current_user.id) 
-          =link_to "仮置き）ログアウト", destroy_user_session_path, method: :delete 
+          =link_to "ログアウト", destroy_user_session_path, method: :delete 
       - else 
         .top-header__containers__bottom__user__signup
           =link_to '新規会員登録', items_path      
@@ -32,7 +33,7 @@
     .product-image 
       .product-image__display 
         .product-image__display__up
-          = image_tag @product.pictures.first.image_url, size: "300x300", class: "mainImage"
+          = image_tag @product.pictures.first.image_url, class: "mainImage"
           -#製品に関して、"buyer_id"の有無を確認
           -if @product.buyer_id.present? 
             -#"buyer_id"がある場合には、追加の記述を行う。
@@ -41,8 +42,8 @@
                 SOLD
       - @product.pictures.each do |picture|
         %ul.product-image__display__down    
-          %li.product-image__display__down-thumb
-            = image_tag picture.image_url, size: "60x60", class:"thumb"
+          %li.product-image__display__down__thumb
+            = image_tag picture.image_url, class:"thumb"
     %table.item-detail-table
       %tbody
         %tr
@@ -104,7 +105,9 @@
       = link_to '購入画面に進む', index_product_path
   - elsif @product.user_id == current_user.id
     .item-buy-btn
-      = link_to '編集画面に進む', edit_product_path
+      = link_to '編集画面に進む', edit_product_path, method: :get
+    .item-buy-btn
+      = link_to '削除', product_path(@product.id), method: :delete
   - else
     .item-buy-btn
       = link_to '購入画面に進む', index_product_path
@@ -152,115 +155,115 @@
           %input{:name => "comment_id", :type => "hidden", :value => ""}/
           %input{:name => "redirect_url_key", :type => "hidden", :value => ""}/
           %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
-.media
-  %ul.social-media-box
-    %li
-      %a.share-btn
-        %i.fab.fa-facebook-square>
-    %li
-      %a.share-btn
-        %i.fab.fa-twitter
-    %li
-      %a.share-btn
-        %i.fab.fa-line
-%section.other
-  %h4.items-box-head 
-    = @product.saler.nickname + "さんのその他の出品"
-  .items-box-content
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥4,800
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥5,500
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥10,000
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥10,000
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥6,300
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥12,000
-%section.related
-  %h42.items-box-head
-    パンツスーツ上下 （レディース） その他の商品
-  .items-box-content
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥10,600
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥14,540
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥3,870
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥3,600
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥18,600
-    .items-box
-      %figure.items-box-photo
-        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
-      .items-box-body
-        %h3.items-box-name テスト
-        .items-box-num
-          .items-box-price ¥4,440
+-#.media
+-#  %ul.social-media-box
+-#    %li
+-#      %a.share-btn
+-#        %i.fab.fa-facebook-square>
+-#    %li
+-#      %a.share-btn
+-#        %i.fab.fa-twitter
+-#    %li
+-#      %a.share-btn
+-#        %i.fab.fa-line
+-#%section.other
+-#  %h4.items-box-head 
+-#    = @product.saler.nickname + "さんのその他の出品"
+-#  .items-box-content
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥4,800
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥5,500
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥10,000
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥10,000
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥6,300
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥12,000
+-#%section.related
+-#  %h42.items-box-head
+-#    パンツスーツ上下 （レディース） その他の商品
+-#  .items-box-content
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥10,600
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥14,540
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥3,870
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥3,600
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥18,600
+-#    .items-box
+-#      %figure.items-box-photo
+-#        = image_tag "/uploads/picture/image/2/deadlift-2.jpg"
+-#      .items-box-body
+-#        %h3.items-box-name テスト
+-#        .items-box-num
+-#          .items-box-price ¥4,440
 
 %nav.bread-crumbs
 
-.top-footer
-  .top-footer__container
-    %ul.top-footer__container__title
+%footer
+  .footer__container
+    %ul.footer__container__title
       メルカリについて 
       %li ヘルプ＆ガイド
       %li プライバシーと利用規約
