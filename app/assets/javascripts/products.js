@@ -118,7 +118,6 @@ $(function () {
         var preview = $('.preview').length;
         if(preview <= 9){
           targetIndex = new_upload(targetIndex, blobUrl)
-          console.log(files_array)
         }
       
       }
