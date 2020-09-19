@@ -2,6 +2,7 @@
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   width: 100%;
   background: rgb(245, 245, 245);
+
   &__container{
     margin: 0 auto;
     background-color: #fff;
@@ -15,7 +16,17 @@
         font-weight: bold;
       }
     }
+    .alert{
+      color:#262626; 
+      background:#FFEBE8;
+      text-align: center;
+      border:2px solid #990000;
+      padding:12px;
+      font-weight:850;
+      font-size: 10px;
+    }
     &__body{
+
       padding: 40px 190px;
 
       &__field{
@@ -48,6 +59,7 @@
           }
         }
 
+
         input{
           width: 88%;
           height: 30px;
@@ -58,7 +70,11 @@
           line-height: 1.5;
           font-size: 16px;
         }
+        
+  
+  
       }
+
       .prefecture{
         width: 99%;
         height: 50px;
@@ -111,7 +127,7 @@
             margin:0 2px;
           }
           select:not(:first-child){
-            width: 75px;
+            width: 72px;
             height: 50px;
             padding: 10px 16px 8px;
             border-radius: 4px;
@@ -140,9 +156,20 @@
           margin-top: 40px;
         }
 
+
       }
+      &__back{
+        margin: 23px;
+        text-align: center;
+        a{
+        color: #0099e8;
+        text-decoration: none;
+        }
+    }
+
     }
   }
+
 }
 
 
@@ -210,7 +237,7 @@
         }
       }
       &__forgot{
-        margin: 40px 60px 0;
+        margin: 24px 67px 0;
         a{
         color: #0099e8;
         text-decoration: none;
