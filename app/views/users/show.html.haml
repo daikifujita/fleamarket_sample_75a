@@ -1,3 +1,31 @@
+.top-header
+  .top-header__containers
+    .top-header__containers__top
+      .top-header__containers__top__icon
+        = link_to image_tag(asset_path("logo/logo.png")), root_path
+      %form.top-header__containers__top__search
+        %input.top-header__containers__top__search__box{ name: "key", placeholder: "キーワードから探す"}
+        
+        %button.top-header__containers__top__search__icon{ type: "submit"}
+          = image_tag asset_path("icon/icon-search 1.png")            
+    .top-header__containers__bottom
+      .top-header__containers__bottom__search
+        .top-header__containers__bottom__search__category
+          カテゴリー
+        
+        .top-header__containers__bottom__search__brand
+          ブランド
+      .top-header__containers__bottom__user         
+      - if user_signed_in? 
+        .top-header__containers__bottom__user__signup
+          =link_to 'マイページ', user_path(current_user.id) 
+          =link_to "ログアウト", destroy_user_session_path, method: :delete 
+      - else 
+        .top-header__containers__bottom__user__signup
+          =link_to '新規会員登録', items_path      
+        .top-header__containers__bottom__user__login
+          =link_to 'ログイン', new_user_session_path
+
 .container
   .left-content
     %section.mypage-user-icon
@@ -107,4 +135,13 @@
           %li.mypage-item-not-found.bold 過去に取引した商品がありません
   .right-content
     = render "right-content"
-    
+
+%nav.bread-crumbs
+
+%footer
+  .footer__container
+    %ul.footer__container__title
+      メルカリについて 
+      %li ヘルプ＆ガイド
+      %li プライバシーと利用規約
+      %li 国  

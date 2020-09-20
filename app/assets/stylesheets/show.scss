@@ -2,52 +2,86 @@ body  {
   background: rgb(245, 245, 245);
 }
 .top-header{
-  height: 100px;
-  background-color: red;
-  padding: 0 250px;
+  padding: 0 60px;
+  background-color: #fff;
   &__containers{
+    width: 100%;
     height: 100%;
-    background-color: blue;
+    max-width: 1040px;
+    min-height: 82px;
     margin: 0 auto;
+    padding: 15px 0 0;
     &__top{
+      position: relative;
       display: flex;
-      justify-content: space-between;
-      height: 50%;
-      &__icon{
-        width: 200px;
-        background-color: rebeccapurple;
+      align-items: center;
+      &__icon {
+        
+        margin-right: 30px;
+        border-radius: 4px;
+        img {
+          width: 140px;
+          height: 100%;
+        }
       }
       &__search{
-        width: 700px;
-        background-color: firebrick;
+        display: flex;
+        margin-left: auto;
+        width: 100%;
+        height: 36px;
+        margin-bottom: 5px;
+        &__box {
+          width: calc(100% - 26px);
+          
+          padding: 0 0 0 5px
+
+        }
+        &__icon {
+          width: 36px;
+          border: 0;
+          cursor: pointer;
+          background-color: #3CCACE;
+          padding: 8px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
     }
     &__bottom{
+      font-size: 14px;
       display: flex;
-      justify-content: space-between;
-      height: 50%;
+      margin-bottom: 10px;
       &__search{
         display: flex;
-
+        position: relative;
         &__category{
-         background-color:floralwhite ;
-         width: 200px;
+          text-decoration: none;
+          line-height: 38px;
+          padding: 0;
         }
         &__brand{
-          background-color:gold ;
-          width: 200px;
+          display: flex;
+          line-height: 38px;
+          padding: 0 0 0 16px;
         }
       }
       &__user{
         display: flex;
-
-        &__signup{
-          background-color:olivedrab ;
-          width: 100px;
+        margin-left: auto;
+        
+        &__signup a{
+          text-decoration: none;
+          color: #333;
+          line-height: 38px;
+          padding: 0 0 0 16px;
         }
-        &__login{
-          background-color:lime ;
-          width: 100px;
+        &__login a{
+          text-decoration: none;
+          color: #333;
+          line-height: 38px;
+          padding: 0 0 0 16px;
         }
       }
     }
@@ -87,6 +121,11 @@ body  {
       padding: 0;
       &__up{
         height: 300px;
+        .mainImage {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
         &__sold {
           width: 0;
           height: 0;
@@ -114,7 +153,18 @@ body  {
       &__down{
         list-style: none;
         float: left;
+        width: 60px;
         height: 60px;
+        &__thumb{
+          width: 100%;
+          height: 100%;
+          .thumb {
+            width: 100%;
+            height: 100%;
+            resize: both;
+
+          }
+        }
       }
     }
   }
@@ -123,9 +173,7 @@ body  {
 
 
 .item-detail-table {
-
-  width: 100%;
-  max-width: 360px;
+  width: 300px;
   height: 420px;
   margin: 0 8px 0;
   border-collapse: collapse;
@@ -133,7 +181,7 @@ body  {
 }
 
 .item-detail-table th {
-  width: 39%;
+
   text-align: left;
   font-weight: 400;
   background: #fafafa;
@@ -145,7 +193,7 @@ body  {
 }
 
 .item-detail-table td {
-  width: 61%;
+
   background: #fff;
   border-collapse: collapse;
   border: 1px solid #f5f5f5;
@@ -498,15 +546,16 @@ i[class^='icon-'], i[class*='icon-'] {
 //  line-height: 1.2;
 //}
 
-.top-footer {
+footer {
   height: 420px;
   background-color: #333333;
   color: white;
   padding: 0 250px;
+  position: bottom;
+  
 }
 
 
 .visible-sp {
   display: none;
 }
-
