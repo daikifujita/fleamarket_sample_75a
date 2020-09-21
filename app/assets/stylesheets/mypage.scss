@@ -7,9 +7,10 @@ body {
   width: 1020px;
   padding:0 0 40px;
   margin: 40px auto 0;
-  
+  display: flex;
+  flex-flow: row-reverse;
   .left-content{
-    float: right;
+
     width: 700px;
     background-color: #ffffff;
     .mypage-user-icon{
@@ -277,7 +278,7 @@ body {
   }
   
   .right-content{
-    float: left;
+  
     width: 280px;
     margin: 0 40px 0 0;
     .mypage-nav {

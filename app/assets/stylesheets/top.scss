@@ -52,6 +52,10 @@ img {
   display: block;
 }
 
+header {
+  display: block;
+}
+
 body {
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
   margin: 0;
@@ -59,21 +63,19 @@ body {
 
   .pcHeader {
     padding: 0 60px;
-
+    height: 97.547px;
     .headerInner {
       max-width: 1040px;
       width: 100%;
       min-height: 82px;
       margin: 0 auto;
       padding: 15px 0 0;
-
       .mainHeader {
         position: relative;
         display: flex;
         align-items: center;
-
         .icon {
-          padding-bottom: 10px;
+          padding: 0 0 10px 0;
           margin-right: 30px;
           border-radius: 4px;
           a {

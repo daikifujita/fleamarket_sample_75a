@@ -105,7 +105,7 @@
           ほしかったあの商品に出会えるかもしれません。
         .btn
           = link_to image_tag asset_path("icon/app-store.svg"), class: "aBtn"
-          = link_to image_tag asset_path("/assets/icon/google-play.svg"), class: "gBtn"
+          = link_to image_tag asset_path("icon/google-play.svg"), class: "gBtn"
     %section.topKeyFeatures
       %h2.head FURIMAの特徴
       .items
@@ -138,7 +138,7 @@
               .productLists__container
                 - @products.each do |product|
                   .productList
-                    = link_to product_path(product.id) do
+                    = link_to product_path(product.id), method: :get do
                       %figure.productList--img
                         -# = image_tag product.pictures.first.image_url
                       .productList--body

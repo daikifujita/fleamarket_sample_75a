@@ -161,13 +161,31 @@ $(function () {
     var formData = new FormData($(this).get(0));
     var url = $(this).attr('action')
 
-    // 配列の中の空白を削除した綺麗な配列を新規に作成
-    // files_tidy_array = $.grep(files_array, function (e) {
-    //   return e !== "";
-    // });
+    // 配列の中の"削除"を削除した綺麗な配列を新規に作成
+    files_tidy_array = $.grep(files_array, function (e) {
+      return e !== "";
+    });
+
+    if (files_tidy_array.length == 0) {
+      alert("画像がありません！");
+      $(".submit").removeAttr("disabled")
+      return false;
+    }
+
+    var count = 0;
+
     files_array.forEach(function (file) {
-      // top_back_images→{images→[]}という形で[]内にfileが配列で格納されるようなパラメータに指定
-      formData.append("pictures[images][]", file)
+      //配列の中身の数チェック
+      if (file != "") {
+        //削除されたものでなければカウントUP
+        count++;
+      }
+      //11枚目以降のデータは、ajax送信対象としない
+      if (count > 10) {
+        return;
+      } else{
+        formData.append("pictures[images][]", file)
+      }
     });
 
     if ($(this).attr('class') == "new_product") {
