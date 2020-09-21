@@ -1,16 +1,22 @@
 $(function () {
   // 画像用のinputを生成する関数
   const buildFileField = (index) => {
-      const html = `<label data-index="${index}" class="image-upload">
+      const html = `<label data-index="${index}" class="image-upload" id="image-upload-add">
                       <input type="file" class="js-file" multiple="multiple">
                       <p><i id="added" class="fas fa-camera"></i></p>
                     </label>`;
       return html;
   }
-
+  const buildFileFieldDefault = (index) => {
+    const html = `<label data-index="${index}" class="image-upload" id="image-upload-default">
+                    <input type="file" class="js-file" multiple="multiple">
+                    <p><i class="fas fa-camera"></i></p>
+                    <p>ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード</p>
+                  </label>`;
+    return html;
+}
 
   const buildImg = (index, url) => {
-
     const html = `<div class="preview" data-index="${index}">
                     <img data-index="${index}" src="${url}" width="100px" height="100px">
                     <div data-index="${index}" class = "preview__change">
@@ -21,7 +27,6 @@ $(function () {
                     </div>
                   </div>`;
     return html;
-
   }
 
   // 画像を管理するための配列を定義する。
@@ -32,39 +37,15 @@ $(function () {
   function new_upload(targetIndex, blobUrl) {
     //古い画像アップロードフォルダーを削除
     $('.image-upload').remove();
-
-    // 新規画像追加の処理
-    // var num = files_array.length
-    var num = $('.preview').length
-        if (num <= 4){
-          $('.js-file_group').append(buildImg(targetIndex, blobUrl));
-          //新しい画像アップロードフォルダーを作成し、次に備える。
-          targetIndex++;
-
-          // targetIndexを返さないと、手動の複数アップロードは上書きされてしまう。
-          if (num == 4){
-            $('.js-file_group2').show();
-
-            $('.js-file_group2').append(buildFileField(targetIndex));
-
-          }else{
-            $('.js-file_group').append(buildFileField(targetIndex));
-
-          }
-        }else if(num > 4 && num <= 9){
-          $('.js-file_group2').append(buildImg(targetIndex, blobUrl));
-          //新しい画像アップロードフォルダーを作成し、次に備える。
-          targetIndex++;
-          if (num == 9){
-
-          }else{
-            $('.js-file_group2').append(buildFileField(targetIndex));
-          }
-        }
-      
-      return targetIndex
-      
-
+    // 新規画像追加の処理  
+    $('.js-file_group').append(buildImg(targetIndex, blobUrl));
+    targetIndex++;
+    $('.js-file_group').append(buildFileField(targetIndex));
+    var preview = $('.preview').length;
+    if (preview >= 10){
+       $("#image-upload-add").css("display", "none");
+    }
+   return targetIndex
   }
 
   // newアクション時には実行させないようにする必要あり
@@ -74,10 +55,9 @@ $(function () {
         var targetIndex = 0
         datas.forEach(function (data) {
           //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
-          let blobUrl = data.image
+          var blobUrl = data.image
           //配列の該当箇所を"exist"書き換える（追加）
           files_array[targetIndex] = "exist"
-          //画像を新規アップロード&targetIndexを更新
           targetIndex = new_upload(targetIndex, blobUrl)
         })
       })
@@ -92,18 +72,15 @@ $(function () {
     e.preventDefault();
     this.style.background = "#ff3399";
   }, false);
-
   $(document).on("dragleave", function (e) {
     e.stopPropagation();
     e.preventDefault();
     this.style.background = "#ffffff";
   }, false);
-
   $(document).on("drop", function (e) {
     e.stopPropagation();
     e.preventDefault();
   });
-
   $("#image-box").on("drop", function (e) {
     var targetIndex = files_array.length
     e.preventDefault();
@@ -123,11 +100,12 @@ $(function () {
     }
   });
 
+
+
   $('#image-box').on('change', '.js-file', function (e) {
     // ファイルのブラウザ上でのURLを取得する
     var targetIndex = $(this).parent().data('index');
     const files = e.target.files;
-
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       const blobUrl = window.URL.createObjectURL(file);
@@ -137,45 +115,41 @@ $(function () {
       if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
         img.setAttribute('src', blobUrl);
       } else {
-        //画像を新規アップロード&targetIndexを更新
-        targetIndex = new_upload(targetIndex, blobUrl)
+        var preview = $('.preview').length;
+        if(preview <= 9){
+          targetIndex = new_upload(targetIndex, blobUrl)
+        }
+      
       }
     }
   });
 
+  
 
   //画像削除アクション
   $(document).on('click', '.preview__change__delete', function () {
-    //クリック対象のindexを取得
-    const targetIndex = $(this).parent().data('index');
-    // 該当のindexのlabel(画像form)を削除
-    var num = $('.preview').length
-    console.log(num)
-    if(num == 10){
-      $('.js-file_group2').append(buildFileField(targetIndex));
-      // $(`label[data-index="${targetIndex}"]`).remove();
-      // // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
-      // // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-      files_array[targetIndex] = "";
-    }else if(num == 5){
-      $('.js-file_group').append(buildFileField(targetIndex));
-      // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
-      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-      files_array[targetIndex] = "";
-      $('.js-file_group2').hide();
+        //クリック対象のindexを取得
+        const targetIndex = $(this).parent().data('index');
+        var preview = $('.preview').length;
+        console.log(preview)
+        if (preview == 10){
+          $(`label[data-index="${targetIndex}"]`).remove();
+          $(`div[data-index="${targetIndex}"]`).remove();
+          files_array[targetIndex] = "";
+          $("#image-upload-add").css("display", "block");
+        }else if(preview == 1){
+          $(`label[data-index="${targetIndex}"]`).remove();
+          $(`div[data-index="${targetIndex}"]`).remove();
+          files_array[targetIndex] = "";
+          $('.js-file_group').append(buildFileFieldDefault(targetIndex));
+          $('#image-upload-add').remove();
+        }else{
+          $(`label[data-index="${targetIndex}"]`).remove();
+          $(`div[data-index="${targetIndex}"]`).remove();
+          files_array[targetIndex] = "";
+        }
+        
 
-
-    }else{
-      
-      $(`label[data-index="${targetIndex}"]`).remove();
-      // 該当のindexのdiv(画像)を削除
-      $(`div[data-index="${targetIndex}"]`).remove();
-      // 該当のindexの画像をform送信対象から削除したいが、targetIndexがずれてしまうので一旦、対象を空白に変更。
-      files_array[targetIndex] = "";
-
-    }
 
   });
 
