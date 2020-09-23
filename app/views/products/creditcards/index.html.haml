@@ -27,12 +27,13 @@
           = link_to "もどる", index_product_path(@product), {class: "card__display__list__remove"}
 
       - else
-        .card__display__add
-          = link_to new_product_creditcard_path, class: "card__btn", data: {"turbolinks" => false} do
+        .card__display__btn-add
+          = link_to new_product_creditcard_path, data: {"turbolinks" => false} do
             %i
-            = icon('fas', 'credit-card', class: "card__icon")
+            = icon('fas', 'credit-card')
             クレジットカードを追加する
             -# カードが登録されていない場合は登録ボタンを表示するようにしています。
+        %br
         = flash[:notice] 
         %br
         %br
