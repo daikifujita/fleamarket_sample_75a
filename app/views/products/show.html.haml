@@ -102,7 +102,12 @@
       = link_to '売り切れました','#'
   - elsif not user_signed_in?
     .item-buy-btn
-      = link_to '編集画面に進む', edit_product_path, method: :get 
+      = link_to '購入画面に進む', index_product_path
+  - elsif @product.user_id == current_user.id
+    .item-buy-btn
+      = link_to '編集画面に進む', edit_product_path, method: :get
+    .item-buy-btn
+      = link_to '削除', product_path(@product.id), method: :delete
   - else
     .item-buy-btn
       = link_to '購入画面に進む', index_product_path
