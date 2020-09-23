@@ -1,0 +1,14 @@
+.header{
+  height: 128px;
+  width: 100%;
+  text-align: center;
+  background: rgb(245, 245, 245);
+
+  &__icon{
+  padding-top: 40px;
+    img {
+      height: 100%;
+      width: 230px;
+    }
+  }
+}

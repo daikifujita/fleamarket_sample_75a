@@ -1,0 +1,41 @@
+.creditcard {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.card__display__btn-back{
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 48px;
+    display: block;
+    text-align: center;
+  }
+  cursor: pointer;
+  width: 345px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: #bbbbbb;
+  border: 1px solid #bbbbbb;
+}
+
+.btn {
+  text-align: center;
+  margin: 35px 0;
+  input{
+    width:360px;
+    line-height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    background: #2BCCD1;
+    border: 1px solid #2BCCD1;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+}
