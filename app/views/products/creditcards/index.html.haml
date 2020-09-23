@@ -10,7 +10,7 @@
 
         %ul.card__display__list
           %li
-            = form_with url: product_creditcard_path(current_user, @card), method: :delete, local: true, id: 'charge-form' do |f|
+            = form_with url: product_creditcard_path(@product, @card), method: :delete, local: true, id: 'charge-form' do |f|
               %figure
                 = image_tag "credit_brand/#{@card_src}", width: '68', height: '40', alt: @card_brand, id: "card_image"
               .card__display__list--pay-num
@@ -21,10 +21,10 @@
                 = exp_month + " / " + exp_year
               %input{type: "hidden", name: "card_id", value: ""}
               .card__btn
-                = f.submit "削除する", {class: "card__display__list__remove"}
+                = f.submit "削除する"
                 = flash[:alert]
         .card__display__btn-back
-          = link_to "もどる", index_product_path(@product), {class: "card__display__list__remove"}
+          = link_to "もどる", index_product_path(@product)
 
       - else
         .card__display__btn-add

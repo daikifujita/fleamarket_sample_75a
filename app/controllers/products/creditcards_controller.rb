@@ -55,10 +55,10 @@ class Products::CreditcardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       if @card.destroy 
-        redirect_to product_creditcards_path 
+        redirect_to action: :index
         flash[:notice] = "クレジットカードを削除しました。"
       else
-        redirect_to product_creditcards_path 
+        redirect_to action: :index
         flash[:alert] = "クレジットカードを削除できませんでした。"
       end
     end
