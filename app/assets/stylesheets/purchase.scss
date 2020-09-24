@@ -1,17 +1,6 @@
-.header{
-  height: 128px;
-  width: 100%;
-  text-align: center;
-  background: rgb(245, 245, 245);
-
-  &__icon{
-  padding-top: 40px;
-  }
-}
-
 .buyconfirm {
   font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
-  height: 880px;
+  height: 910px;
   width: 100%;
   background-color: rgb(245, 245, 245);
 
@@ -66,6 +55,31 @@
 
         &__cards__list {
           text-align: center;
+        }
+
+        &__cards__btn {
+          a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 38px;
+            width: 300px;
+            display: block;
+          }
+          cursor: pointer;
+          text-align: center;
+          margin: 10px 0;
+          border-radius: 4px;
+          background: #2BCCD1;
+          border: 1px solid #2BCCD1;
+        }
+
+        &__cards__comment {
+          text-align: center;
+          font-size: 14px;
+          font-weight: bold;
+          color: red;
         }
 
         &__prefecture {

@@ -66,7 +66,7 @@
 
   &__btn {
     text-align: center;
-    margin: 50px 0;
+    margin: 50px 0 10px 0;
     input{
       width: 345px;
       margin-bottom: 24px;
@@ -90,10 +90,22 @@
         padding: 10px; 
       }
     }
-    &__add {
-      font-size: 20px;
-      padding: 30px;
+    &__btn-add {
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 48px;
+        display: block;
+        text-align: center;
+      }
+      cursor: pointer;
+      width: 345px;
+      margin: 50px auto 0 auto;
+      border-radius: 4px;
+      background: #2BCCD1;
+      border: 1px solid #2BCCD1;
     }
   }
 }
-

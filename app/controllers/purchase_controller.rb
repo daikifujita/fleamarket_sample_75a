@@ -44,7 +44,7 @@ class PurchaseController < ApplicationController
     #製品のbuyer_idを付与
     @product_buyer= Product.find(params[:id])
     @product_buyer.update( buyer_id: current_user.id)
-    redirect_to purchased_product_path
+    redirect_to product_path
   end
 
   private 

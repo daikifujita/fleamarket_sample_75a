@@ -1,6 +1,4 @@
-.header
-  .header__icon
-    = image_tag asset_path('logo/logo.png'), :size =>'185x49'
+= render "shared/header_icon"
 
 .buyconfirm
   = form_with url: buy_product_path, method: :post, local: true do |f| 
@@ -45,9 +43,13 @@
               - exp_month = @card_information.exp_month.to_s
               - exp_year = @card_information.exp_year.to_s.slice(2,3)
               = exp_month + " / " + exp_year
-        - else 
-          .buyconfirm__cards__list
-            = link_to "クレジットカードを登録してください", new_user_card_path(current_user),data: {"turbolinks" => false}
+          .buyconfirm__cards__btn
+            = link_to "クレジットカードを変更する", product_creditcards_path(@product), data: {"turbolinks" => false}
+        - else
+          .buyconfirm__cards__btn
+            = link_to "クレジットカードを登録する", new_product_creditcard_path(@product), data: {"turbolinks" => false}
+          .buyconfirm__cards__comment
+            購入にはクレジットカード登録が必要です
       .buyconfirm__wrapper__container
         .buyconfirm__prefecture
           .buyconfirm__prefecture__title
@@ -64,8 +66,11 @@
             =@address.user.first_name
             =@address.user.last_name
 
-      .buyconfirm__wrapper__btn
-        = f.submit "購入する", class:"purchase"
+      - if @card.present?
+        .buyconfirm__wrapper__btn
+          = f.submit "購入する", class:"purchase"
+
+      - else
 
 .pfooter
   .pfooter__top

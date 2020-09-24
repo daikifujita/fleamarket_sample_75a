@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   end
     
   resources :products do
+    scope module: :products do
+      resources :creditcards, only: [:index, :new, :create, :destroy]
+    end
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
