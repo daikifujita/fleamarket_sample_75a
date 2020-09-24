@@ -491,6 +491,28 @@ body {
                   height: 150px;
                   object-fit: cover;
                 }
+                &__sold {
+                    width: 0;
+                    height: 0;
+                    border-width: 120px 120px 0 0;
+                    border-color: #ea352d transparent;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    border-style: solid;
+                  &__inner {
+                      top: -90px;
+                      font-size: 30px;
+                      position: absolute;
+                      left: 0;
+                      z-index: 2;
+                      color: #fff;
+                      transform: rotate(-45deg);
+                      letter-spacing: 2px;
+                      font-weight: 600;
+                  }
+                }
               }
               .productList--body {
                 background-color: #fff;

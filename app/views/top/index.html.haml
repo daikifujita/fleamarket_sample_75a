@@ -140,7 +140,13 @@
                   .productList
                     = link_to product_path(product.id), method: :get do
                       %figure.productList--img
-                        -# = image_tag product.pictures.first.image_url
+                        = image_tag product.pictures.first.image_url
+                        -#製品に関して、"buyer_id"の有無を確認
+                        -if product.buyer_id.present? 
+                          -#"buyer_id"がある場合には、追加の記述を行う。
+                          .productList--img__sold
+                            .productList--img__sold__inner 
+                              SOLD
                       .productList--body
                         %h3
                           = product.name
