@@ -1,0 +1,35 @@
+%body
+  %header
+    .header__contents
+      .header__contents__left
+        = image_tag asset_path('logo/logo.png'), :size =>'185x49'
+      .header__contents__right
+        .step1 会員情報入力
+        .step2 住所情報登録
+        .step3.selected 完了
+        %ol.header__contents__right__stepbar
+          %li.done
+            %span
+          %li.done
+            %span
+          %li.done
+            %span
+    .last__main
+      .last__main__container
+        .last__main__container__head
+          %p 新規会員登録
+        .last__main__container__body
+          登録が完了しました
+          %br/
+          引き続き、furimaをお楽しみください！
+          .last__main__container__body__top
+            = link_to "トップへ戻る", root_path
+    .footer
+      .footer__top
+        %ul
+          %a{:href => "https://www.mercari.com/jp/tos/", :target => "_blank"}
+            %li プライバシーポリシー
+          %a{:href => "https://www.mercari.com/jp/tos/", :target => "_blank"}
+            %li furima利用規約
+          %a{:href => "https://www.mercari.com/jp/tos/", :target => "_blank"}
+            %li 特定商取引に関する表記
