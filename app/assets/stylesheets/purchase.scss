@@ -27,7 +27,10 @@
         &__product {
           display: flex;
           justify-content: space-between;
-
+          & > img {
+            width: 100px;
+            height: 100px;
+          }
           &__detail {
             font-size: 16px;
           }
