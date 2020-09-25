@@ -2,7 +2,7 @@
   .header__icon
     = image_tag asset_path('logo/logo.png'), :size =>'185x49'
 .productsale__main
-  = form_with(model: [@user, @product],multipart: true, class:"new_product",:remote => true, local: true) do |f|
+  = form_with(model: [@user, @product],multipart: true, class:"edit_product",:remote => true, local: true) do |f|
     = render 'layouts/error_messages', model: f.object
     .productsale__main__containers
       .productsale__main__containers__image
