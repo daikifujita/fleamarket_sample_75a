@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   end
 
   def new
-
     if user_signed_in?
       @product = Product.new
       @product.pictures.new
@@ -31,9 +30,9 @@ class ProductsController < ApplicationController
           next
         end
       end
-      # redirect_to request.referrer, notice: 'succeded sending'
+      @productLastId = Product.select(:id).last
       respond_to do |format|
-        format.json 
+        format.json { render json: {id: @productLastId}}
       end
     else
       @category_parent_array << @category_parent_array = Category.where(ancestry: nil)

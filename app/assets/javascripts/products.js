@@ -50,20 +50,22 @@ $(function () {
 
   // newアクション時には実行させないようにする必要あり
   $(function () {
-    $.getJSON('edit')
-      .done(function (datas) {
-        var targetIndex = 0
-        datas.forEach(function (data) {
-          //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
-          var blobUrl = data.image
-          //配列の該当箇所を"exist"書き換える（追加）
-          files_array[targetIndex] = "exist"
-          targetIndex = new_upload(targetIndex, blobUrl)
+    if (document.URL.match(/edit/)) {
+      $.getJSON('edit')
+        .done(function (datas) {
+          var targetIndex = 0
+          datas.forEach(function (data) {
+            //最初の値は0にする（htmlでも最初は0,他の値の場合form送信時に空の配列ができるのでエラーになってしまう）
+            var blobUrl = data.image
+            //配列の該当箇所を"exist"書き換える（追加）
+            files_array[targetIndex] = "exist"
+            targetIndex = new_upload(targetIndex, blobUrl)
+          })
         })
-      })
-      .fail(function () {
-        console.log("NG")
-      })
+        .fail(function () {
+          alert("対象データが存在しません")
+        })
+    }
   })
 
   //ドラックアンドドロップ
@@ -131,7 +133,6 @@ $(function () {
         //クリック対象のindexを取得
         const targetIndex = $(this).parent().data('index');
         var preview = $('.preview').length;
-        console.log(preview)
         if (preview == 10){
           $(`label[data-index="${targetIndex}"]`).remove();
           $(`div[data-index="${targetIndex}"]`).remove();
@@ -199,6 +200,8 @@ $(function () {
       })
         .done(function (data) {
           alert('出品に成功しました！');
+          URL = url +"/" + data.id.id + "/edit"
+          window.location = URL
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
           alert('出品に失敗しました！');
@@ -206,7 +209,7 @@ $(function () {
         .always(function () {
           $(".submit").removeAttr("disabled")
         }) 
-    } else if ($(this).attr('class') == "edit_item") {
+    } else if ($(this).attr('class') == "edit_product") {
       $.ajax({
         url: url,
         type: "PATCH",
@@ -217,6 +220,7 @@ $(function () {
       })
         .done(function (data) {
           alert('出品に成功しました！');
+          window.location = url
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
           alert('出品に失敗しました！！');
