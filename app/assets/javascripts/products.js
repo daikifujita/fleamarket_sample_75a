@@ -200,7 +200,7 @@ $(function () {
       })
         .done(function (data) {
           alert('出品に成功しました！');
-          URL = url +"/" + data.id.id + "/edit"
+          URL = url +"/" + data.id.id
           window.location = URL
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
