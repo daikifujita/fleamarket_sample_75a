@@ -23,7 +23,7 @@
                 %input{type: "hidden", name: "card_id", value: ""}
                 .card__btn
                   = f.submit "削除する", {class: "card__display__list__remove"}
-                  = flash[:alert] 
+
         - else
           .card__display__btn-add
             = link_to new_user_card_path, data: {"turbolinks" => false} do

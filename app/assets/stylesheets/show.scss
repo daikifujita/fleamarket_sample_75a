@@ -90,8 +90,8 @@ body  {
 
 .main-contents {  
   
-
-  margin: 40px 370px 0;
+  width: 700px;
+  margin: 40px auto 0 auto;
   background-color: #ffffff; 
   padding-bottom: 40px;
 }
@@ -199,8 +199,10 @@ body  {
   border: 1px solid #f5f5f5;
   font-size: 14px;
   color:#333333;
-  text-decoration: none;
-  
+  & a {
+    text-decoration: none;
+    color:#333333;
+  }
 }
 
 .item-price-box {
@@ -225,7 +227,7 @@ body  {
 }
 
 .item-buy-btn {
-  display: block;
+
   margin-top: 16px;
   background-color:#2BCCD1;
   font-size: 24px;
@@ -238,13 +240,14 @@ body  {
   margin: 0 auto;
   margin-bottom: 10px;
 
-  
   a {
     color: white;
     text-decoration: none;
+    display: block;
   }
   
 }
+
 .disabled-btn  {
   display: block;
   margin-top: 16px;
