@@ -227,7 +227,7 @@ body  {
 }
 
 .item-buy-btn {
-  display: block;
+
   margin-top: 16px;
   background-color:#2BCCD1;
   font-size: 24px;
@@ -240,13 +240,14 @@ body  {
   margin: 0 auto;
   margin-bottom: 10px;
 
-  
   a {
     color: white;
     text-decoration: none;
+    display: block;
   }
   
 }
+
 .disabled-btn  {
   display: block;
   margin-top: 16px;
