@@ -128,96 +128,62 @@
           %p.item__detail
             お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
     %section.pickupContainer
-      %h2.head ピックアップカテゴリー
+      %h2.head 新規投稿商品一覧
       .productBox
         .productHead
-          = link_to "", "#"
-          %h3.title
-            = link_to '新規投稿商品', products_path
-            .productLists
-              .productLists__container
-                - @products.each do |product|
-                  .productList
-                    = link_to product_path(product.id), method: :get do
-                      %figure.productList--img
-                        = image_tag product.pictures.first.image_url
-                        -#製品に関して、"buyer_id"の有無を確認
-                        -if product.buyer_id.present? 
-                          -#"buyer_id"がある場合には、追加の記述を行う。
-                          .productList--img__sold
-                            .productList--img__sold__inner 
-                              SOLD
-                      .productList--body
-                        %h3
-                          = product.name
-                        .details
-                          %ul
-                            %li
-                              = number_to_currency(product.price,format: "%u%n",unit:"¥",precision: 0)
-                            %li
-                              %i.fa.fa-star.likeIcon
-                          %p (税込)
-                %end
-    %section.pickupContainer
-      %h2.head ピックアップブランド
+          .productLists
+            .productLists__container
+              - @products.each do |product|
+                .productList
+                  = link_to product_path(product.id), method: :get do
+                    %figure.productList--img
+                      = image_tag product.pictures.first.image_url
+                      -#製品に関して、"buyer_id"の有無を確認
+                      -if product.buyer_id.present? 
+                        -#"buyer_id"がある場合には、追加の記述を行う。
+                        .productList--img__sold
+                          .productList--img__sold__inner 
+                            SOLD
+                    .productList--body
+                      %h3
+                        = product.name
+                      .details
+                        %ul
+                          %li
+                            = number_to_currency(product.price,format: "%u%n",unit:"¥",precision: 0)
+                          %li
+                            %i.fa.fa-star.likeIcon
+                        %p (税込)
+              %end
+
+      %h2.head 出品中商品一覧
       .productBox
         .productHead
-          = link_to "", "#"
-          %h3.title アーカイバ
-        .productLists
-          .productLists__container
-            .productList
-              = link_to "/products/8" do
-                %figure.productList--img
-                  = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"
-                .productList--body
-                  %h3.name 炒め物
-                  .details
-                    %ul
-                      %li ¥1,000
-                      %li
-                        %i.fa.fa-star.likeIcon
-                        0
-                    %p (税込)
-            .productList
-              = link_to "/products/3" do
-                %figure.productList--img
-                  = image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
-                .productList--body
-                  %h3.name サバの煮物
-                  .details
-                    %ul
-                      %li ¥30,000
-                      %li
-                        %i.fa.fa-star.likeIcon
-                        0
-                    %p (税込)
-            .productList
-              = link_to "/products/2" do
-                %figure.productList--img
-                  = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
-                .productList--body
-                  %h3.name 餃子
-                  .details
-                    %ul
-                      %li ¥20,000
-                      %li
-                        %i.fa.fa-star.likeIcon
-                        0
-                    %p (税込)
-            .productList
-              = link_to "/products/3" do
-                %figure.productList--img
-                  = image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
-                .productList--body
-                  %h3.name カレーライス
-                  .details
-                    %ul
-                      %li ¥10,000
-                      %li
-                        %i.fa.fa-star.likeIcon
-                        1
-                    %p (税込)
+          .productLists
+            .productLists__container
+              - @saling_products.each do |product|
+                .productList
+                  = link_to product_path(product.id), method: :get do
+                    %figure.productList--img
+                      = image_tag product.pictures.first.image_url
+                      -#製品に関して、"buyer_id"の有無を確認
+                      -if product.buyer_id.present? 
+                        -#"buyer_id"がある場合には、追加の記述を行う。
+                        .productList--img__sold
+                          .productList--img__sold__inner 
+                            SOLD
+                    .productList--body
+                      %h3
+                        = product.name
+                      .details
+                        %ul
+                          %li
+                            = number_to_currency(product.price,format: "%u%n",unit:"¥",precision: 0)
+                          %li
+                            %i.fa.fa-star.likeIcon
+                        %p (税込)
+              %end
+
   %aside.appBanner{style: "background-image: url(#{image_path asset_path("pict/bg-appBanner-pict.jpg")})"}
     .inner
       %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
