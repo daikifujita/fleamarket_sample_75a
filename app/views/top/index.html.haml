@@ -156,6 +156,34 @@
                         %p (税込)
               %end
 
+      %h2.head 出品中商品一覧
+      .productBox
+        .productHead
+          .productLists
+            .productLists__container
+              - @saling_products.each do |product|
+                .productList
+                  = link_to product_path(product.id), method: :get do
+                    %figure.productList--img
+                      = image_tag product.pictures.first.image_url
+                      -#製品に関して、"buyer_id"の有無を確認
+                      -if product.buyer_id.present? 
+                        -#"buyer_id"がある場合には、追加の記述を行う。
+                        .productList--img__sold
+                          .productList--img__sold__inner 
+                            SOLD
+                    .productList--body
+                      %h3
+                        = product.name
+                      .details
+                        %ul
+                          %li
+                            = number_to_currency(product.price,format: "%u%n",unit:"¥",precision: 0)
+                          %li
+                            %i.fa.fa-star.likeIcon
+                        %p (税込)
+              %end
+
   %aside.appBanner{style: "background-image: url(#{image_path asset_path("pict/bg-appBanner-pict.jpg")})"}
     .inner
       %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
