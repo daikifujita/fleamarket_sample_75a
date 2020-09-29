@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     member do 
       get 'logout'
     end
-    resources :cards, only: [:index, :new, :create, :destroy] 
+    resources :cards, only: [:index, :new, :create, :destroy]
+    resources :graphs, only: [:index]
   end
     
   resources :products do
@@ -34,6 +35,6 @@ Rails.application.routes.draw do
       
     end
   end
-    
+
 end
 

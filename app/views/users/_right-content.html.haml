@@ -7,7 +7,7 @@
     %li
       = link_to "出品する", new_product_path, class: "mypage-nav-list-item" 
     %li
-      = link_to "下書き一覧", "#", class: "mypage-nav-list-item" 
+      = link_to "売却金額グラフ", user_graphs_path(current_user), class: "mypage-nav-list-item", method: :get 
     %li
       = link_to "出品した商品 - 出品中", "#", class: "mypage-nav-list-item" 
     %li
