@@ -39,7 +39,7 @@ am4core.ready(function() {
   categoryAxis.dataFields.category = "date";
   categoryAxis.renderer.grid.template.location = 0;
   categoryAxis.renderer.minGridDistance = 30;
-  categoryAxis.renderer.labels.template.horizontalCenter = "right";
+  categoryAxis.renderer.labels.template.horizontalCenter = "middle";
   categoryAxis.renderer.labels.template.verticalCenter = "middle";
   categoryAxis.renderer.labels.template.rotation = 0;
   categoryAxis.tooltip.disabled = true;
