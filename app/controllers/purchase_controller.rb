@@ -9,7 +9,7 @@ class PurchaseController < ApplicationController
   def index
 
     if current_user.id != @product.user_id
-      @address = Address.where(user_id: current_user.id).first
+      @address = Address.find_by(user_id: current_user.id)
       #Payjpから顧客情報を取得し、表示
       if @card.present?
         customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -52,7 +52,7 @@ class PurchaseController < ApplicationController
 
   private 
   def set_card
-    @card = Card.where(user_id: current_user.id).first
+    @card = Card.find_by(user_id: current_user.id)
   end
 
   def set_product
