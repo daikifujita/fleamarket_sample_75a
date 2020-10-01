@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   
   validates :nickname, :first_name, :last_name, :first_name_kana, :last_name_kana,  :birthday, presence:true
+  validates :first_name_kana, :last_name_kana, format: {with: /\A[ァ-ヶー－]+\z/}
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i} #同一メールアドレスを登録できないようにする。
   validates :is_deleted, inclusion: { in: [true, false] }
 
